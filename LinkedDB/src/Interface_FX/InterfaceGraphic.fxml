@@ -8,17 +8,45 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutY="-9.0" prefHeight="552.0" prefWidth="966.0">
+      <AnchorPane layoutY="2.0" prefHeight="552.0" prefWidth="966.0">
          <children>
-            <MenuButton layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Documentos">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-              </items>
-            </MenuButton>
-            <ListView layoutX="122.0" layoutY="14.0" prefHeight="400.0" prefWidth="181.0" />
-            <Label layoutX="36.0" layoutY="83.0" text="JSON" />
-            <Slider layoutX="309.0" layoutY="13.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="18.0" />
+            <MenuBar layoutX="6.0" layoutY="14.0" prefHeight="25.0" prefWidth="834.0" AnchorPane.bottomAnchor="530.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                    <MenuItem mnemonicParsing="false" text="save" />
+                    <MenuItem mnemonicParsing="false" text="choose" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="jose">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="jose" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="carlo">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Deletehola" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <TreeView layoutX="7.0" layoutY="25.0" prefHeight="530.0" prefWidth="382.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="584.0" AnchorPane.topAnchor="25.0" />
          </children></AnchorPane>
    </children>
 </AnchorPane>

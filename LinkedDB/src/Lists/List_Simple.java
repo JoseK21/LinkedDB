@@ -3,7 +3,7 @@ package Lists;
 public class List_Simple {
 
 	//Punteros para saber donde esta el inicio y el final
-	public NodoList_Simple inicio;
+	public NodoList_Simple inicio ;
 	public NodoList_Simple fin;
 	
 	public List_Simple(){
