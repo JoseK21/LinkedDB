@@ -1,5 +1,7 @@
 package Interface_FX;
 
+
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -8,13 +10,16 @@ import javafx.scene.Scene;
 
 
 public class Main extends Application {
+	
+	// Abre la ventana inicial
 	@Override
-	public void start(Stage stage) throws Exception{
+	public void start(Stage primarystage) throws Exception{
 		Parent root =FXMLLoader.load(getClass().getResource("InterfaceMain.fxml"));
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
-		stage.setTitle("LinkedDB");
+		primarystage.setTitle("LinkedDB");
+		//Scene scene = new Scene(root);
+		primarystage.setScene(new Scene(root,800,600) );
+		primarystage.show();
+		
 	    
 		
 	}

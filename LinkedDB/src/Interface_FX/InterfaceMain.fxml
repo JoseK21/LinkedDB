@@ -1,35 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Interface_FX.InterfaceMainController">
    <children>
-      <AnchorPane layoutY="2.0" prefHeight="552.0" prefWidth="966.0">
-         <children>
-            <MenuBar layoutX="6.0" layoutY="14.0" prefHeight="25.0" prefWidth="834.0" AnchorPane.bottomAnchor="530.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-              <menus>
-                <Menu mnemonicParsing="false" text="Archivo">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Cerrar" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Crear JSON_Store">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Crear Doc_JSON">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
-                  </items>
-                </Menu>
-               </menus>
-            </MenuBar>
-            <TreeView layoutX="7.0" layoutY="25.0" prefHeight="530.0" prefWidth="382.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="584.0" AnchorPane.topAnchor="25.0" />
-         </children></AnchorPane>
+      <ToolBar layoutX="14.0" layoutY="14.0" prefHeight="40.0" prefWidth="616.0" AnchorPane.bottomAnchor="560.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <Button mnemonicParsing="false" text="Crear Nuevo JSON Store" />
+            <Button mnemonicParsing="false" text="Crear Nuevo Documento JSON" />
+        </items>
+      </ToolBar>
    </children>
 </AnchorPane>
