@@ -10,7 +10,7 @@ import javafx.scene.Scene;
 public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws Exception{
-		Parent root =FXMLLoader.load(getClass().getResource("InterfaceGraphic.fxml"));
+		Parent root =FXMLLoader.load(getClass().getResource("InterfaceMain.fxml"));
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();

@@ -12,39 +12,22 @@
          <children>
             <MenuBar layoutX="6.0" layoutY="14.0" prefHeight="25.0" prefWidth="834.0" AnchorPane.bottomAnchor="530.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <menus>
-                <Menu mnemonicParsing="false" text="File">
+                <Menu mnemonicParsing="false" text="Archivo">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
+                    <MenuItem mnemonicParsing="false" text="Cerrar" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
+                <Menu mnemonicParsing="false" text="Crear JSON_Store">
                   <items>
                     <MenuItem mnemonicParsing="false" text="Delete" />
-                    <MenuItem mnemonicParsing="false" text="save" />
-                    <MenuItem mnemonicParsing="false" text="choose" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Help">
+                <Menu mnemonicParsing="false" text="Crear Doc_JSON">
                   <items>
                     <MenuItem mnemonicParsing="false" text="About" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="jose">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="jose" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="carlo">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Deletehola" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
-                  </items>
-                </Menu>
-              </menus>
+               </menus>
             </MenuBar>
             <TreeView layoutX="7.0" layoutY="25.0" prefHeight="530.0" prefWidth="382.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="584.0" AnchorPane.topAnchor="25.0" />
          </children></AnchorPane>
