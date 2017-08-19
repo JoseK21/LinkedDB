@@ -1,8 +1,8 @@
 package Lists;
 
-public class List_CircularDouble {
+public class LCD_Documento {
 	public class ListaCircularDE {
-		   private NodoList_CircularDouble primerNodo;
+		   private NodoLCD_Documento primerNodo;
 		   private String nombre;  
 
 		   public ListaCircularDE( String cadena ) {
@@ -16,20 +16,20 @@ public class List_CircularDouble {
 
 		   public synchronized void insertar( Object elementoAInsertar ) {
 		      if ( estaVacio() ) {
-		         primerNodo = new NodoList_CircularDouble(elementoAInsertar);
+		         primerNodo = new NodoLCD_Documento(elementoAInsertar);
 		         primerNodo.nodoProximo=primerNodo;
 		         primerNodo.nodoAnterior=primerNodo;
 		         
 		      }
 		      else {
-		    	  NodoList_CircularDouble actual = primerNodo;
+		    	  NodoLCD_Documento actual = primerNodo;
 		      	 while(actual.nodoProximo != primerNodo) {
 		      	 	actual = actual.nodoProximo;
 		      	 }
-		      	NodoList_CircularDouble ultimoNodo = actual;
+		      	NodoLCD_Documento ultimoNodo = actual;
 		         
-		      	NodoList_CircularDouble desplazado = primerNodo;
-		         primerNodo = new NodoList_CircularDouble( elementoAInsertar,desplazado,ultimoNodo );
+		      	NodoLCD_Documento desplazado = primerNodo;
+		         primerNodo = new NodoLCD_Documento( elementoAInsertar,desplazado,ultimoNodo );
 		         ultimoNodo.nodoProximo = primerNodo;
 		     	 
 		      	 desplazado.nodoAnterior = primerNodo;
@@ -39,7 +39,7 @@ public class List_CircularDouble {
 		   public synchronized Object remover()
 		      throws ExcepcionListaVacia
 		   {
-			  NodoList_CircularDouble NodoARemover = primerNodo;
+			  NodoLCD_Documento NodoARemover = primerNodo;
 		      Object elementoARemover = null;
 
 		      if ( estaVacio() )
@@ -51,11 +51,11 @@ public class List_CircularDouble {
 		         primerNodo = null;
 		      else
 		      {
-		    	 NodoList_CircularDouble actual = primerNodo;
+		    	 NodoLCD_Documento actual = primerNodo;
 		      	 while(actual.nodoProximo != primerNodo) {
 		      	 	actual = actual.nodoProximo;
 		      	 }
-		      	NodoList_CircularDouble ultimoNodo = actual;
+		      	NodoLCD_Documento ultimoNodo = actual;
 		      	 	        
 		         primerNodo = primerNodo.nodoProximo;
 		         ultimoNodo.nodoProximo = primerNodo;

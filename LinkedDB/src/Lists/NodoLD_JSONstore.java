@@ -1,16 +1,16 @@
 package Lists;
 
-public class NodoList_Double {
+public class NodoLD_JSONstore {
 	public int dato;
-	NodoList_Double siguiente;
-	NodoList_Double anterior;
+	NodoLD_JSONstore siguiente;
+	NodoLD_JSONstore anterior;
 	
 	//Constructor para cuando aun ni hay nodos
-		public NodoList_Double(int el){
+		public NodoLD_JSONstore(int el){
 			this(el,null,null);
 	}
 	//COnstructor para cuando ya haya nodos
-	public NodoList_Double(int el,NodoList_Double s,NodoList_Double a){
+	public NodoLD_JSONstore(int el,NodoLD_JSONstore s,NodoLD_JSONstore a){
 		dato=el;
 		siguiente=s;
 		anterior=a;

@@ -1,12 +1,12 @@
 package Lists;
 
-public class List_Simple {
+public class LS_Objeto {
 
 	//Punteros para saber donde esta el inicio y el final
-	public NodoList_Simple inicio ;
-	public NodoList_Simple fin;
+	public NodoLS_Objeto inicio ;
+	public NodoLS_Objeto fin;
 	
-	public List_Simple(){
+	public LS_Objeto(){
 		inicio =null;
 		fin=null;
 	}
@@ -17,7 +17,7 @@ public class List_Simple {
 			return false;
 	}
 	public void agregarAlInicio(int elemento){		//Metodo para agregar un nodo al inicio de la lista
-		inicio=new NodoList_Simple(elemento, inicio); //Creacion de Nodo de la lIsta Simple Enlazada
+		inicio=new NodoLS_Objeto(elemento, inicio); //Creacion de Nodo de la lIsta Simple Enlazada
 		if(fin==null){
 			fin=inicio;
 		}
@@ -25,7 +25,7 @@ public class List_Simple {
 	 
 	//Metodo para ver los nombre luego de los documentos JSON
 	public void mostrarLista(){
-		NodoList_Simple recorrer = inicio;
+		NodoLS_Objeto recorrer = inicio;
 		while (recorrer!=null){
 			System.out.print("["+recorrer.data+"]-->");
 			recorrer=recorrer.next;
@@ -43,7 +43,7 @@ public class List_Simple {
 			}else if (elemento == inicio.data){
 				inicio=inicio.next;
 			}else{
-				NodoList_Simple anterior,temporal;
+				NodoLS_Objeto anterior,temporal;
 				anterior=inicio;
 				temporal=inicio.next;
 				while(temporal != null && temporal.data!=elemento){
@@ -68,7 +68,7 @@ public class List_Simple {
 	}
 	//metodo para buscar un elemento
 	public boolean buscarEnlaLista(int elemento){
-		NodoList_Simple temporal = inicio;
+		NodoLS_Objeto temporal = inicio;
 		
 		while (temporal!=null && temporal.data!=elemento){
 			temporal=temporal.next;				
