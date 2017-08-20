@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -8,9 +10,9 @@
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface_FX.Atribute_ListController">
    <children>
-      <Button layoutX="235.0" layoutY="490.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="139.0" text="Guardar" />
-      <Button layoutX="453.0" layoutY="490.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="Borrar" />
-      <Button layoutX="14.0" layoutY="561.0" mnemonicParsing="false" onAction="#atras" prefHeight="25.0" prefWidth="772.0" text="Atras" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="561.0" />
+      <Button layoutX="14.0" layoutY="478.0" mnemonicParsing="false" onAction="#guardarLista_Atributos" prefHeight="25.0" prefWidth="127.0" text="Guardar" />
+      <Button layoutX="14.0" layoutY="528.0" mnemonicParsing="false" onAction="#atras" prefHeight="25.0" prefWidth="127.0" text="Atras" />
+      <Button layoutX="14.0" layoutY="561.0" mnemonicParsing="false" onAction="#volverInicio" prefHeight="25.0" prefWidth="772.0" text="Menu Inicial" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="561.0" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="331.0" layoutY="14.0" text="Lista de Atributos" textAlignment="CENTER">
          <font>
             <Font size="25.0" />
@@ -41,5 +43,19 @@
          </font></Label>
       <TextField layoutX="274.0" layoutY="84.0" prefHeight="25.0" prefWidth="358.0" />
       <ChoiceBox fx:id="tiposEspecialesStatusBox" layoutX="449.0" layoutY="179.0" prefHeight="25.0" prefWidth="169.0" />
+      <Button fx:id="modi_Atributo" layoutX="14.0" layoutY="503.0" mnemonicParsing="false" onAction="#moficicarLista_Atributos" prefHeight="25.0" prefWidth="127.0" text="Modificar" />
+      <Label fx:id="txtmsjAccion" layoutX="152.0" layoutY="482.0" prefHeight="46.0" prefWidth="368.0">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startY="0.7666666666666667">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="#30784a" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
    </children>
+   <effect>
+      <InnerShadow color="#239417" />
+   </effect>
 </AnchorPane>

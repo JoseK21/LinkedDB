@@ -33,4 +33,7 @@
       <Label fx:id="conf_Create" alignment="CENTER" contentDisplay="CENTER" layoutX="254.0" layoutY="346.0" onDragDone="#crearCarpeta" prefHeight="36.0" prefWidth="294.0" />
       <Button layoutX="478.0" layoutY="239.0" mnemonicParsing="false" onAction="#nuevo" prefHeight="25.0" prefWidth="114.0" text="Nuevo" />
    </children>
+   <effect>
+      <InnerShadow color="#239417" />
+   </effect>
 </AnchorPane>

@@ -24,6 +24,7 @@ public class Atribute_ListController extends Application {
 	@FXML private RadioButton textRequerido ;
 	@FXML private Label val_def;
 	@FXML private TextField dataval_def;
+	@FXML private Label txtmsjAccion;
 	
 	
 	
@@ -38,6 +39,32 @@ public class Atribute_ListController extends Application {
 		}
 	}
 	
+	@FXML
+	public void guardarLista_Atributos(ActionEvent event){
+		txtmsjAccion.setText("Guardado Correcto");
+	
+	}
+	
+	@FXML
+	public void moficicarLista_Atributos(ActionEvent event){
+		// Busca los valores que tenia y los muestra para que el usuario veo lo que tenia y asai pueda cambiar lo que el quiere
+	}
+	
+	@FXML
+	public void volverInicio(ActionEvent event){
+		
+		try{
+			((Node)event.getSource()).getScene().getWindow().hide();
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("InterfaceMainFirst.fxml"));
+			Parent root1 = (Parent) fxmlLoader.load();
+			Stage stage = new Stage();
+			
+			stage.setTitle("LInkedDB");
+			stage.setScene(new Scene(root1));
+			stage.show();
+		}catch (Exception e){
+			System.out.println("Can´t load new window");
+	}}
 	
 	@FXML
 	public void atras(ActionEvent event){
