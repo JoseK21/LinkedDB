@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface_FX.New_JSONStoreController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface_FX.New_JSONStoreController">
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
@@ -31,6 +31,6 @@
       <Button layoutX="734.0" layoutY="561.0" mnemonicParsing="false" onAction="#atras" text="Atras" />
       <Label fx:id="msjCrearJSONstore" alignment="CENTER" blendMode="COLOR_BURN" contentDisplay="CENTER" layoutX="73.0" layoutY="300.0" onDragDone="#crearCarpeta" prefHeight="36.0" prefWidth="655.0" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />
       <Label fx:id="conf_Create" alignment="CENTER" contentDisplay="CENTER" layoutX="254.0" layoutY="346.0" onDragDone="#crearCarpeta" prefHeight="36.0" prefWidth="294.0" />
-      <Button layoutX="478.0" layoutY="239.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="114.0" onAction="#nuevo" text="Nuevo" />
+      <Button layoutX="478.0" layoutY="239.0" mnemonicParsing="false" onAction="#nuevo" prefHeight="25.0" prefWidth="114.0" text="Nuevo" />
    </children>
 </AnchorPane>
