@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface_FX.Atribute_ListController">
    <children>
       <Button layoutX="225.0" layoutY="325.0" mnemonicParsing="false" text="Guardar" />
       <Button layoutX="314.0" layoutY="325.0" mnemonicParsing="false" text="Borrar" />
@@ -27,5 +27,11 @@
       <TextField layoutX="180.0" layoutY="270.0" />
       <Label layoutX="74.0" layoutY="67.0" text="Nombre del Atributo" />
       <TextField layoutX="201.0" layoutY="63.0" />
+      <MenuButton layoutX="235.0" layoutY="177.0" mnemonicParsing="false" onAction="#initialize" prefHeight="25.0" prefWidth="93.0">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
+        </items>
+      </MenuButton>
    </children>
 </AnchorPane>

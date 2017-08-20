@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 
-public class Atribute_List extends Application {
+public class Atribute_ListController extends Application {
 	ObservableList<String> tiposStatusList = FXCollections.observableArrayList("Entero","Flotante","Cadena","Fecha-Hora");
 	
 		
