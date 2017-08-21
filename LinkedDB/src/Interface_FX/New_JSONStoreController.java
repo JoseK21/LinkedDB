@@ -30,12 +30,12 @@ public class New_JSONStoreController implements Initializable {
 		String NameFile = textnameJSONStore.getText() ;	
 		System.out.println("Nombre de la carpeta: " + NameFile);
 		if (!NameFile.isEmpty()) {					
-			String carpetas = "C:\\Users\\kenne\\Desktop\\Proy_LinkedDB\\"+ NameFile; // Se crea la carpeta con el nombre correspondiente
-			System.out.println("Ruta: " + carpetas);
+			String ruta = "C:\\Users\\kenne\\Desktop\\Proy_LinkedDB\\"+ NameFile; // Se crea la carpeta con el nombre correspondiente
+			System.out.println("Ruta: " + ruta);
 	
 			String archivo = "\\"+ NameFile +".txt";
-			File crea_carpeta = new File(carpetas);		
-			File crea_archivo = new File(carpetas+archivo);
+			File crea_carpeta = new File(ruta);		
+			File crea_archivo = new File(ruta+archivo);
 			
 							
 			if(crea_archivo.exists()){

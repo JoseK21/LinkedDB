@@ -14,11 +14,21 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class InterfaceMainController implements Initializable {
-		
+	
+	@FXML TreeView <String> treeView1;	
+	Image img1 = new Image(getClass().getResourceAsStream("/img/img2.png"));
+	Image img2 = new Image(getClass().getResourceAsStream("/img/img1.png"));
+
+	
+	
 	@FXML
 	public void OpenNew_JSONStore(ActionEvent event){			
 		try{
@@ -66,6 +76,16 @@ public class InterfaceMainController implements Initializable {
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb){
+		TreeItem<String> roottree = new TreeItem<>("RootTree",new ImageView(img1));
+		TreeItem<String> nodeA = new TreeItem<>("node A",new ImageView(img2));
+		TreeItem<String> nodeB = new TreeItem<>("node B",new ImageView(img2));
+		TreeItem<String> nodeC = new TreeItem<>("node C",new ImageView(img2));
+		TreeItem<String> nodeD = new TreeItem<>("node D",new ImageView(img2));
+		TreeItem<String> nodeE = new TreeItem<>("node E",new ImageView(img2));
+		
+		roottree.getChildren().addAll(nodeA,nodeB,nodeC,nodeD,nodeE);
+		
+		treeView1.setRoot(roottree);
 		
 	}
 }
