@@ -3,6 +3,7 @@ package Interface_FX;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,11 +11,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class InterfaceMainController implements Initializable {
-	
+		
 	@FXML
 	public void OpenNew_JSONStore(ActionEvent event){			
 		try{
@@ -26,11 +30,10 @@ public class InterfaceMainController implements Initializable {
 			stage.centerOnScreen();
 			stage.setTitle("LInkedDB");
 			stage.setScene(new Scene(root1));
-			stage.show();
+			stage.show();			
 		}catch (Exception e){
 			System.out.println("Can´t load new window");
-		}
-			
+		}			
 		}
 		
 	@FXML
@@ -50,7 +53,16 @@ public class InterfaceMainController implements Initializable {
 		}
 			
 	}
-	
+	@FXML
+	public void Close(ActionEvent event){		
+		try{
+			Platform.exit();
+			System.exit(0);
+		}catch (Exception e){
+			System.out.println("No se pudo cerrar el programa___ verificar close");
+		}
+			
+	}
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb){

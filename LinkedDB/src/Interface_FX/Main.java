@@ -18,7 +18,7 @@ public class Main extends Application {
 		Parent root =FXMLLoader.load(getClass().getResource("InterfaceMainFirst.fxml"));
 		primarystage.setTitle("LinkedDB");
 		//Scene scene = new Scene(root);
-		primarystage.setScene(new Scene(root,800,600) );
+		primarystage.setScene(new Scene(root,1400,700) );
 		primarystage.show();
 		primarystage.centerOnScreen();
 		primarystage.setOnCloseRequest(e -> Platform.exit());
