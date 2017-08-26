@@ -1,83 +1,68 @@
 package Lists;
 
-public class ListaS { // <T>
+public class ListaS {
 
 	//Punteros para saber donde esta el inicio y el final
-	public NodoListaS inicio ;
-	public NodoListaS fin;
+	private NodoListaS inicio ;
+	private NodoListaS fin;
 	private int size = 0;
 	
 	
 	
 	public ListaS(){
+		// inicializo los punteros
 		inicio =null;
 		fin=null;
 		System.out.println("\nTamaño de la lista Simple: "+size);
 	}
+	// Metodo para preguntar si esta vacia la lista de JSON store
 	public boolean estaVacia(){
 		if (inicio == null){
 			return true;
 		}else 
 			return false;
 	}
-	
-	public void insertar(NodoListaS elemento){
-		if (estaVacia()==true){
-			inicio=elemento;
-			size++;
+	//Metodo para insertar JSON store
+	public void insertarFinal(NodoListaS elemento){
+		if (!estaVacia()){
+			NodoListaS f = fin.getSiguiente(); // VERIFICAR SI FUNCIONA
+			f =new NodoListaS(elemento);
+			fin=fin.getSiguiente();
 		}
 		else{
-			if (inicio.getSiguiente()==null){
-				inicio= new NodoListaS(elemento); //---- REVISASR ESTO PUES CREO QUE SERIA __Nodo(elemento)__
-			}else{
-				Nodo temporal;
-				while(true){
-					temporal=inicio.getSiguiente();
-					if (temporal == null){
-						temporal=elemento;
-					}else{
-						temporal=temporal.getSiguiente();
-					}
-				}
-			}
-			
+			inicio=fin=new NodoListaS(elemento);			
 		}
 		System.out.println("Tamaño de la lista Simple: "+size);
 	}
-	
-	 
-	//Metodo para ver los nombre luego de los documentos JSON
+	//Metodo para ver los nombres de los JSON store
 	public void mostrarLista(){
-		Nodo recorrer = inicio;
-		while (recorrer==null){
-			//System.out.print("["+recorrer.getDato()+"]-->");
-			recorrer=inicio.getSiguiente();
-		}else{   // Revisasr el else
+		NodoListaS recorrer = inicio;
+		
+		while (recorrer!=null){
+			System.out.print("["+recorrer.getDato()+"]-->");
+			recorrer=recorrer.getSiguiente();	
 			
-			System.out.print ("");
-		}
+		} System.out.println("["+recorrer.getDato()+"]");
+		
 	}
-	
-	
-	
-	// metodo para eliminar un dato especifico
-	public void eliminarNodoEspecifico(int elemento){  // hay que cambiar la variable pues no sera un numero sino un documento
+	// metodo para eliminar un JSON store
+	public void eliminarNodoEspecifico(NodoListaS elemento){  // hay que cambiar la variable pues no sera un numero sino un documento
 		if (estaVacia()==true){
 			System.out.println("NO hay documentos para eliminar");
 		}
 		else{
-			if (inicio == fin && elemento==inicio.data){
+			if (inicio == fin && elemento==inicio.getDato()){
 				inicio=fin=null;
-				System.out.println("Dato unicio eliminado");
-			}else if (elemento == inicio.data){
-				inicio=inicio.next;
+				System.out.println("Dato unico eliminado");
+			}else if (elemento == inicio.getDato()){
+				inicio=inicio.getSiguiente();
 			}else{
 				NodoListaS anterior,temporal;
 				anterior=inicio;
-				temporal=inicio.next;
-				while(temporal != null && temporal.data!=elemento){
-					anterior=anterior.next;
-					temporal=temporal.next;
+				temporal=inicio.getSiguiente();
+				while(temporal != null && temporal.getDato()!=elemento){
+					anterior=anterior.getSiguiente();
+					temporal=temporal.getSiguiente();
 				}
 				if (temporal!=null){
 					anterior.next=temporal.next;

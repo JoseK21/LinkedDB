@@ -39,7 +39,7 @@ public class Lista_BaseDatos{
 	
 	}public void eliminar(Nodo elemento){
 		
-		if (elemento.siguiente==null){
+		if (elemento.getSiguiente()==null){
 			
 		}
 	}
