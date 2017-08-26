@@ -1,9 +1,9 @@
 package Lists;
 
-public class LD_JSONstore {
-	private NodoLD_JSONstore inicio,fin;
+public class ListaD {
+	private NodoListaD inicio,fin;
 	
-	public LD_JSONstore(){
+	public ListaD(){
 		inicio=fin=null;	
 	}
 	//Metodo para saber si la lista esta vacia
@@ -13,18 +13,18 @@ public class LD_JSONstore {
 	//metodo para agregar nodos al inicio
 	public void agregarAlInicio(int el){
 		if (!estaVacia()){
-			inicio=new NodoLD_JSONstore(el,inicio,null);
+			inicio=new NodoListaD(el,inicio,null);
 			inicio.siguiente.anterior=inicio;
 		}
 		else{
-			inicio=fin=new NodoLD_JSONstore(el);
+			inicio=fin=new NodoListaD(el);
 		}
 	}
 	//metodo para mostar la lista de inicio a fin
 	public void mostrasLista(){
 		if(!estaVacia()){
 			String datos="<=>";
-			NodoLD_JSONstore auxiliar=inicio;
+			NodoListaD auxiliar=inicio;
 			
 			while (auxiliar!=null){
 				datos=datos+"["+auxiliar.dato+"]<=>";

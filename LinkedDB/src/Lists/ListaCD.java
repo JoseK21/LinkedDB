@@ -1,22 +1,16 @@
 package Lists;
-
-public class LCD_Documento {
-	public class ListaCircularDE {
+public class ListaCD {
+		
 		   private NodoLCD_Documento primerNodo;
 		   private String nombre;  
 
-		   public ListaCircularDE( String cadena ) {
-		      nombre = cadena;
-		      primerNodo = null;
+		   public ListaCD() {
+		         primerNodo = null;
 		    }
 
-		   public ListaCircularDE() { 
-		      this( "Circular DE" ); 
-		   }  
-
-		   public synchronized void insertar( Object elementoAInsertar ) {
+		   public void insertar( Object documento ) {
 		      if ( estaVacio() ) {
-		         primerNodo = new NodoLCD_Documento(elementoAInsertar);
+		         primerNodo = new NodoLCD_Documento(documento);
 		         primerNodo.nodoProximo=primerNodo;
 		         primerNodo.nodoAnterior=primerNodo;
 		         
@@ -29,14 +23,21 @@ public class LCD_Documento {
 		      	NodoLCD_Documento ultimoNodo = actual;
 		         
 		      	NodoLCD_Documento desplazado = primerNodo;
-		         primerNodo = new NodoLCD_Documento( elementoAInsertar,desplazado,ultimoNodo );
+		         primerNodo = new NodoLCD_Documento( documento,desplazado,ultimoNodo );
 		         ultimoNodo.nodoProximo = primerNodo;
 		     	 
 		      	 desplazado.nodoAnterior = primerNodo;
 		      }
 		   }
-
-		   public synchronized Object remover()
+		   public void mostrar( Object documento ) {
+			   NodoLCD_Documento nodo1 = primerNodo;
+			   while( nodo1 != null){
+				   System.out.println(nodo1.getT());
+				   nodo1 = nodo1.getSiguiente();
+			   }
+			   
+		   }
+		   public Object remover()
 		      throws ExcepcionListaVacia
 		   {
 			  NodoLCD_Documento NodoARemover = primerNodo;
@@ -72,4 +73,4 @@ public class LCD_Documento {
 		      return primerNodo == null; 
 		   }
 	}
-}
+

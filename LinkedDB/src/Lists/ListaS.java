@@ -1,14 +1,18 @@
 package Lists;
 
-public class LS_Objeto {
+public class ListaS { // <T>
 
 	//Punteros para saber donde esta el inicio y el final
-	public NodoLS_Objeto inicio ;
-	public NodoLS_Objeto fin;
+	public NodoListaS inicio ;
+	public NodoListaS fin;
+	private int size = 0;
 	
-	public LS_Objeto(){
+	
+	
+	public ListaS(){
 		inicio =null;
 		fin=null;
+		System.out.println("\nTamaño de la lista Simple: "+size);
 	}
 	public boolean estaVacia(){
 		if (inicio == null){
@@ -16,21 +20,46 @@ public class LS_Objeto {
 		}else 
 			return false;
 	}
-	public void agregarAlInicio(int elemento){		//Metodo para agregar un nodo al inicio de la lista
-		inicio=new NodoLS_Objeto(elemento, inicio); //Creacion de Nodo de la lIsta Simple Enlazada
-		if(fin==null){
-			fin=inicio;
+	
+	public void insertar(NodoListaS elemento){
+		if (estaVacia()==true){
+			inicio=elemento;
+			size++;
 		}
+		else{
+			if (inicio.getSiguiente()==null){
+				inicio= new NodoListaS(elemento); //---- REVISASR ESTO PUES CREO QUE SERIA __Nodo(elemento)__
+			}else{
+				Nodo temporal;
+				while(true){
+					temporal=inicio.getSiguiente();
+					if (temporal == null){
+						temporal=elemento;
+					}else{
+						temporal=temporal.getSiguiente();
+					}
+				}
+			}
+			
+		}
+		System.out.println("Tamaño de la lista Simple: "+size);
 	}
+	
 	 
 	//Metodo para ver los nombre luego de los documentos JSON
 	public void mostrarLista(){
-		NodoLS_Objeto recorrer = inicio;
-		while (recorrer!=null){
-			System.out.print("["+recorrer.data+"]-->");
-			recorrer=recorrer.next;
+		Nodo recorrer = inicio;
+		while (recorrer==null){
+			//System.out.print("["+recorrer.getDato()+"]-->");
+			recorrer=inicio.getSiguiente();
+		}else{   // Revisasr el else
+			
+			System.out.print ("");
 		}
 	}
+	
+	
+	
 	// metodo para eliminar un dato especifico
 	public void eliminarNodoEspecifico(int elemento){  // hay que cambiar la variable pues no sera un numero sino un documento
 		if (estaVacia()==true){
@@ -43,7 +72,7 @@ public class LS_Objeto {
 			}else if (elemento == inicio.data){
 				inicio=inicio.next;
 			}else{
-				NodoLS_Objeto anterior,temporal;
+				NodoListaS anterior,temporal;
 				anterior=inicio;
 				temporal=inicio.next;
 				while(temporal != null && temporal.data!=elemento){
@@ -68,7 +97,7 @@ public class LS_Objeto {
 	}
 	//metodo para buscar un elemento
 	public boolean buscarEnlaLista(int elemento){
-		NodoLS_Objeto temporal = inicio;
+		NodoListaS temporal = inicio;
 		
 		while (temporal!=null && temporal.data!=elemento){
 			temporal=temporal.next;				

@@ -7,6 +7,8 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import Lists.ListaCD;
+import Lists.Nodo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,11 +31,12 @@ public class New_JSONStoreController implements Initializable {
 	public void crearCarpeta(ActionEvent event){
 		String NameFile = textnameJSONStore.getText() ;	
 		System.out.println("Nombre de la carpeta: " + NameFile);
+		String archivo = "\\"+ NameFile +".txt";
 		if (!NameFile.isEmpty()) {					
 			String ruta = "C:\\Users\\kenne\\Desktop\\Proy_LinkedDB\\"+ NameFile; // Se crea la carpeta con el nombre correspondiente
 			System.out.println("Ruta: " + ruta);
 	
-			String archivo = "\\"+ NameFile +".txt";
+			// meter metodos para añadir a la lista
 			File crea_carpeta = new File(ruta);		
 			File crea_archivo = new File(ruta+archivo);
 			
@@ -57,7 +60,12 @@ public class New_JSONStoreController implements Initializable {
 		}
 	}else{
 		msjCrearJSONstore.setText("----<SIN NOMBRE>--- /nIngrese un nombre por favor");
-	}}
+	}
+		ListaCD documentos = new ListaCD();
+		Nodo doc = new Nodo(documentos);
+		documentos.insertar(doc);
+	
+	}
 	
 	@FXML
 	public void atras(ActionEvent event){
@@ -72,7 +80,9 @@ public class New_JSONStoreController implements Initializable {
 			
 		}catch (Exception e){
 			System.out.println("Can´t load new window");
-	}}
+	}
+		
+		}
 	
 	@FXML
 	public void nuevo(ActionEvent event){
@@ -84,6 +94,11 @@ public class New_JSONStoreController implements Initializable {
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb){
+		
+	}
+
+	public static void main(String[] args){
+		//this.archivo=archivo;
 		
 	}
 	

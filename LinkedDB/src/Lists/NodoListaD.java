@@ -1,16 +1,16 @@
 package Lists;
 
-public class NodoLD_JSONstore {
+public class NodoListaD extends Nodo {
 	public int dato;
-	NodoLD_JSONstore siguiente;
-	NodoLD_JSONstore anterior;
+	NodoListaD siguiente;
+	NodoListaD anterior;
 	
 	//Constructor para cuando aun ni hay nodos
-		public NodoLD_JSONstore(int el){
+		public NodoListaD(int el){
 			this(el,null,null);
 	}
 	//COnstructor para cuando ya haya nodos
-	public NodoLD_JSONstore(int el,NodoLD_JSONstore s,NodoLD_JSONstore a){
+	public NodoListaD(int el,NodoListaD s,NodoListaD a){
 		dato=el;
 		siguiente=s;
 		anterior=a;
