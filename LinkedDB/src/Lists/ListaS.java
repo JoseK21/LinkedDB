@@ -1,7 +1,6 @@
 package Lists;
 
 public class ListaS {
-
 	//Punteros para saber donde esta el inicio y el final
 	private NodoListaS inicio ;
 	private NodoListaS fin;
@@ -23,14 +22,16 @@ public class ListaS {
 			return false;
 	}
 	//Metodo para insertar JSON store
-	public void insertarFinal(NodoListaS elemento){
+	public void insertarFinal(Object dato){
 		if (!estaVacia()){
-			NodoListaS f = fin.getSiguiente(); // VERIFICAR SI FUNCIONA
-			f =new NodoListaS(elemento);
+			NodoListaS finSiguiente = fin.getSiguiente(); // VERIFICAR SI FUNCIONA
+			finSiguiente =new NodoListaS(dato);
 			fin=fin.getSiguiente();
+			size++;
 		}
 		else{
-			inicio=fin=new NodoListaS(elemento);			
+			inicio=fin=new NodoListaS(dato);
+			size++;
 		}
 		System.out.println("Tamaño de la lista Simple: "+size);
 	}
@@ -42,36 +43,38 @@ public class ListaS {
 			System.out.print("["+recorrer.getDato()+"]-->");
 			recorrer=recorrer.getSiguiente();	
 			
-		} System.out.println("["+recorrer.getDato()+"]");
+		} 
+		System.out.println("["+recorrer.getDato()+"]_FINAL_");
 		
 	}
 	// metodo para eliminar un JSON store
-	public void eliminarNodoEspecifico(NodoListaS elemento){  // hay que cambiar la variable pues no sera un numero sino un documento
-		if (estaVacia()==true){
+	public void eliminarNodo(Object dato){  // hay que cambiar la variable pues no sera un numero sino un documento
+		if (!estaVacia()){
 			System.out.println("NO hay documentos para eliminar");
 		}
 		else{
-			if (inicio == fin && elemento==inicio.getDato()){
+			if (inicio == fin && dato==inicio.getDato()){ // dato=NOMBRE DEL JSON STORE
 				inicio=fin=null;
 				System.out.println("Dato unico eliminado");
-			}else if (elemento == inicio.getDato()){
+			}else if (dato == inicio.getDato()){
 				inicio=inicio.getSiguiente();
 			}else{
 				NodoListaS anterior,temporal;
 				anterior=inicio;
 				temporal=inicio.getSiguiente();
-				while(temporal != null && temporal.getDato()!=elemento){
+				while(temporal != null && temporal.getDato()!=dato){
 					anterior=anterior.getSiguiente();
 					temporal=temporal.getSiguiente();
 				}
 				if (temporal!=null){
-					anterior.next=temporal.next;
+					NodoListaS antsig = anterior.getSiguiente();
+					antsig=temporal.getSiguiente();
 					if (temporal==fin){
 						fin=anterior;
 					}
 					
-				}else {  // revisar si es asi que se realiza la funcion de no haber encontrado nada
-					if (temporal.data==elemento){
+				}else {  			// revisar si es asi que se realiza la funcion de no haber encontrado nada
+					if (temporal.getDato()==dato){
 						anterior=null;
 					}else{
 						System.out.println("Su documento no existe(no se elimino nada)");
@@ -81,13 +84,15 @@ public class ListaS {
 		}
 	}
 	//metodo para buscar un elemento
-	public boolean buscarEnlaLista(int elemento){
+	public boolean buscarEnlaLista(Object dato){
 		NodoListaS temporal = inicio;
 		
-		while (temporal!=null && temporal.data!=elemento){
-			temporal=temporal.next;				
+		while (temporal!=null && temporal.getDato()!=dato){
+			temporal=temporal.getSiguiente();				
 		}
+		
 		return temporal!=null;
+		// enviar la informacion..... Nombre y sus datos
 	}
 	
 }

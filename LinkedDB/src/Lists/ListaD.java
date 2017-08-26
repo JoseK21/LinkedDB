@@ -1,35 +1,42 @@
 package Lists;
 
 public class ListaD {
-	private NodoListaD inicio,fin;
+	private NodoListaD inicio;
+	private NodoListaD fin;
+	// Constructo
 	
 	public ListaD(){
 		inicio=fin=null;	
 	}
 	//Metodo para saber si la lista esta vacia
 	public boolean estaVacia(){
-		return inicio==null;
+		//return inicio==null;
+		if (inicio == null){
+			return true;
+		}else 
+			return false;
 	}
-	//metodo para agregar nodos al inicio
-	public void agregarAlInicio(int el){
+	public void insertarFinal(Object dato){
 		if (!estaVacia()){
-			inicio=new NodoListaD(el,inicio,null);
-			inicio.siguiente.anterior=inicio;
-		}
+			NodoListaD finSigAnt = fin.getAnterior().getSiguiente(); // VERIFICAR SI FUNCIONA
+			fin =new NodoListaD(dato,null,fin);
+			finSigAnt=fin;
+			}
 		else{
-			inicio=fin=new NodoListaD(el);
+			inicio=fin=new NodoListaD(dato);
 		}
 	}
 	//metodo para mostar la lista de inicio a fin
 	public void mostrasLista(){
 		if(!estaVacia()){
-			String datos="<=>";
+			String enlace="<=>";
 			NodoListaD auxiliar=inicio;
 			
 			while (auxiliar!=null){
-				datos=datos+"["+auxiliar.dato+"]<=>";
-				auxiliar=auxiliar.siguiente;
+				enlace=enlace+"["+auxiliar.getDato()+"]<=>";
+				auxiliar=auxiliar.getSiguiente();
 			}
+			// aqui mandar a mostrar los datos
 		}
 	}
 
