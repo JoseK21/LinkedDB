@@ -8,6 +8,10 @@ public class NodoListaS {
 		this.siguiente=null;
 		this.dato=dato;
 	}
+	public NodoListaS(Object d,NodoListaS n){
+		dato=d;
+		siguiente=n;
+	}
 	public Object getDato() {
 		return this.dato;
 	}
@@ -15,7 +19,6 @@ public class NodoListaS {
 	public void setDato(Object dato) {
 		this.dato = dato;
 	}
-	
 	
 	public NodoListaS getSiguiente() {
 		return siguiente;

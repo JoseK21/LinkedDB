@@ -23,33 +23,36 @@ public class ListaS {
 	}
 	//Metodo para insertar JSON store
 	public void insertarFinal(Object dato){
-		if (!estaVacia()){
-			NodoListaS finSiguiente = fin.getSiguiente(); // VERIFICAR SI FUNCIONA
-			finSiguiente =new NodoListaS(dato);
-			fin=fin.getSiguiente();
-			size++;
-		}
+		NodoListaS nuevo = new NodoListaS(dato);
+		
+		if (estaVacia()){
+			inicio=nuevo;
+			}
 		else{
-			inicio=fin=new NodoListaS(dato);
-			size++;
-		}
-		System.out.println("Tamaño de la lista Simple: "+size);
+			NodoListaS auxiliar = inicio;
+			while(auxiliar.getSiguiente() != null){
+				auxiliar = auxiliar.getSiguiente();
+			}
+			auxiliar.setSiguiente(nuevo);
+			}
 	}
+
 	//Metodo para ver los nombres de los JSON store
 	public void mostrarLista(){
 		NodoListaS recorrer = inicio;
-		
+		System.out.print("INICIO>");
 		while (recorrer!=null){
-			System.out.print("["+recorrer.getDato()+"]-->");
+			Object dee = recorrer.getDato();	
+			System.out.print("["+dee+"]-->");
 			recorrer=recorrer.getSiguiente();	
-			
-		} 
-		System.out.println("["+recorrer.getDato()+"]_FINAL_");
+			} 	
+		//if (recorrer.getSiguiente()==null){
+			System.out.print("-||fin");
 		
 	}
-	// metodo para eliminar un JSON store
-	public void eliminarNodo(Object dato){  // hay que cambiar la variable pues no sera un numero sino un documento
-		if (!estaVacia()){
+	
+	public void eliminarNodo(Object dato){  // metodo para eliminar un JSON store
+		if (estaVacia()==true){
 			System.out.println("NO hay documentos para eliminar");
 		}
 		else{
@@ -84,17 +87,35 @@ public class ListaS {
 		}
 	}
 	//metodo para buscar un elemento
-	public boolean buscarEnlaLista(Object dato){
+	public void buscar(Object dato){
 		NodoListaS temporal = inicio;
 		
-		while (temporal!=null && temporal.getDato()!=dato){
-			temporal=temporal.getSiguiente();				
+		while (temporal!=null && temporal.getDato()!=dato){			
+			temporal=temporal.getSiguiente();								// enviar la informacion..... Nombre y sus datos
 		}
-		
-		return temporal!=null;
-		// enviar la informacion..... Nombre y sus datos
+		if(temporal!=null){
+			System.out.println("SI EXISTE EL ELEMENTO {"+dato+"}");
+		}else{
+			System.out.println("NO EXIST {"+dato+"}");
+
+		}
 	}
-	
+	public static void main(String[] args){
+		ListaS list = new ListaS();
+		list.insertarFinal(1);
+		list.insertarFinal(2);
+		list.insertarFinal(3);
+		list.insertarFinal(4);
+		list.insertarFinal(5);
+		list.insertarFinal(6);
+		list.insertarFinal(7);
+		list.insertarFinal(8);
+		list.insertarFinal(9);
+		list.insertarFinal(10234); // PORQUE NO CON NUMEROS DE 4 DIGITOS
+		list.eliminarNodo(3);
+		
+		list.buscar(5);
+		list.mostrarLista();
+		
+	}
 }
-
-
