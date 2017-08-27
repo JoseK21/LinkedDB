@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import Lists.ListaCD;
+import Lists.ListaD;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,28 +20,29 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class New_JSONStoreController implements Initializable {
-	
+	ListaD JSONstores =new ListaD();
 	@FXML private Label msjCrearJSONstore;
 	@FXML private Label conf_Create;	
 	@FXML private TextField textnameJSONStore;
 	
 		
 	@FXML
-	public void crearCarpeta(ActionEvent event){
+	public void crearCarpeta(ActionEvent event){		
 		String NameFile = textnameJSONStore.getText() ;	
 		System.out.println("Nombre de la carpeta: " + NameFile);
 		String archivo = "\\"+ NameFile +".txt";
+		
+		JSONstores.insertAtEnd(NameFile);
+		JSONstores.mostrarListaD();
 		if (!NameFile.isEmpty()) {					
 			String ruta = "C:\\Users\\kenne\\Desktop\\Proy_LinkedDB\\"+ NameFile; // Se crea la carpeta con el nombre correspondiente
-			System.out.println("Ruta: " + ruta);
-	
-			// meter metodos para añadir a la lista
+			
 			File crea_carpeta = new File(ruta);		
 			File crea_archivo = new File(ruta+archivo);
 			
 							
 			if(crea_archivo.exists()){
-				msjCrearJSONstore.setText("----Carpeta Existente---- /nIngrese otro nombre PorFavor");
+				msjCrearJSONstore.setText("----Carpeta Existente---- \nIngrese otro nombre PorFavor");
 			}
 			else{
 				msjCrearJSONstore.setText(" El proceso de creación de su carpeta ha sido Exitoso");
@@ -60,10 +61,6 @@ public class New_JSONStoreController implements Initializable {
 	}else{
 		msjCrearJSONstore.setText("----<SIN NOMBRE>--- /nIngrese un nombre por favor");
 	}
-		//ListaCD documentos = new ListaCD();
-		//Nodo doc = new Nodo(documentos);
-		//documentos.insertar(doc);
-	
 	}
 	
 	@FXML
@@ -98,6 +95,7 @@ public class New_JSONStoreController implements Initializable {
 
 	public static void main(String[] args){
 		//this.archivo=archivo;
+		
 		
 	}
 	

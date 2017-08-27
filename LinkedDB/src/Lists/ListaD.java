@@ -33,9 +33,10 @@ public class ListaD {
         }
         size++;
     }
+	String enlace="";
 	public void mostrarListaD(){
 		if(estaVacia()==false){
-			String enlace="";
+			
 			NodoListaD auxiliar=inicio;			
 			while (auxiliar!=null){
 				enlace=enlace+"["+auxiliar.getDato()+"]<=>";
