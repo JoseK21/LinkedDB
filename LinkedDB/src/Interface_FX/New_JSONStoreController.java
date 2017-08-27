@@ -19,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+
 public class New_JSONStoreController implements Initializable {
 	ListaD JSONstores =new ListaD();
 	@FXML private Label msjCrearJSONstore;

@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+
 public class Create_DocJSONController implements Initializable {
 	@FXML private Label textCorrecDocJSON;
 	@FXML private Button cont_Atributos;
@@ -75,3 +76,4 @@ public class Create_DocJSONController implements Initializable {
 	}
 	
 }
+

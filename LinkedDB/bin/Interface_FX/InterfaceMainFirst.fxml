@@ -7,20 +7,21 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
+
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface_FX.InterfaceMainController">
    <children>
-      <TreeView fx:id="treeView1" layoutY="30.0" onContextMenuRequested="#mouseClick" onMouseClicked="#mouseClick" prefHeight="602.0" prefWidth="500.0" /> 
+      <TreeView fx:id="treeView1" layoutY="30.0" onContextMenuRequested="#mouseClick" onMouseClicked="#mouseClick" prefHeight="396.0" prefWidth="464.0" AnchorPane.bottomAnchor="270.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="930.0" AnchorPane.topAnchor="30.0" /> 
          <ToolBar layoutX="14.0" layoutY="14.0" prefHeight="36.0" prefWidth="1000.0" AnchorPane.bottomAnchor="670.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <Button layoutX="501.0" layoutY="632.0" mnemonicParsing="false" onAction="#OpenCreate_DocJSON" prefHeight="30.0" prefWidth="150.0" text="Crear Documento JSON" />
-    <Button layoutX="349.0" layoutY="632.0" mnemonicParsing="false" onAction="#crearCarpeta" prefHeight="30.0" prefWidth="150.0" text="Crear JSON Store" />
-      <TableView layoutX="501.0" layoutY="30.0" prefHeight="602.0" prefWidth="889.0">
+      <Button layoutX="1188.0" layoutY="109.0" mnemonicParsing="false" onAction="#OpenCreate_DocJSON" prefHeight="30.0" prefWidth="204.0" text="Crear Documento JSON" AnchorPane.bottomAnchor="561.0" AnchorPane.leftAnchor="1188.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="109.0" />
+    <Button layoutX="1188.0" layoutY="48.0" mnemonicParsing="false" onAction="#crearCarpeta" prefHeight="30.0" prefWidth="204.0" text="Crear JSON Store" />
+      <TableView layoutY="429.0" prefHeight="271.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="430.0">
         <columns>
           <TableColumn prefWidth="75.0" text="Nombre" />
           <TableColumn prefWidth="75.0" text="Apellido" />
         </columns>
       </TableView>
-      <TextField fx:id="textnameJSONStore" layoutY="632.0" prefHeight="30.0" prefWidth="349.0" />
-      <TextField layoutX="651.0" layoutY="632.0" prefHeight="30.0" prefWidth="349.0" />
+      <TextField fx:id="textnameJSONStore" layoutX="832.0" layoutY="48.0" prefHeight="30.0" prefWidth="349.0" />
+      <TextField layoutX="832.0" layoutY="109.0" prefHeight="30.0" prefWidth="349.0" />
       <Label fx:id="msjCrearJSONstore" layoutX="6.0" layoutY="662.0" prefHeight="17.0" prefWidth="343.0" />
       <Label fx:id="conf_Create" layoutX="6.0" layoutY="678.0" prefHeight="17.0" prefWidth="343.0" />         
    </children>
