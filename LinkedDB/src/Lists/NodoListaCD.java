@@ -1,33 +1,42 @@
 package Lists;
 
-public class NodoListaCD extends Nodo{
+public class NodoListaCD {
 	
-   public NodoListaCD(Object documento) {
-		//super(documento);
+	private Object dato;
+	private NodoListaCD siguiente,anterior;	
+	
+	public NodoListaCD(Object dato) {
+		this(dato,null,null);
+			
+	}
+	//COnstructor para cuando ya haya nodos
+	public NodoListaCD(Object d,NodoListaCD s,NodoListaCD a){
+		dato=d; 
+		siguiente=s;
+		anterior=a;
+
+	}
+	public NodoListaCD() {
 		// TODO Auto-generated constructor stub
 	}
-
-   public Object dato;    
-   public NodoListaCD nodoProximo;
-   public NodoListaCD nodoAnterior;
-
-  public NodoListaCD(Object documento) {
-      dato = objeto;    
-      nodoProximo = prox;
-      nodoAnterior = ant;
-      
-   }
-
-   public Object obtenerObjeto() { 
-      return dato; 
-   }
-
-   public NodoListaCD obtenerProximo(){ 
-      return nodoProximo; 
-   }
-   
-   public NodoListaCD obtenerAnterior() {
-   	  return nodoAnterior; 
-   }
-
+	public Object getDato() {
+		return dato;
+	}
+	public void setDato(Object dato) {
+		this.dato = dato;
+	}
+	public NodoListaCD getSiguiente() {
+		return siguiente;
+	}
+	public void setSiguiente(NodoListaCD siguiente) {
+		this.siguiente = siguiente;
+	}
+	public NodoListaCD getAnterior() {
+		return anterior;
+	}
+	public void setAnterior(NodoListaCD anterior) {
+		this.anterior = anterior;
+	}
+	
+	
 }

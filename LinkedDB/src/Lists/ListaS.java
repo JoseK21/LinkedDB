@@ -24,7 +24,7 @@ public class ListaS {
 	//Metodo para insertar JSON store
 	public void insertarFinal(Object dato){
 		NodoListaS nuevo = new NodoListaS(dato);
-		
+		size++;
 		if (estaVacia()){
 			inicio=nuevo;
 			}
@@ -35,6 +35,7 @@ public class ListaS {
 			}
 			auxiliar.setSiguiente(nuevo);
 			}
+		System.out.println("\nTamaño de la lista Simple: "+size);
 	}
 
 	//Metodo para ver los nombres de los JSON store
@@ -43,49 +44,46 @@ public class ListaS {
 		System.out.print("INICIO>");
 		while (recorrer!=null){
 			Object dee = recorrer.getDato();	
-			System.out.print("["+dee+"]-->");
+			System.out.print("["+dee+"]->");
 			recorrer=recorrer.getSiguiente();	
-			} 	
-		//if (recorrer.getSiguiente()==null){
-			System.out.print("-||fin");
+			} 
+		System.out.print("| <-fin");
 		
 	}
 	
-	public void eliminarNodo(Object dato){  // metodo para eliminar un JSON store
-		if (estaVacia()==true){
-			System.out.println("NO hay documentos para eliminar");
-		}
-		else{
-			if (inicio == fin && dato==inicio.getDato()){ // dato=NOMBRE DEL JSON STORE
-				inicio=fin=null;
-				System.out.println("Dato unico eliminado");
-			}else if (dato == inicio.getDato()){
-				inicio=inicio.getSiguiente();
-			}else{
-				NodoListaS anterior,temporal;
-				anterior=inicio;
-				temporal=inicio.getSiguiente();
-				while(temporal != null && temporal.getDato()!=dato){
-					anterior=anterior.getSiguiente();
-					temporal=temporal.getSiguiente();
-				}
-				if (temporal!=null){
-					NodoListaS antsig = anterior.getSiguiente();
-					antsig=temporal.getSiguiente();
-					if (temporal==fin){
-						fin=anterior;
-					}
-					
-				}else {  			// revisar si es asi que se realiza la funcion de no haber encontrado nada
-					if (temporal.getDato()==dato){
-						anterior=null;
-					}else{
-						System.out.println("Su documento no existe(no se elimino nada)");
-					}
-				}
-			}
-		}
-	}
+	
+	public void delete(Object value) {
+	    if (inicio != null) {
+	        NodoListaS walker = inicio;
+	        if (walker.getDato() == value) {
+	            if(walker.getSiguiente()!=null){
+	            	System.out.println("NODO ELIMINADO"+value);
+	                inicio = walker.getSiguiente();
+	            }else{
+	                setFirstNode(null);
+	            }
+	        } else {
+	        	NodoListaS previous = walker;
+	            while (walker.getSiguiente() != null) {
+	                previous = walker;
+	                //System.out.println("NODO ELIMINADO"+value);
+	                walker = walker.getSiguiente();
+	                if (walker.getDato() == value) {
+	                	System.out.println("NODO ELIMINADO"+value);
+	                	size--;
+	                	System.out.println("\nTamaño de la lista Simple: "+size);
+	                    previous.setSiguiente(walker.getSiguiente());
+	                    break;
+	                }
+	            }
+	            System.out.println("Nothing to delete");
+	        }
+
+	    } 
+	    }
+	    public void setFirstNode(NodoListaS inicio) {
+	        this.inicio = inicio;
+	    }
 	//metodo para buscar un elemento
 	public void buscar(Object dato){
 		NodoListaS temporal = inicio;
@@ -106,15 +104,23 @@ public class ListaS {
 		list.insertarFinal(2);
 		list.insertarFinal(3);
 		list.insertarFinal(4);
-		list.insertarFinal(5);
+		list.insertarFinal(5); // PORQUE NO CON NUMEROS DE 4 DIGITOS
 		list.insertarFinal(6);
 		list.insertarFinal(7);
 		list.insertarFinal(8);
 		list.insertarFinal(9);
-		list.insertarFinal(10234); // PORQUE NO CON NUMEROS DE 4 DIGITOS
-		list.eliminarNodo(3);
+		list.insertarFinal(10);
+		list.insertarFinal(12);
+		list.insertarFinal(13);
+		list.insertarFinal(14);
+		list.insertarFinal(15); 
+		//list.eliminarNodo(1);
+		//list.eliminarNodo(4);
+		//list.delete(1);
+		//list.delete(4);
+		//list.delete(16);
 		
-		list.buscar(5);
+		list.buscar(225);
 		list.mostrarLista();
 		
 	}

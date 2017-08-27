@@ -8,7 +8,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import Lists.ListaCD;
-import Lists.Nodo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -61,9 +60,9 @@ public class New_JSONStoreController implements Initializable {
 	}else{
 		msjCrearJSONstore.setText("----<SIN NOMBRE>--- /nIngrese un nombre por favor");
 	}
-		ListaCD documentos = new ListaCD();
-		Nodo doc = new Nodo(documentos);
-		documentos.insertar(doc);
+		//ListaCD documentos = new ListaCD();
+		//Nodo doc = new Nodo(documentos);
+		//documentos.insertar(doc);
 	
 	}
 	
