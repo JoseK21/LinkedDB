@@ -22,14 +22,14 @@ import javafx.stage.Stage;
 
 public class New_JSONStoreController implements Initializable {
 	ListaD JSONstores =new ListaD();
-	@FXML private Label msjCrearJSONstore;
-	@FXML private Label conf_Create;	
-	@FXML private TextField textnameJSONStore;
+	@FXML private Label msj2;
+	@FXML private Label msj1;	
+	@FXML private TextField textJsonStore;
 	
 		
 	@FXML
 	public void crearCarpeta(ActionEvent event){		
-		String NameFile = textnameJSONStore.getText() ;	
+		String NameFile = textJsonStore.getText() ;	
 		System.out.println("Nombre de la carpeta: " + NameFile);
 		String archivo = "\\"+ NameFile +".txt";
 		
@@ -39,29 +39,43 @@ public class New_JSONStoreController implements Initializable {
 			String ruta = "C:\\Users\\kenne\\Desktop\\Proy_LinkedDB\\"+ NameFile; // Se crea la carpeta con el nombre correspondiente
 			
 			File crea_carpeta = new File(ruta);		
-			File crea_archivo = new File(ruta+archivo);
+			//File crea_archivo = new File(ruta+archivo);
 			
 							
-			if(crea_archivo.exists()){
-				msjCrearJSONstore.setText("----Carpeta Existente---- \nIngrese otro nombre PorFavor");
+			if(crea_carpeta.exists()){
+				msj1.setText("----Carpeta Existente----");
+				msj2.setText("Ingrese otro nombre PorFavor");
 			}
 			else{
-				msjCrearJSONstore.setText(" El proceso de creación de su carpeta ha sido Exitoso");
+				msj1.setText(" El proceso de creación de su carpeta ha sido Exitoso");
 				crea_carpeta.mkdirs(); // Crear carpeta
-				
+				if (crea_carpeta.exists()){
+					msj2.setText("Carpeta Creada");
+				}else{
+					msj2.setText("Carpeta NO Creada");
+				}
+					
+				/*
 				try{
 					if (crea_archivo.createNewFile()){
-						conf_Create.setText("Carpeta Creada");
+						msj2.setText("Carpeta Creada");
 					}else{
-						conf_Create.setText("Carpeta NO Creada");	
+						msj2.setText("Carpeta NO Creada");	
 					}
 				}catch (IOException ex){
 					Logger.getLogger(New_JSONStoreController.class.getName()).log(Level.SEVERE, null, ex);
-				}
+				} */
 		}
 	}else{
-		msjCrearJSONstore.setText("----<SIN NOMBRE>--- /nIngrese un nombre por favor");
+		msj1.setText("----<SIN NOMBRE>--- ");
+		msj2.setText("Ingrese otro nombre por favor");
 	}
+	}
+	
+	public void borrarInf(ActionEvent event){
+		msj1.setText("");
+		msj2.setText("");
+		textJsonStore.setText("");
 	}
 	
 	@FXML
@@ -81,23 +95,16 @@ public class New_JSONStoreController implements Initializable {
 		
 		}
 	
-	@FXML
-	public void nuevo(ActionEvent event){
-		msjCrearJSONstore.setText("");
-		conf_Create.setText("");
-		textnameJSONStore.setText("");
-	}
-	
-	
+		
 	@Override
 	public void initialize(URL url, ResourceBundle rb){
 		
 	}
 
-	public static void main(String[] args){
+	//public static void main(String[] args){
 		//this.archivo=archivo;
 		
 		
-	}
+	//}
 	
 }

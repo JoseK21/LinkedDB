@@ -42,6 +42,7 @@ public class ListaD {
 				enlace=enlace+"["+auxiliar.getDato()+"]<=>";
 				auxiliar=auxiliar.getSiguiente();
 				
+				
 			}
 			System.out.println("Inicio=>"+enlace+"|FIN");
 			System.out.println("\nTamaño de la lista Doble: "+size);
