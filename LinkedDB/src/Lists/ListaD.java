@@ -39,7 +39,8 @@ public class ListaD {
 			
 			NodoListaD auxiliar=inicio;			
 			while (auxiliar!=null){
-				enlace=enlace+"["+auxiliar.getDato()+"]<=>";
+				
+				enlace+="["+auxiliar.getDato()+"]<=>";
 				auxiliar=auxiliar.getSiguiente();
 				
 				
@@ -112,14 +113,14 @@ public class ListaD {
 	}
 	
 	public static void main(String[] args){
-		ListaD listD = new ListaD();
+		/*ListaD listD = new ListaD();
 		listD.insertAtEnd(1);
 		listD.insertAtEnd(2);
 		listD.insertAtEnd(3);
 		listD.insertAtEnd(4);
 		listD.insertAtEnd(5);
 		listD.insertAtEnd(6);
-		listD.mostrarListaD();
+		listD.mostrarListaD(); */
 		
 	}
 

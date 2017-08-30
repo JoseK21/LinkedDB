@@ -108,7 +108,9 @@ public class InterfaceMainController implements Initializable {
 	}}
 	ListaD JSONstores =new ListaD();
 	
-	
+	@FXML
+	public void cerrarSistema(ActionEvent event){
+		System.exit(0);	}
 	@FXML
 	public void borrar1(ActionEvent event){
 		msjCrearJSONstore.setText("");
@@ -124,8 +126,7 @@ public class InterfaceMainController implements Initializable {
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb){		
-		//roottree.setExpanded(true);     Abre de una vez la carpeta
-		//TreeItem<String> nodeA = new TreeItem<>("Doc_JSON 1",new ImageView(img2));
+		
 		
 		
 	}

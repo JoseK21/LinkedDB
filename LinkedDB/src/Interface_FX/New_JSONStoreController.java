@@ -34,6 +34,7 @@ public class New_JSONStoreController implements Initializable {
 		String archivo = "\\"+ NameFile +".txt";
 		
 		JSONstores.insertAtEnd(NameFile);
+		
 		JSONstores.mostrarListaD();
 		if (!NameFile.isEmpty()) {					
 			String ruta = "C:\\Users\\kenne\\Desktop\\Proy_LinkedDB\\"+ NameFile; // Se crea la carpeta con el nombre correspondiente
@@ -95,11 +96,12 @@ public class New_JSONStoreController implements Initializable {
 		
 		}
 	
-		
+	
 	@Override
 	public void initialize(URL url, ResourceBundle rb){
 		
 	}
+	
 
 	//public static void main(String[] args){
 		//this.archivo=archivo;
