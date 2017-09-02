@@ -1,7 +1,9 @@
 package Interface_FX;
 
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,7 +32,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class InterfaceMainController implements Initializable {
-
 	@FXML private Label msjCrearJSONstore;
 	@FXML private Label conf_Create;	
 	@FXML private TextField textnameJSONStore;
@@ -55,7 +56,7 @@ public class InterfaceMainController implements Initializable {
 			stage.setScene(new Scene(root1));
 			stage.show();			
 		}catch (Exception e){
-			System.out.println("Can´t load new window");
+			System.out.println("no se puede abrir la ventana ");
 		}			
 		}
 		
@@ -105,9 +106,7 @@ public class InterfaceMainController implements Initializable {
 			}catch (Exception e){
 				System.out.println("Can´t load new window");
 			}*/
-	}}
-	ListaD JSONstores =new ListaD();
-	
+	}}	
 	@FXML
 	public void cerrarSistema(ActionEvent event){
 		System.exit(0);	}
@@ -126,6 +125,60 @@ public class InterfaceMainController implements Initializable {
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb){		
+		
+		String ruta1 ="C:\\Users\\kenne\\Desktop\\Proy_LinkedDB\\JSONstore.txt";
+		String ruta2 ="C:\\Users\\kenne\\Desktop\\Proy_LinkedDB\\DocJSON.txt";
+		String ruta3 ="C:\\Users\\kenne\\Desktop\\Proy_LinkedDB\\ObjetosJSON.txt";
+		File JSONstore = new File(ruta1);
+		File DocJSON = new File(ruta2);
+		File ObjetosJSON = new File(ruta3);
+		BufferedWriter bw1;
+		BufferedWriter bw2;
+		BufferedWriter bw3;
+		
+		if (JSONstore.exists() && DocJSON.exists() && ObjetosJSON.exists()){
+			System.out.println("Archivos Existentes _ LISTO _");
+		}else{
+			if (JSONstore.exists() == false){
+				try {
+					bw1 = new BufferedWriter(new FileWriter(JSONstore));
+					bw1.write("Listas de JSONstore");
+				    bw1.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			    
+			}
+			
+			if (DocJSON.exists() == false){
+				try {
+					bw2 = new BufferedWriter(new FileWriter(DocJSON));
+					bw2.write("Listas de DocJSON");
+				    bw2.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			    
+			}
+			if (ObjetosJSON.exists() == false){
+				try {
+					bw3 = new BufferedWriter(new FileWriter(ObjetosJSON));
+					bw3.write("Listas de ObjetosJSON");
+				    bw3.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			    
+			}
+			
+		}
+		
+		
+		
+		
 		
 		
 		

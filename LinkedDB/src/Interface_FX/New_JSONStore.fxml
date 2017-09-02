@@ -27,7 +27,7 @@
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font></TextField>
-      <Button layoutX="313.0" layoutY="239.0" mnemonicParsing="false" onAction="#crearCarpeta" text="Verificar/Crear" />
+      <Button layoutX="313.0" layoutY="239.0" mnemonicParsing="false" onAction="#crearArchivo" text="Verificar/Crear" />
       <Button layoutX="734.0" layoutY="561.0" mnemonicParsing="false" onAction="#atras" text="Atras" />
       <Label fx:id="msj1" alignment="CENTER" blendMode="COLOR_BURN" contentDisplay="CENTER" layoutX="73.0" layoutY="300.0" onDragDone="#crearCarpeta" prefHeight="36.0" prefWidth="655.0" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />
       <Label fx:id="msj2" alignment="CENTER" contentDisplay="CENTER" layoutX="254.0" layoutY="346.0" onDragDone="#crearCarpeta" prefHeight="36.0" prefWidth="315.0" />

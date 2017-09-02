@@ -2,6 +2,11 @@ package Interface_FX;
 
 
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +31,7 @@ public class Main extends Application {
 		
 	}
 	
-	public static void main(String[] args) {		
+	public static void main(String[] args) throws IOException {	
 		launch(args);
 		
 	}
