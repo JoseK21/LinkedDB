@@ -26,51 +26,65 @@ public class New_JSONStoreController implements Initializable {
 	File archivo = new File("JSONstore.txt");
 	FileWriter escribir; // para escribir en el archivo
 	PrintWriter linea;
+	FileReader leer;
+	BufferedReader almacenamiento;
+	String cadena;
 	
 	@FXML
 	public void crearArchivo(ActionEvent event) throws IOException{		
 		String NameFile = textJsonStore.getText();
 		if (!NameFile.isEmpty()) {
-			if (!archivo.exists()){
-				try{
-					archivo.createNewFile();
-					escribir = new FileWriter(archivo,true);
-					linea = new PrintWriter(escribir);
-					// escribir en el archivo
-					linea.println(NameFile);
-					linea.close();
-					escribir.close();
-					msj1.setText("----Archivo Creado----");
-					msj2.setText("Informacion almacenada correctamente ["+NameFile+"]");
-					//ListJSONstores.insertar(NameFile);
-					
-				}catch(IOException ex){
-					
+			
+			if(ListJSONstores.buscar(NameFile)==false){
+				
+				if (!archivo.exists()){
+					try{
+						archivo.createNewFile();
+						escribir = new FileWriter(archivo,true);
+						linea = new PrintWriter(escribir);
+						almacenamiento=new BufferedReader(leer);
+						cadena="";
+						// escribir en el archivo
+						linea.println(NameFile);
+						linea.close();
+						escribir.close();
+						ListJSONstores.insertar(NameFile);
+						msj1.setText("Archivo Agregado ");
+						msj2.setText("Proceso Exitoso");
+						//ListJSONstores.mostrar();
+						
+					}catch(IOException ex){
+						
+					}
+				}else{
+					try{
+						escribir = new FileWriter(archivo,true);
+						linea = new PrintWriter(escribir);
+						// escribir en el archivo
+						linea.println(NameFile);
+						linea.close();
+						escribir.close();
+						ListJSONstores.insertar(NameFile);
+						msj1.setText("Archivo Agregado ");
+						msj2.setText("Proceso Exitoso");
+						//ListJSONstores.mostrar();
+					}catch(IOException ex){
+						
+					}
 				}
 			}else{
-				try{
-					escribir = new FileWriter(archivo,true);
-					linea = new PrintWriter(escribir);
-					// escribir en el archivo
-					linea.println(NameFile);
-					linea.close();
-					escribir.close();
-					msj1.setText("----Archivo Existente----");
-					msj2.setText("Informacion almacenada correctamente ["+NameFile+"]");
-					//ListJSONstores.insertar(NameFile);
-
-					
-				}catch(IOException ex){
-					
-				}
+				System.out.println("Dato existente =<"+NameFile+">");
+				msj1.setText("Archivo Dublicado");
+				msj2.setText("Proceso Fallido");
 			}
+			
+			
+			
 		}else{
 			msj1.setText("----<SIN NOMBRE>--- ");
 			msj2.setText("Ingrese otro nombre por favor");
 			}
-		ListJSONstores.mostrar();
 	}
-		
 	@FXML
 	public void crearCarpeta(ActionEvent event) throws IOException{		
 		String NameFile = textJsonStore.getText() ;
@@ -134,6 +148,7 @@ public class New_JSONStoreController implements Initializable {
 		if(!archivo.exists()){
 			try {
 				archivo.createNewFile();
+				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -141,20 +156,7 @@ public class New_JSONStoreController implements Initializable {
 			
 		}else{
 			System.out.println("Archivo ya antes creado");
-			/*
-			try {
-				escribir=new PrintWriter(archivo,"utf-8"); //preparar el archivo 
-				escribir.close();
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
-		*/
-		
-	}
 	
-}}
+		}
+	}

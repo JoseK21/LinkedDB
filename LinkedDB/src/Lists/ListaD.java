@@ -3,7 +3,7 @@ package Lists;
 public class ListaD {
 	private NodoListaD inicio;
 	private NodoListaD fin;
-	private int size = 0;
+	private int size = -1;
 	// Constructo	
 	public ListaD(){
 		inicio=fin=null;	
@@ -30,19 +30,20 @@ public class ListaD {
             fin = nuevo;
         }
         size++;
-        System.out.println("Tamaño : "+size);
+        
     }
 	
 	
 	public void mostrar(){
 		NodoListaD temporal = inicio;
 		System.out.print("INICIO>");
-		while (temporal!=null){
+		
+		while (temporal.getSiguiente()!=null){
 			Object dee = temporal.getDato();	
 			System.out.print("["+dee+"]<->");
 			temporal=temporal.getSiguiente();	
 			} 
-		System.out.print("| <-fin\n");
+		System.out.print("| <-finJK\n");
 		
 	    
 	}
@@ -97,33 +98,24 @@ public class ListaD {
 			  }}
 		  }
 	}
-	public void buscar(Object dato){
+	public boolean buscar(Object dato){
 		NodoListaD temporal = inicio;
 		
 		while (temporal!=null && temporal.getDato()!=dato){			
 			temporal=temporal.getSiguiente();								// enviar la informacion..... Nombre y sus datos
 		}
-		if(temporal!=null){
+		if(temporal!=null){			
 			System.out.println("SI EXISTE EL ELEMENTO {"+dato+"}");
-		}else{
+			return true;
+		}else{			
 			System.out.println("NO EXIST {"+dato+"}");
+			return false;
 
 		}
 	}
 	
 	public static void main(String[] args){
-		/*
-		ListaD listaD = new ListaD();
-		 listaD.insertar(1);
-		 listaD.insertar(2);
-		 listaD.insertar(3);
-		 listaD.insertar(4);
-		 listaD.insertar(5);
-		 listaD.mostrar();
-		 listaD.eliminar(2);
-		 listaD.mostrar();
-		 listaD.buscar(2);
-		 */
+		
 	}
 
 

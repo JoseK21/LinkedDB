@@ -19,7 +19,8 @@
           <TableColumn prefWidth="75.0" text="Apellido" />
         </columns>
       </TableView>
-      <Separator layoutX="497.0" layoutY="567.0" orientation="VERTICAL" prefHeight="127.0" prefWidth="4.0" />         
+      <Separator layoutX="497.0" layoutY="567.0" orientation="VERTICAL" prefHeight="127.0" prefWidth="4.0" />
+      <Button layoutX="746.0" layoutY="632.0" mnemonicParsing="false" onAction="#actualizar" prefHeight="25.0" prefWidth="408.0" text="Actualizar" />         
    </children>
    <cursor>
       <Cursor fx:constant="DEFAULT" />

@@ -1,8 +1,11 @@
 package Interface_FX;
 
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
@@ -11,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import Lists.ListaD;
+import Interface_FX.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,20 +35,20 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class InterfaceMainController implements Initializable {
+public class InterfaceMainController extends New_JSONStoreController implements Initializable {
 	@FXML private Label msjCrearJSONstore;
 	@FXML private Label conf_Create;	
 	@FXML private TextField textnameJSONStore;
+	@FXML private TreeView treeView1;
+	Image DBIcon = new Image(getClass().getResourceAsStream("/img/img4.png"));
+	Image FileIcon = new Image(getClass().getResourceAsStream("/img/img1.png"));
 	
 	
-	@FXML TreeView <String> treeView1;	
-	Image img1 = new Image(getClass().getResourceAsStream("/img/img2.png"));
-	Image img2 = new Image(getClass().getResourceAsStream("/img/img3.png"));
-
 	
 	
 	@FXML
-	public void OpenNew_JSONStore(ActionEvent event){			
+	public void OpenNew_JSONStore(ActionEvent event){	
+		
 		try{
 			((Node)event.getSource()).getScene().getWindow().hide();
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("New_JSONStore.fxml"));
@@ -91,8 +95,8 @@ public class InterfaceMainController implements Initializable {
 	@FXML
 	public void mouseClick(MouseEvent mouseEvent){
 		if (mouseEvent.getClickCount()==2){
-			TreeItem<String> item = treeView1.getSelectionModel().getSelectedItem();
-			System.out.println(item.getValue());
+			//TreeItem<String> item = treeView1.getSelectionModel().getSelectedItem();
+			//System.out.println(item.getValue());
 			/*try{
 				((Node)mouseEvent.getSource()).getScene().getWindow().hide();
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ClickRight_Document.fxml"));
@@ -123,65 +127,45 @@ public class InterfaceMainController implements Initializable {
 		textnameJSONStore.setText("");
 	}
 	
-	@Override
-	public void initialize(URL url, ResourceBundle rb){		
-		
-		String ruta1 ="C:\\Users\\kenne\\Desktop\\Proy_LinkedDB\\JSONstore.txt";
-		String ruta2 ="C:\\Users\\kenne\\Desktop\\Proy_LinkedDB\\DocJSON.txt";
-		String ruta3 ="C:\\Users\\kenne\\Desktop\\Proy_LinkedDB\\ObjetosJSON.txt";
-		File JSONstore = new File(ruta1);
-		File DocJSON = new File(ruta2);
-		File ObjetosJSON = new File(ruta3);
-		BufferedWriter bw1;
-		BufferedWriter bw2;
-		BufferedWriter bw3;
-		
-		if (JSONstore.exists() && DocJSON.exists() && ObjetosJSON.exists()){
-			System.out.println("Archivos Existentes _ LISTO _");
-		}else{
-			if (JSONstore.exists() == false){
-				try {
-					bw1 = new BufferedWriter(new FileWriter(JSONstore));
-					bw1.write("Listas de JSONstore");
-				    bw1.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			    
-			}
-			
-			if (DocJSON.exists() == false){
-				try {
-					bw2 = new BufferedWriter(new FileWriter(DocJSON));
-					bw2.write("Listas de DocJSON");
-				    bw2.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			    
-			}
-			if (ObjetosJSON.exists() == false){
-				try {
-					bw3 = new BufferedWriter(new FileWriter(ObjetosJSON));
-					bw3.write("Listas de ObjetosJSON");
-				    bw3.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			    
-			}
-			
-		}
-		
-		
-		
-		
-		
-		
-		
+	@FXML
+	public void actualizar(ActionEvent event){
+		TreeItem rootitem = new TreeItem("ACTUALIZAR");
+		treeView1.setRoot(rootitem);
+	
 	}
+	
+	@Override
+	public void initialize(URL url, ResourceBundle rb){			
+		TreeItem baseDatos = new TreeItem("LinkedDB",new ImageView(DBIcon));
+		TreeItem DB = new TreeItem("LinkedDB");
+		treeView1.setRoot(baseDatos);
+		baseDatos.setExpanded(true);
+		try {
+			archivo = new File("JSONstore.txt");
+			leer = new FileReader(archivo);
+			almacenamiento=new BufferedReader(leer);
+			cadena="";
+			
+			int num=1;
+			while(cadena!=null){
+			
+			try {
+				cadena=almacenamiento.readLine();
+				TreeItem treeitem =new TreeItem(cadena,new ImageView(FileIcon));
+				baseDatos.getChildren().addAll(treeitem);
+				
+				ListJSONstores.insertar(cadena);
+				
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}ListJSONstores.mostrar();
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		}
 }
 

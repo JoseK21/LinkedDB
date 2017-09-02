@@ -22,6 +22,8 @@ public class Create_DocJSONController implements Initializable {
 	
 	@FXML
 	public void verificar(ActionEvent event){
+		String NameJson = textCorrecDocJSON.getText();
+		
 		//if (Existe un JSON Store )
 		textCorrecDocJSON.setText("Proceso de verificación");
 		cont_Atributos.setDisable(false); // Habilita el otro boton para seguir con el proceso
