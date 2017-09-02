@@ -31,11 +31,11 @@ public class New_JSONStoreController implements Initializable {
 	public void crearCarpeta(ActionEvent event){		
 		String NameFile = textJsonStore.getText() ;	
 		System.out.println("Nombre de la carpeta: " + NameFile);
-		String archivo = "\\"+ NameFile +".txt";
+		//String archivo = "\\"+ NameFile +".txt";
 		
-		JSONstores.insertAtEnd(NameFile);
+		JSONstores.insertar(NameFile);
 		
-		JSONstores.mostrarListaD();
+		JSONstores.mostrar();
 		if (!NameFile.isEmpty()) {					
 			String ruta = "C:\\Users\\kenne\\Desktop\\Proy_LinkedDB\\"+ NameFile; // Se crea la carpeta con el nombre correspondiente
 			

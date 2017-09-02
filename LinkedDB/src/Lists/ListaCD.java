@@ -33,19 +33,14 @@ public class ListaCD {
         }
         size++;
     }
-	public void mostrar()
-
-	
-	
-    {
+	public void mostrar(){
         NodoListaCD temp = inicio;
         if (inicio == null) 
         {
             System.out.print("Lista Vacia");
         }
-        if (inicio.getSiguiente() == inicio) 
-        {
-            System.out.print(inicio.getDato()+ "Inicio-> "+temp.getDato());
+        else if (inicio.getSiguiente() == inicio){
+            System.out.print("Inicio-> "+temp.getDato());
         }
         System.out.print("Inicio-> ("+inicio.getDato()+ ") <~> (");
         temp = inicio.getSiguiente();
@@ -55,7 +50,7 @@ public class ListaCD {
             System.out.print(temp.getDato()+ ") <~> (");
             temp = temp.getSiguiente();
         }
-        System.out.print(temp.getDato()+ ")~~| Fin ");
+        System.out.print(temp.getDato()+ ")~~| Fin \n");
     }
 	
 	public void eliminar(Object dato){
@@ -65,31 +60,49 @@ public class ListaCD {
 		anterior = fin;
 		
 		do{
-			if(actual.getDato()==dato){
+			if (actual.getDato()==dato){
 				if(actual == inicio){
-					inicio= inicio.getSiguiente();
+					inicio=inicio.getSiguiente();
 					fin.setSiguiente(inicio);
 					inicio.setAnterior(fin);
-					
 				}else if(actual == fin){
-					fin = anterior;
+					fin=anterior;
 					inicio.setAnterior(fin);
-					fin.setSiguiente(inicio);					
+					fin.setSiguiente(inicio);
 				}else{
 					anterior.setSiguiente(actual.getSiguiente());
 					actual.getSiguiente().setAnterior(anterior);
 					
+					
+
 				}
+				anterior = actual;
+				actual = actual.getSiguiente();
 			}
-			//System.out.println("Dato existente/ y Eliminado :"+dato);
-			anterior = actual;
-			actual = actual.getSiguiente();
+		}while(actual != inicio);
 			
-		}while(actual != inicio);		
 	}
-	public void notificar(){
-		
+	
+	public void eliminar2(Object dato){
+		NodoListaCD actual;
+		boolean encontrado = false;
+		actual=fin;
+		while(actual.getSiguiente()!=fin && !encontrado){
+			encontrado = (actual.getSiguiente().getDato()==dato);
+			if (!encontrado){
+				actual=actual.getSiguiente();
+			}
+		}	
+		encontrado = (actual.getSiguiente().getDato()==dato);
+		if(encontrado){
+			NodoListaCD aux = actual.getSiguiente();
+			if(fin==fin.getSiguiente()){
+				fin=null;
+			}
+			actual.setSiguiente(aux.getSiguiente());
+		}
 	}
+	
 	public void buscar(Object dato){
 		NodoListaCD temporal = inicio;
 		
@@ -111,9 +124,8 @@ public class ListaCD {
 		list.agregar(4);
 		list.agregar(5);
 		list.agregar(6);
-		list.eliminar(3);
-		
 		list.mostrar();
+		list.buscar(0);
 		
 	}
 	

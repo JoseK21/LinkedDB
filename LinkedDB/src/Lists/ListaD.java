@@ -15,88 +15,87 @@ public class ListaD {
 		}else 
 			return false;
 	}
-	public void insertAtEnd(Object val)
+	public void insertar(Object dato)
     {
-        NodoListaD nptr = new NodoListaD(val, null, null);        
+        NodoListaD nuevo = new NodoListaD(dato, null, null);        
         if(inicio == null)
         {
-            inicio = nptr;
+            inicio = nuevo;
             fin = inicio;
-            System.out.println("Inicio->["+val+"]-");
         }
         else
         {
-            nptr.setAnterior(fin);
-            fin.setSiguiente(nptr);    
-            fin = nptr;
-            System.out.println(">["+val+"]-");
+        	nuevo.setAnterior(fin);
+            fin.setSiguiente(nuevo);    
+            fin = nuevo;
         }
         size++;
+        System.out.println("Tamaño : "+size);
     }
-	String enlace="";
-	public void mostrarListaD(){
-		if(estaVacia()==false){
-			
-			NodoListaD auxiliar=inicio;			
-			while (auxiliar!=null){
-				
-				enlace+="["+auxiliar.getDato()+"]<=>";
-				auxiliar=auxiliar.getSiguiente();
-				
-				
-			}
-			System.out.println("Inicio=>"+enlace+"|FIN");
-			System.out.println("\nTamaño de la lista Doble: "+size);
-
-		}
-		else{
-			System.out.println("\nLista Vacia---- NAda que mostar");
-		}
-
+	
+	
+	public void mostrar(){
+		NodoListaD temporal = inicio;
+		System.out.print("INICIO>");
+		while (temporal!=null){
+			Object dee = temporal.getDato();	
+			System.out.print("["+dee+"]<->");
+			temporal=temporal.getSiguiente();	
+			} 
+		System.out.print("| <-fin\n");
+		
+	    
 	}
 	public void eliminar(Object dato){
 		  
 		  if(estaVacia()){
 			  System.out.println("Lista vacia");
 		  }
-		  else if(fin == inicio){
-			  if(dato == inicio.getDato()){
-				  fin = null;
-				  inicio=null;
-				  System.out.println("Unico nodo existente ELIMINADO ["+dato+"]");
-			  }else{
-				  System.out.println("Error");
-			  }
-		  }
-		  else if(dato == inicio.getDato()){
-			  System.out.println("else if ___ dato == inicio.getDato()");			  
-			  inicio = inicio.getSiguiente();
-			  inicio.setAnterior(inicio.getAnterior());
-			  inicio.setAnterior(null);
-		  }
-		  else{  
-			  System.out.println("etapa final.. el nodo esta entre el medio");
-			  NodoListaD temporal, anterior, siguiente;	
-			  temporal = inicio;   
-			  siguiente = inicio;
-			  anterior = inicio;
-			   
-			  while(siguiente !=  null && siguiente.getDato() != dato){  
-				  temporal = temporal.getSiguiente();		    
-				  siguiente = siguiente.getSiguiente();		    
-				  anterior = anterior.getSiguiente();
-			  }
-			  if(siguiente != null && siguiente != fin){
-				  siguiente.getSiguiente().setAnterior(temporal.getAnterior());
-				  anterior.getAnterior().setSiguiente(temporal.getSiguiente());
+		  else{ 
+			  if(fin == inicio){
+				  if(dato == inicio.getDato()){
+					  fin = null;
+					  inicio=null;
+					  System.out.println("Se elimino /"+dato+"/");
+				  }else{
+					  System.out.println("Error");
 				  }
-			  else{ 
-				  if(siguiente == fin){
-					  fin = fin.getAnterior();
-					  fin.setSiguiente(null);
-			    }
 			  }
-		  }System.out.println("No Existe_/ No se puede eliminar_!");
+			  else if(dato == inicio.getDato()){
+				  System.out.println("elemento al inicio--------------");			  
+				  inicio = inicio.getSiguiente();
+				  inicio.setAnterior(inicio.getAnterior());
+				  inicio.setAnterior(null);
+				  System.out.println("Se elimino /"+dato+"/");
+			  }
+			  else{  
+				  System.out.println("elemento despues del inicio");
+				  NodoListaD temporal, anterior, siguiente;	
+				  temporal = inicio;   
+				  siguiente = inicio;
+				  anterior = inicio;
+				   
+				  while(siguiente !=  null && siguiente.getDato() != dato){  
+					  temporal = temporal.getSiguiente();		    
+					  siguiente = siguiente.getSiguiente();		    
+					  anterior = anterior.getSiguiente();
+				  }
+				  if(siguiente != null && siguiente != fin){
+					  System.out.println("Se elimino /"+siguiente.getDato()+"/");
+					  siguiente.getSiguiente().setAnterior(temporal.getAnterior());
+					  anterior.getAnterior().setSiguiente(temporal.getSiguiente());
+					  }
+				  else{ 
+					  if(siguiente == fin){
+						  System.out.println("elemento ULTIMO de la lista/");
+						  System.out.println("Se elimino /"+siguiente.getDato()+"/");
+						  fin = fin.getAnterior();
+						  fin.setSiguiente(null);
+					  }else{
+						  System.out.println("No Existe_/ No se puede eliminar_!");
+					  }
+			  }}
+		  }
 	}
 	public void buscar(Object dato){
 		NodoListaD temporal = inicio;
@@ -113,15 +112,18 @@ public class ListaD {
 	}
 	
 	public static void main(String[] args){
-		/*ListaD listD = new ListaD();
-		listD.insertAtEnd(1);
-		listD.insertAtEnd(2);
-		listD.insertAtEnd(3);
-		listD.insertAtEnd(4);
-		listD.insertAtEnd(5);
-		listD.insertAtEnd(6);
-		listD.mostrarListaD(); */
-		
+		/*
+		ListaD listaD = new ListaD();
+		 listaD.insertar(1);
+		 listaD.insertar(2);
+		 listaD.insertar(3);
+		 listaD.insertar(4);
+		 listaD.insertar(5);
+		 listaD.mostrar();
+		 listaD.eliminar(2);
+		 listaD.mostrar();
+		 listaD.buscar(2);
+		 */
 	}
 
 
