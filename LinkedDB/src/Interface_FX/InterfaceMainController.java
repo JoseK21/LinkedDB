@@ -148,24 +148,37 @@ public class InterfaceMainController extends New_JSONStoreController implements 
 			
 			int num=1;
 			while(cadena!=null){
-			
+				try {
+					cadena=almacenamiento.readLine();
+					if (cadena!=null){
+						TreeItem treeitem =new TreeItem(cadena,new ImageView(FileIcon));
+						baseDatos.getChildren().addAll(treeitem);
+						
+						ListJSONstores.insertar(cadena);
+					}
+					
+				}catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}	
 			try {
-				cadena=almacenamiento.readLine();
-				TreeItem treeitem =new TreeItem(cadena,new ImageView(FileIcon));
-				baseDatos.getChildren().addAll(treeitem);
-				
-				ListJSONstores.insertar(cadena);
-				
-				
+				almacenamiento.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}try {
+				leer.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}ListJSONstores.mostrar();
-		} catch (FileNotFoundException e1) {
+			System.out.println("Lista Cargada del txt.......");
+			ListJSONstores.mostrar();
+		}catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		}
 }
-

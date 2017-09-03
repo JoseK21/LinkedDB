@@ -33,20 +33,55 @@ public class ListaD {
         
     }
 	
-	
 	public void mostrar(){
 		NodoListaD temporal = inicio;
 		System.out.print("INICIO>");
-		
-		while (temporal.getSiguiente()!=null){
-			Object dee = temporal.getDato();	
-			System.out.print("["+dee+"]<->");
-			temporal=temporal.getSiguiente();	
-			} 
-		System.out.print("| <-finJK\n");
-		
-	    
+		int size=0;
+		while (temporal!=null){
+			Object dee = temporal.getDato();
+			if (dee !=""){
+				System.out.print("["+dee+"]<-->");
+				temporal=temporal.getSiguiente();	
+				size++;
+			}else if (dee ==""){
+				System.out.print("| <-fin");
+			//}
+		} 
+		}
+		System.out.print("\nTamaño de lista: "+size);	  
 	}
+	public boolean buscar(Object dato){
+		NodoListaD temporal = inicio;
+		
+		while (temporal!=null){
+			if (temporal.getDato()==dato){
+				System.out.println("Si exite el elemento dentro de la lista : _("+dato+")_");
+				return true;
+			}else{
+				temporal=temporal.getSiguiente();
+			}
+		}
+		System.out.println("No exite : _("+dato+")_\n Se debe agregar a la lista");
+		return false;
+		
+	
+	}
+		/*
+		while (temporal!=null && temporal.getDato()!=dato){			
+			temporal=temporal.getSiguiente();								// enviar la informacion..... Nombre y sus datos
+		}
+		if(temporal!=null){			
+			System.out.println("SI EXISTE EL ELEMENTO {"+dato+"}");
+			return true;
+		}else{			
+			System.out.println("NO EXIST {"+dato+"}");
+			return false;
+
+		}
+		*/
+	
+	
+	
 	public void eliminar(Object dato){
 		  
 		  if(estaVacia()){
@@ -97,21 +132,6 @@ public class ListaD {
 					  }
 			  }}
 		  }
-	}
-	public boolean buscar(Object dato){
-		NodoListaD temporal = inicio;
-		
-		while (temporal!=null && temporal.getDato()!=dato){			
-			temporal=temporal.getSiguiente();								// enviar la informacion..... Nombre y sus datos
-		}
-		if(temporal!=null){			
-			System.out.println("SI EXISTE EL ELEMENTO {"+dato+"}");
-			return true;
-		}else{			
-			System.out.println("NO EXIST {"+dato+"}");
-			return false;
-
-		}
 	}
 	
 	public static void main(String[] args){

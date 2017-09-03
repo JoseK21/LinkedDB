@@ -14,6 +14,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TreeItem;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 
@@ -29,12 +31,60 @@ public class New_JSONStoreController implements Initializable {
 	FileReader leer;
 	BufferedReader almacenamiento;
 	String cadena;
+	@FXML
+	public void actualizar(Object dato){
+		try{
+			archivo = new File("JSONstore.txt");
+			leer = new FileReader(archivo);
+			almacenamiento=new BufferedReader(leer);
+			cadena="";
+			
+			int num=1;
+			while(cadena !=null){ // cambios de null,"",empty
+				
+				try {
+					cadena=almacenamiento.readLine();			
+					ListJSONstores.insertar(cadena);
+					
+					
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
+		}	try {
+			almacenamiento.close();
+			System.out.println("Lista Actualizada--------------");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			leer.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+			
+		
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+			
+	}
 	
 	@FXML
 	public void crearArchivo(ActionEvent event) throws IOException{		
-		String NameFile = textJsonStore.getText();
+		String NameFile = textJsonStore.getText();		
+		ListJSONstores.mostrar();
+		System.out.println(">>_________________antes de actualizar?____________________<<");
 		if (!NameFile.isEmpty()) {
 			
+			actualizar(NameFile);
+			ListJSONstores.mostrar();
+			System.out.println(">>_________________luego de actualizar?con_elementos____________________<<\n");
 			if(ListJSONstores.buscar(NameFile)==false){
 				
 				if (!archivo.exists()){
@@ -48,6 +98,7 @@ public class New_JSONStoreController implements Initializable {
 						linea.println(NameFile);
 						linea.close();
 						escribir.close();
+						//actualizar(NameFile);
 						ListJSONstores.insertar(NameFile);
 						msj1.setText("Archivo Agregado ");
 						msj2.setText("Proceso Exitoso");
@@ -64,6 +115,8 @@ public class New_JSONStoreController implements Initializable {
 						linea.println(NameFile);
 						linea.close();
 						escribir.close();
+
+						//actualizar(NameFile);
 						ListJSONstores.insertar(NameFile);
 						msj1.setText("Archivo Agregado ");
 						msj2.setText("Proceso Exitoso");

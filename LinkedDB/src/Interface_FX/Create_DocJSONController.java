@@ -78,4 +78,3 @@ public class Create_DocJSONController implements Initializable {
 	}
 	
 }
-
