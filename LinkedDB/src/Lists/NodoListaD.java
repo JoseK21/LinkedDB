@@ -1,23 +1,23 @@
 package Lists;
 
 public class NodoListaD {
-	private Object dato;
+	private String dato;
 	private NodoListaD siguiente,anterior;	
 	//Constructor para cuando aun ni hay nodos
-	public NodoListaD(Object dato) {
+	public NodoListaD(String dato) {
 		this(dato,null,null);
 			
 	}
 	//COnstructor para cuando ya haya nodos
-	public NodoListaD(Object d,NodoListaD s,NodoListaD a){ // talvez cambiar Object dato ---- Object d
+	public NodoListaD(String d,NodoListaD s,NodoListaD a){ // talvez cambiar Object dato ---- Object d
 		dato=d; 
 		siguiente=s;
 		anterior=a;
 	}
-	public Object getDato() {
+	public String getDato() {
 		return dato;
 	}
-	public void setDato(Object dato) {
+	public void setDato(String dato) {
 		this.dato = dato;
 	}
 	public NodoListaD getSiguiente() {

@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 
 
 public class New_JSONStoreController implements Initializable {
-	ListaD ListJSONstores =new ListaD();
+	ListaD ListJSONstores = ListaD.getInstance();
 	@FXML private Label msj2;
 	@FXML private Label msj1;	
 	@FXML private TextField textJsonStore;
@@ -65,9 +65,6 @@ public class New_JSONStoreController implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-			
-		
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -82,7 +79,7 @@ public class New_JSONStoreController implements Initializable {
 		System.out.println(">>_________________antes de actualizar?____________________<<");
 		if (!NameFile.isEmpty()) {
 			
-			actualizar(NameFile);
+			//actualizar(NameFile);
 			ListJSONstores.mostrar();
 			System.out.println(">>_________________luego de actualizar?con_elementos____________________<<\n");
 			if(ListJSONstores.buscar(NameFile)==false){

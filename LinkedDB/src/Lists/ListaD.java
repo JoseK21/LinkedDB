@@ -4,6 +4,11 @@ public class ListaD {
 	private NodoListaD inicio;
 	private NodoListaD fin;
 	private int size = -1;
+	
+
+    private static  ListaD uniqueInstance  =   null;
+
+	
 	// Constructo	
 	public ListaD(){
 		inicio=fin=null;	
@@ -15,7 +20,7 @@ public class ListaD {
 		}else 
 			return false;
 	}
-	public void insertar(Object dato)
+	public void insertar(String dato)
     {
         NodoListaD nuevo = new NodoListaD(dato, null, null);        
         if(inicio == null)
@@ -50,11 +55,11 @@ public class ListaD {
 		}
 		System.out.print("\nTamaño de lista: "+size);	  
 	}
-	public boolean buscar(Object dato){
+	public boolean buscar(String dato){
 		NodoListaD temporal = inicio;
 		
 		while (temporal!=null){
-			if (temporal.getDato()==dato){
+			if (temporal.getDato().equals(dato)){
 				System.out.println("Si exite el elemento dentro de la lista : _("+dato+")_");
 				return true;
 			}else{
@@ -133,6 +138,14 @@ public class ListaD {
 			  }}
 		  }
 	}
+	
+    public static ListaD getInstance(){
+        if(uniqueInstance == null){
+              uniqueInstance = new ListaD();
+        }
+        return uniqueInstance;
+    }
+
 	
 	public static void main(String[] args){
 		
