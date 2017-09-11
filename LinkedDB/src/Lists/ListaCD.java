@@ -109,34 +109,17 @@ public class ListaCD {
 		}
 	}
 	
-	public boolean buscar(String dato){
-		NodoListaCD actual = fin;
-		boolean encontrado = false;
-		do{
-			if (actual.getDato() == dato){
-				encontrado = true;
-				
-			}
-			actual = actual.getAnterior();
-		}while(actual != fin);
+	public boolean buscar1(String dato){
+		NodoListaCD temporal = inicio;
 		
-		if(encontrado == true){
-			return true;			
-		}else{
-			return false;
-		}
-	}
-		public boolean buscar1(String dato){
-			NodoListaCD temporal = inicio;
-			
-			while (temporal!=fin){
-				if (temporal.getDato().equals(dato)){
-					return true;
-				}else{
-					temporal=temporal.getSiguiente();
-				}
+		while (temporal!=fin){
+			if (temporal.getDato().equals(dato)){
+				return true;
+			}else{
+				temporal=temporal.getSiguiente();
 			}
-			return false;
+		}
+		return false;
 	}
 	
 	public static ListaCD getInstance(){

@@ -199,12 +199,6 @@ public class InterfaceMainController extends New_JSONStoreController implements 
 					}
 					
 				}
-				if (crearcarpeta.mkdirs()){
-					System.out.println("Carpeta creada");
-				}else{
-					System.out.println("Carpeta NO ! creada(Existente) =) " );
-					
-				}
 				
 				try{	
 					leer = new FileReader(listaTxt);
@@ -214,6 +208,7 @@ public class InterfaceMainController extends New_JSONStoreController implements 
 					while((cadena=almacenamiento.readLine()) != null){
 						TreeItem treeitem =new TreeItem(cadena,new ImageView(FileIcon));
 						baseDatos.getChildren().addAll(treeitem);
+						ListJSONstores.insertarFinal(ListJSONstores,cadena);
 						//crear carpetas aqui
 						
 						String carpetaEnJSON = "JSONstore\\"+cadena;
@@ -223,11 +218,13 @@ public class InterfaceMainController extends New_JSONStoreController implements 
 						if(newFileJSON.mkdirs()){
 							System.out.println("Nuevo JSON file creado dentro del JSONstore =) ");
 						}else{
-							System.out.println("NO CREADO JSON file-----");
+							System.out.println("NO CREADO JSON file-----Existente B) ");
 							
 						}
 						
-					}		
+					}
+					ListJSONstores.imprimir(ListJSONstores);
+					System.out.println("\n");
 					leer.close();
 					almacenamiento.close();
 				}catch (IOException e1) {

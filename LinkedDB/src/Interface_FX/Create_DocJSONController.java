@@ -1,7 +1,9 @@
 package Interface_FX;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -39,14 +41,15 @@ public class Create_DocJSONController implements Initializable {
 	public void verificar(ActionEvent event){
 		String NameJson = nameJSONstore.getText();
 		System.out.println("Nombre del JSON store a buscar: "+NameJson);
-		ListaJSONstore.imprimir(ListaJSONstore);
+		//ListaJSONstore.imprimir(ListaJSONstore);
 		if (ListaJSONstore.buscar(NameJson)== true){
+			System.out.println("dentro de la lista luego de buscar bien el JSON store \n");
+			ListaJSONstore.imprimir(ListaJSONstore);
+			System.out.println("\nListo con la que verifique .!\n");
 			verificarNameDoc.setDisable(false);
 			nameDocumento.setDisable(false); 
 			msjVerJSONstore.setText("Carpeta existente");
 			System.out.println("Carpeta existente  =) \n");
-			//String ruta = ("C:\\Users\\kenne\\Desktop\\Proy_LinkedDB\\"+NameJson);
-			//String doc = nameDocumento			
 		}else{
 			msjVerJSONstore.setText("Carpeta no existente");
 			
@@ -56,41 +59,58 @@ public class Create_DocJSONController implements Initializable {
 	public void crearDocJSON(ActionEvent event) throws IOException{
 		String NameDoc = nameDocumento.getText();	
 		String NameJson = nameJSONstore.getText();
-			
+		
+		
 		//ListaDocJSON.desplazar(ListaDocJSON);
 		ListaDocJSON.imprimir(ListaDocJSON);
+		System.out.println("\n");
+		ListaJSONstore.imprimir(ListaJSONstore);
 		
 		if (ListaDocJSON.buscar1(NameDoc) == false){
-			System.out.println("SIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII\n");
 			msjVerJSONstore.setText("");
+			String carpetaJSONEspecifico = "JSONstore\\"+NameJson+"\\"+NameDoc;			
+			File crearArchivoTxt = new File(carpetaJSONEspecifico);		
+			String carpetaDOC = "JSONstore\\"+NameJson+"\\lista";
+			String newruta;
 			
-
-			String carpetaJSONEspecifico = "JSONstore\\"+NameJson+"\\"+NameDoc+".txt";			
-			File crearArchivoTxt = new File(carpetaJSONEspecifico);			
-			if (crearArchivoTxt.exists()){
-				System.out.println("El Archivo ya existe dentro del JSON store");
+			if (!crearArchivoTxt.exists()){
+				if (crearArchivoTxt.mkdirs()){
+					System.out.println("Archivo txt agregado en la carpeta respectiva");
+					ListaDocJSON.agregar(NameDoc);
+					
+					System.out.println("Agregando a = "+NameJson);
+					ListaDocJSON.imprimir(ListaDocJSON);
+					msjCreacionDocJSON.setText("Documento creado");
+					cont_Atributos.setDisable(false);
+					
+					newruta = carpetaDOC +NameJson +"Doc.txt";
+					String rutaestablecida = newruta;
+					try{
+						File archi = new File(rutaestablecida);
+						if(archi.createNewFile()){
+							System.out.println("LIsta Agregada al JSON respectivo");
+							FileWriter escribirDoc = new FileWriter(rutaestablecida,true);
+							PrintWriter lineaDoc = new PrintWriter(escribirDoc);
+							System.out.println("DAto a escribir en el txt :"+NameDoc);
+							lineaDoc.println(NameDoc);
+							
+							lineaDoc.close();
+							escribirDoc.close();
+						}else{
+							System.out.println("LIsta no Agregada..... ya existe =)");
+						}
+					}catch (Exception e) {
+						// TODO: handle exception
+					}
+					
+				}
+				else{
+					System.out.println("Archivo txt NOOOOOOOO agregado en la carpeta");
+				}
 			}else{
-				
+				System.out.println("El Archivo ya existe dentro del JSON store");	
 			}
 			
-			
-			
-			ListaDocJSON.agregar(NameDoc);
-			System.out.println("Agregando a = "+NameDoc);
-			ListaDocJSON.imprimir(ListaDocJSON);
-			msjCreacionDocJSON.setText("Documento creado");
-			cont_Atributos.setDisable(false);
-			//String ruta1 = ("C:\\Users\\kenne\\Desktop\\Proy_LinkedDB\\"+NameJson+"\\");
-			//System.out.println(ruta1);
-			//File carpetaDoc =new File(ruta1);
-			//carpetaDoc.mkdir();
-			
-			/*if (carpetaDoc.exists()){
-				System.out.println("Carpeta creada");
-			}else{
-				carpetaDoc.mkdirs();
-			}
-			*/
 		}else{
 			msjCreacionDocJSON.setText("Documento existente");
 			
