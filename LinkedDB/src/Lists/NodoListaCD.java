@@ -2,15 +2,15 @@ package Lists;
 
 public class NodoListaCD {
 	
-	private Object dato;
+	private String dato;
 	private NodoListaCD siguiente,anterior;	
 	
-	public NodoListaCD(Object dato) {
+	public NodoListaCD(String dato) {
 		this(dato,null,null);
 			
 	}
 	//COnstructor para cuando ya haya nodos
-	public NodoListaCD(Object d,NodoListaCD s,NodoListaCD a){
+	public NodoListaCD(String d,NodoListaCD s,NodoListaCD a){
 		dato=d; 
 		siguiente=s;
 		anterior=a;
@@ -19,10 +19,10 @@ public class NodoListaCD {
 	public NodoListaCD() {
 		// TODO Auto-generated constructor stub
 	}
-	public Object getDato() {
+	public String getDato() {
 		return dato;
 	}
-	public void setDato(Object dato) {
+	public void setDato(String dato) {
 		this.dato = dato;
 	}
 	public NodoListaCD getSiguiente() {

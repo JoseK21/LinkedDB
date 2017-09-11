@@ -22,7 +22,7 @@ import javafx.scene.control.TreeView;
 
 
 public class Main extends Application {
-		
+	
 	@FXML private TreeView treeView1;
 	// Abre la ventana inicial
 	@Override
@@ -44,10 +44,3 @@ public class Main extends Application {
 		
 	}
 }
-
-
-
-
-
-
-//Parent root =FXMLLoader.load(getClass().getResource("InterfaceMainFirst.fxml"));

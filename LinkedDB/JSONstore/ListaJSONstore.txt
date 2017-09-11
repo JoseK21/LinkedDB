@@ -1,0 +1,4 @@
+Persona
+Vehiculo
+Estudiante
+TEC

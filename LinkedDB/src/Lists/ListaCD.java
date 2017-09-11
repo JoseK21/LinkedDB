@@ -1,20 +1,22 @@
 package Lists;
 public class ListaCD {
-	private NodoListaCD inicio;
-	private NodoListaCD fin;
+	private NodoListaCD inicio = null;;
+	private NodoListaCD fin = null;
 	int size=0;
+	
+	private static  ListaCD uniqueInstance  =   null;
 	
 	public ListaCD() {
 		inicio = null;
 		fin=null;
 	}
-	public boolean estaVacia(){
+	public boolean estaVacia(Object list){
 		if (inicio == null){
 			return true;
 		}else{
 			return false;}
 	}
-	public void agregar(Object val)
+	public void agregar(String val)
     {
         NodoListaCD nuevo = new NodoListaCD(val, null, null);        
         if (inicio == null)
@@ -32,26 +34,34 @@ public class ListaCD {
         	fin=nuevo;  
         }
         size++;
-    }
-	public void mostrar(){
-        NodoListaCD temp = inicio;
-        if (inicio == null) 
-        {
-            System.out.print("Lista Vacia");
-        }
-        else if (inicio.getSiguiente() == inicio){
-            System.out.print("Inicio-> "+temp.getDato());
-        }
-        System.out.print("Inicio-> ("+inicio.getDato()+ ") <~> (");
-        temp = inicio.getSiguiente();
-        
-        while (temp.getSiguiente() != inicio) 
-        {
-            System.out.print(temp.getDato()+ ") <~> (");
-            temp = temp.getSiguiente();
-        }
-        System.out.print(temp.getDato()+ ")~~| Fin \n");
-    }
+    }	
+	public void imprimir(Object list) {
+	      if (estaVacia(uniqueInstance)  ) {
+	         System.out.println( "Lista Vacía");
+	       
+	      }
+	      else{
+		      NodoListaCD temp = inicio;
+
+		      do {
+		         System.out.print("("+ temp.getDato() +")~");
+		         temp = temp.getSiguiente();
+		         
+		      } while(temp.getSiguiente() != inicio);		      
+		   }
+	   }
+	public void desplazar(Object list){
+		NodoListaCD actual =inicio;
+			
+		System.out.println("\nInicio~>");
+		do{
+			String v = actual.getDato();
+			System.out.print("<"+v+">~<");
+			actual=actual.getSiguiente();
+		}while(actual !=inicio);
+		System.out.println("\n");
+	}
+	  
 	
 	public void eliminar(Object dato){
 		NodoListaCD actual = new NodoListaCD();
@@ -71,11 +81,7 @@ public class ListaCD {
 					fin.setSiguiente(inicio);
 				}else{
 					anterior.setSiguiente(actual.getSiguiente());
-					actual.getSiguiente().setAnterior(anterior);
-					
-					
-
-				}
+					actual.getSiguiente().setAnterior(anterior);}
 				anterior = actual;
 				actual = actual.getSiguiente();
 			}
@@ -103,30 +109,45 @@ public class ListaCD {
 		}
 	}
 	
-	public void buscar(Object dato){
-		NodoListaCD temporal = inicio;
+	public boolean buscar(String dato){
+		NodoListaCD actual = fin;
+		boolean encontrado = false;
+		do{
+			if (actual.getDato() == dato){
+				encontrado = true;
+				
+			}
+			actual = actual.getAnterior();
+		}while(actual != fin);
 		
-		while (temporal!=fin && temporal.getDato()!=dato){			
-			temporal=temporal.getSiguiente();								// enviar la informacion..... Nombre y sus datos
-		}
-		if(temporal.getDato()==dato){
-			System.out.println("SI EXISTE EL ELEMENTO {"+dato+"}");
+		if(encontrado == true){
+			return true;			
 		}else{
-			System.out.println("NO EXIST {"+dato+"}");
-
+			return false;
 		}
 	}
+		public boolean buscar1(String dato){
+			NodoListaCD temporal = inicio;
+			
+			while (temporal!=fin){
+				if (temporal.getDato().equals(dato)){
+					return true;
+				}else{
+					temporal=temporal.getSiguiente();
+				}
+			}
+			return false;
+	}
+	
+	public static ListaCD getInstance(){
+        if(uniqueInstance == null){
+              uniqueInstance = new ListaCD();
+        }
+        return uniqueInstance;
+    }
+	
 	public static void main(String[] args){
-		ListaCD list = new ListaCD();
-		list.agregar(1);
-		list.agregar(2);
-		list.agregar(3);
-		list.agregar(4);
-		list.agregar(5);
-		list.agregar(6);
-		list.mostrar();
-		list.buscar(0);
-		
+				
 	}
 	
 }

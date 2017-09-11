@@ -25,16 +25,18 @@ public class New_JSONStoreController implements Initializable {
 	@FXML private Label msj1;	
 	@FXML private TextField textJsonStore;
 	
-	File archivo = new File("JSONstore.txt");
+	//File archivo = new File("JSONstore.txt");
+	File archivoOtro;
 	FileWriter escribir; // para escribir en el archivo
 	PrintWriter linea;
 	FileReader leer;
 	BufferedReader almacenamiento;
 	String cadena;
+	
 	@FXML
 	public void actualizar(Object dato){
-		try{
-			archivo = new File("JSONstore.txt");
+		/*try{
+			File archivo = new File("JSONstore.txt");
 			leer = new FileReader(archivo);
 			almacenamiento=new BufferedReader(leer);
 			cadena="";
@@ -44,7 +46,7 @@ public class New_JSONStoreController implements Initializable {
 				
 				try {
 					cadena=almacenamiento.readLine();			
-					ListJSONstores.insertar(cadena);
+					ListJSONstores.insertarFinal(ListJSONstores,cadena);
 					
 					
 				} catch (IOException e) {
@@ -54,7 +56,6 @@ public class New_JSONStoreController implements Initializable {
 			
 		}	try {
 			almacenamiento.close();
-			System.out.println("Lista Actualizada--------------");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -69,113 +70,69 @@ public class New_JSONStoreController implements Initializable {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		*/
 			
 	}
 	
 	@FXML
-	public void crearArchivo(ActionEvent event) throws IOException{		
-		String NameFile = textJsonStore.getText();		
-		ListJSONstores.mostrar();
-		System.out.println(">>_________________antes de actualizar?____________________<<");
+	public void crearArchivoCarpeta(ActionEvent event) throws IOException{		
+		String NameFile = textJsonStore.getText();	
 		if (!NameFile.isEmpty()) {
-			
-			//actualizar(NameFile);
-			ListJSONstores.mostrar();
-			System.out.println(">>_________________luego de actualizar?con_elementos____________________<<\n");
-			if(ListJSONstores.buscar(NameFile)==false){
+			String ruta = ("JSONstore\\"+NameFile); // Se crea la carpeta con el nombre correspondiente
+					
+			if(ListJSONstores.buscar(NameFile)==false){		
+				//--------------------------------------------------------------------
+				try {
+					File crearcarpeta = new File(ruta);				
+					if (crearcarpeta.exists()){
+						System.out.println("La Carpeta ya existe");	
+					}else if (!crearcarpeta.exists()){
+						System.out.println("La Carpeta no existe pero se creara");
+						//crearcarpeta.mkdirs();	
+						if (crearcarpeta.mkdirs()){		
+							String ruta2 = ("JSONstore\\ListaJSONstore.txt");
+							System.out.println("ruta2::: "+ruta2);
+							escribir = new FileWriter(ruta2,true);
+							linea = new PrintWriter(escribir);
+							System.out.println("DAto a escribir en el txt :"+NameFile);
+							linea.println(NameFile);
+							
+							linea.close();
+							escribir.close();
+							ListJSONstores.insertarFinal(ListJSONstores,NameFile);  // agrego a la lista
+							ListJSONstores.imprimir(ListJSONstores);
+						}else{
+							System.out.println("La carpeta no fue creada  ERROR");
+						}
+					}else{
+						System.out.println("La carpeta NO EXISTE");
+					}// txt en escritorio REP21	
+				}catch (IOException e) {
+					// TODO: handle exception
+					System.out.println("ERROR GRAVE");
+				}							
 				
-				if (!archivo.exists()){
-					try{
-						archivo.createNewFile();
-						escribir = new FileWriter(archivo,true);
-						linea = new PrintWriter(escribir);
-						almacenamiento=new BufferedReader(leer);
-						cadena="";
-						// escribir en el archivo
-						linea.println(NameFile);
-						linea.close();
-						escribir.close();
-						//actualizar(NameFile);
-						ListJSONstores.insertar(NameFile);
-						msj1.setText("Archivo Agregado ");
-						msj2.setText("Proceso Exitoso");
-						//ListJSONstores.mostrar();
-						
-					}catch(IOException ex){
-						
-					}
-				}else{
-					try{
-						escribir = new FileWriter(archivo,true);
-						linea = new PrintWriter(escribir);
-						// escribir en el archivo
-						linea.println(NameFile);
-						linea.close();
-						escribir.close();
-
-						//actualizar(NameFile);
-						ListJSONstores.insertar(NameFile);
-						msj1.setText("Archivo Agregado ");
-						msj2.setText("Proceso Exitoso");
-						//ListJSONstores.mostrar();
-					}catch(IOException ex){
-						
-					}
-				}
 			}else{
 				System.out.println("Dato existente =<"+NameFile+">");
-				msj1.setText("Archivo Dublicado");
+				msj1.setText("Archivo/Carpeta Dublicado");
 				msj2.setText("Proceso Fallido");
 			}
-			
-			
-			
 		}else{
 			msj1.setText("----<SIN NOMBRE>--- ");
-			msj2.setText("Ingrese otro nombre por favor");
+			msj2.setText("Ingrese un nombre por favor");
 			}
 	}
-	@FXML
-	public void crearCarpeta(ActionEvent event) throws IOException{		
-		String NameFile = textJsonStore.getText() ;
-		System.out.println("Nombre de la carpeta: " + NameFile);
-		
-		if (!NameFile.isEmpty()) {					
-			String ruta = "C:\\Users\\kenne\\Desktop\\Proy_LinkedDB\\"+ NameFile; // Se crea la carpeta con el nombre correspondiente
-			
-			File crea_carpeta = new File(ruta);
-										
-			if(crea_carpeta.exists()){
-				msj1.setText("----Carpeta Existente----");
-				msj2.setText("Ingrese otro nombre PorFavor");
-			}
-			else{				
-				msj1.setText(" El proceso de creación de su carpeta ha sido Exitoso");
-				crea_carpeta.mkdirs(); // Crear carpeta
-				if (crea_carpeta.exists()){
-					ListJSONstores.insertar(NameFile);						
-					msj2.setText("Carpeta Creada");
-					ListJSONstores.mostrar();
-				}else{
-					msj2.setText("Carpeta NO Creada");
-				}
-		}
-	}else{
-		msj1.setText("----<SIN NOMBRE>--- ");
-		msj2.setText("Ingrese otro nombre por favor");
-	}
-		ListJSONstores.mostrar();
-	}
-	
+
 	public void borrarInf(ActionEvent event){
 		msj1.setText("");
 		msj2.setText("");
 		textJsonStore.setText("");
 	}
-	
+
 	@FXML
 	public void atras(ActionEvent event){
 		try{
+			
 			((Node)event.getSource()).getScene().getWindow().hide();
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("InterfaceMainFirst.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
@@ -192,10 +149,9 @@ public class New_JSONStoreController implements Initializable {
 	
 	
 	@Override
-	public void initialize(URL url, ResourceBundle rb){
-		 
+	public void initialize(URL url, ResourceBundle rb){		 
 		// preparando el archivo		
-		if(!archivo.exists()){
+		/*if(!archivo.exists()){
 			try {
 				archivo.createNewFile();
 				
@@ -207,6 +163,6 @@ public class New_JSONStoreController implements Initializable {
 		}else{
 			System.out.println("Archivo ya antes creado");
 		}
-	
-		}
+	*/
+		}   
 	}

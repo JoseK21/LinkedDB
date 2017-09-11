@@ -3,6 +3,7 @@ package Lists;
 public class NodoListaD {
 	private String dato;
 	private NodoListaD siguiente,anterior;	
+	
 	//Constructor para cuando aun ni hay nodos
 	public NodoListaD(String dato) {
 		this(dato,null,null);

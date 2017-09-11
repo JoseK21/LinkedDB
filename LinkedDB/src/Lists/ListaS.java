@@ -6,7 +6,7 @@ public class ListaS {
 	private NodoListaS fin;
 	private int size = 0;
 	
-	
+	private static  ListaS uniqueInstance  =   null;
 	
 	public ListaS(){
 		// inicializo los punteros
@@ -101,6 +101,14 @@ public class ListaS {
 
 		}
 	}
+	
+	public static ListaS getInstance(){
+        if(uniqueInstance == null){
+              uniqueInstance = new ListaS();
+        }
+        return uniqueInstance;
+    }
+	
 	public static void main(String[] args){
 		
 		ListaS listaS = new ListaS();

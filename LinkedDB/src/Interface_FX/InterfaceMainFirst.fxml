@@ -20,7 +20,7 @@
         </columns>
       </TableView>
       <Separator layoutX="497.0" layoutY="567.0" orientation="VERTICAL" prefHeight="127.0" prefWidth="4.0" />
-      <Button layoutX="746.0" layoutY="632.0" mnemonicParsing="false" onAction="#actualizar" prefHeight="25.0" prefWidth="408.0" text="Actualizar" />         
+      <Button layoutX="1272.0" layoutY="640.0" mnemonicParsing="false" onAction="#commit" prefHeight="39.0" prefWidth="64.0" text="Commit" />         
    </children>
    <cursor>
       <Cursor fx:constant="DEFAULT" />
