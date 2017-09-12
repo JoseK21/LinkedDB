@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import Lists.ListaCD;
 import Lists.ListaD;
 import Interface_FX.*;
 import javafx.application.Platform;
@@ -93,9 +94,9 @@ public class InterfaceMainController extends New_JSONStoreController implements 
 			System.out.println("No se pudo cerrar el programa___ verificar close");
 		}
 	}
-	
+	// codigo parahacer chil derecho y desplegar las opciones
 	@FXML
-	public void mouseClick(MouseEvent mouseEvent){
+	public void mouseClick(MouseEvent mouseEvent){      
 		if (mouseEvent.getClickCount()==2){
 			//TreeItem<String> item = treeView1.getSelectionModel().getSelectedItem();
 			//System.out.println(item.getValue());
@@ -116,20 +117,8 @@ public class InterfaceMainController extends New_JSONStoreController implements 
 	@FXML
 	public void cerrarSistema(ActionEvent event){
 		System.exit(0);	}
-	@FXML
-	public void borrar1(ActionEvent event){
-		msjCrearJSONstore.setText("");
-		conf_Create.setText("");
-		textnameJSONStore.setText("");
-	}
-	@FXML
-	public void borrar2(ActionEvent event){
-		msjCrearJSONstore.setText("");
-		conf_Create.setText("");
-		textnameJSONStore.setText("");
-	}
-	
-	public void cargarCarpetas(){							
+		 
+	public void cargarCarpetas(){		   					// NO ESTOY USANDO ESTE METODO					
 		String ruta = "C:\\Users\\kenne\\Desktop\\Proy_LinkedDB\\"+ cadena; // Se crea la carpeta con el nombre correspondiente		
 		File crea_carpeta = new File(ruta);
 		System.out.println(ruta);
@@ -142,7 +131,11 @@ public class InterfaceMainController extends New_JSONStoreController implements 
 			System.out.println(" El proceso de creación de su carpeta ha sido Exitoso");
 			crea_carpeta.mkdirs(); // Crear carpeta
 			if (crea_carpeta.exists()){
-				ListJSONstores.insertarFinal(ListJSONstores,cadena);
+				
+				
+				ListaCD lis = new ListaCD();
+				
+				ListJSONstores.insertarFinal(lis,cadena);
 				//ListJSONstores.insertar(cadena);						
 				System.out.println("Carpeta Creada");
 				//ListJSONstores.imprimir();
@@ -170,11 +163,13 @@ public class InterfaceMainController extends New_JSONStoreController implements 
 	public void cargarInicial(){
 		
 		TreeItem baseDatos = new TreeItem("LinkedDB",new ImageView(DBIcon));
-		TreeItem DB = new TreeItem("LinkedDB");
+		//TreeItem DB = new TreeItem("LinkedDB");
 		treeView1.setRoot(baseDatos);
 		baseDatos.setExpanded(true);
 		PrintWriter escribir;
+		
 		//if (num == 0){
+		
 			try {
 				String nombreArchivo = "JSONstore";
 				File crearcarpeta = new File(nombreArchivo);
@@ -183,15 +178,15 @@ public class InterfaceMainController extends New_JSONStoreController implements 
 				File crearArchivoTxt = new File(nombreArchivo+txt);
 				
 				if (crearArchivoTxt.exists()){
-					System.out.println("El Archivo ya existe");	
+					System.out.println("El Archivo ya existe ListaJSONstore.txt");	
 				}else{
 					System.out.println("El Archivo no existe pero se creara");
-					crearcarpeta.mkdirs();
+					crearcarpeta.mkdirs(); // creo la carpeta inicialmente
 					try {
 						if (crearArchivoTxt.createNewFile()){
-							System.out.println("Archivo creado");
+							System.out.println("Archivo creado ListaJSONstore.txt");
 						}else{
-							System.out.println("Archivo NO !! creado");
+							System.out.println("Archivo NO !! creado NO SE PUEDO CREAR EL TXT /ListaJSONstore.txt/");
 						}
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
@@ -208,19 +203,39 @@ public class InterfaceMainController extends New_JSONStoreController implements 
 					while((cadena=almacenamiento.readLine()) != null){
 						TreeItem treeitem =new TreeItem(cadena,new ImageView(FileIcon));
 						baseDatos.getChildren().addAll(treeitem);
-						ListJSONstores.insertarFinal(ListJSONstores,cadena);
-						//crear carpetas aqui
 						
-						String carpetaEnJSON = "JSONstore\\"+cadena;
-						
-						File newFileJSON = new File(carpetaEnJSON);
-						
+						String carpetaEnJSON = "JSONstore\\"+cadena;						
+						File newFileJSON = new File(carpetaEnJSON);						
 						if(newFileJSON.mkdirs()){
 							System.out.println("Nuevo JSON file creado dentro del JSONstore =) ");
 						}else{
 							System.out.println("NO CREADO JSON file-----Existente B) ");
 							
 						}
+						
+						String rutaDOC = "JSONstore\\"+cadena+"\\lista"+cadena+"Doc.txt";
+						File crearArchivoListaTxt = new File(rutaDOC);
+						
+						if (crearArchivoListaTxt.exists()){
+							FileReader leerDOC = new FileReader(rutaDOC);							
+							BufferedReader almacenamientoDoc=new BufferedReader(leerDOC);
+							String cadenaDOC="";
+							
+							while((cadenaDOC=almacenamientoDoc.readLine()) != null){	// ERROR NO ESTOY METIENDO DENTRO DEL ITEM DE ESA CARPETA
+								TreeItem treeitemDOC =new TreeItem(cadenaDOC,new ImageView(DocIcon));
+								treeitem.getChildren().addAll(treeitemDOC);
+							}
+							leerDOC.close();
+							almacenamientoDoc.close();
+							ListaCD lis = new ListaCD();						
+							ListJSONstores.insertarFinal(lis,cadena);
+							//crear carpetas aqui
+							
+							
+							
+					}else{
+						System.out.println("!!!! No contiene una lista :"+cadena+". Salto a la otra carpeta");
+					}
 						
 					}
 					ListJSONstores.imprimir(ListJSONstores);

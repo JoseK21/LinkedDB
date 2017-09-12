@@ -1,7 +1,1 @@
-Persona
-Vehiculo
-Estudiante
-TEC
-Allison
-CARLOS
-AVIONES
+persona

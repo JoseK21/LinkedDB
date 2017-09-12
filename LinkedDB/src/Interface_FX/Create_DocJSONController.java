@@ -68,13 +68,13 @@ public class Create_DocJSONController implements Initializable {
 		
 		if (ListaDocJSON.buscar1(NameDoc) == false){
 			msjVerJSONstore.setText("");
-			String carpetaJSONEspecifico = "JSONstore\\"+NameJson+"\\"+NameDoc;			
+			String carpetaJSONEspecifico = "JSONstore\\"+NameJson+"\\"+NameDoc;			 // creacion de la carpeta
 			File crearArchivoTxt = new File(carpetaJSONEspecifico);		
 			String carpetaDOC = "JSONstore\\"+NameJson+"\\lista";
 			String newruta;
 			
-			if (!crearArchivoTxt.exists()){
-				if (crearArchivoTxt.mkdirs()){
+			if (!crearArchivoTxt.exists()){  // verifica si el txt existe
+				if (crearArchivoTxt.mkdirs()){ // crea carpeta
 					System.out.println("Archivo txt agregado en la carpeta respectiva");
 					ListaDocJSON.agregar(NameDoc);
 					
@@ -83,21 +83,33 @@ public class Create_DocJSONController implements Initializable {
 					msjCreacionDocJSON.setText("Documento creado");
 					cont_Atributos.setDisable(false);
 					
-					newruta = carpetaDOC +NameJson +"Doc.txt";
+					newruta = carpetaDOC +NameJson +"Doc.txt";  // crear txt GENERAL 
 					String rutaestablecida = newruta;
 					try{
 						File archi = new File(rutaestablecida);
-						if(archi.createNewFile()){
+						if(archi.createNewFile()){    										// creo que solo se crea el txt ty sele agrega el nombre
 							System.out.println("LIsta Agregada al JSON respectivo");
 							FileWriter escribirDoc = new FileWriter(rutaestablecida,true);
 							PrintWriter lineaDoc = new PrintWriter(escribirDoc);
 							System.out.println("DAto a escribir en el txt :"+NameDoc);
+							
 							lineaDoc.println(NameDoc);
 							
 							lineaDoc.close();
 							escribirDoc.close();
 						}else{
 							System.out.println("LIsta no Agregada..... ya existe =)");
+							System.out.println("LIsta Agregada al JSON respectivo");
+							FileWriter escribirDoc = new FileWriter(rutaestablecida,true);
+							PrintWriter lineaDoc = new PrintWriter(escribirDoc);
+							System.out.println("DAto a escribir en el txt :"+NameDoc);
+							
+							lineaDoc.println(NameDoc);
+							
+							lineaDoc.close();
+							escribirDoc.close();
+							
+							
 						}
 					}catch (Exception e) {
 						// TODO: handle exception

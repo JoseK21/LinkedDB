@@ -7,20 +7,17 @@ public class ListaD {
     private static  ListaD uniqueInstance  =   null;
 
 	
-	// Constructo	
+	// Constructor por defecto
 	public ListaD(){
 		inicio=fin=null;	
 	}
-	//Metodo para saber si la lista esta vacia
-	public boolean estaVacia(Object list){
-		if (inicio == null){
-			return true;
-		}else 
-			return false;
+	//Metodo para saber si la lista esta vacia											REVISAR SE ES ListaD lista ó si es en BLANCO.
+	public boolean estaVacia(ListaD lista){
+		return inicio==null;
 	}
 	
-	public void insertarFinal(Object list, String d){
-        NodoListaD nuevo = new NodoListaD(d,null,null);
+	public void insertarFinal(ListaCD listaCD, String valor){		
+        NodoListaD nuevo = new NodoListaD(valor,null,null,listaCD);    // ListaCD listaCD ====> quitar pues ya aqui la puedo iniciar en null=vacia la listaCD
         
         if(inicio == null){
         	inicio = nuevo;
@@ -34,6 +31,7 @@ public class ListaD {
 	        nuevo.setAnterior(aux);
 
         }
+        System.out.println("!_!_"+nuevo.getDato());
        
         }
 	

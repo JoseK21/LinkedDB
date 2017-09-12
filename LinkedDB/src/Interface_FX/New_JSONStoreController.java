@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Lists.ListaCD;
 import Lists.ListaD;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -77,6 +78,7 @@ public class New_JSONStoreController implements Initializable {
 	@FXML
 	public void crearArchivoCarpeta(ActionEvent event) throws IOException{		
 		String NameFile = textJsonStore.getText();	
+		
 		if (!NameFile.isEmpty()) {
 			String ruta = ("JSONstore\\"+NameFile); // Se crea la carpeta con el nombre correspondiente
 					
@@ -99,10 +101,21 @@ public class New_JSONStoreController implements Initializable {
 							
 							linea.close();
 							escribir.close();
-							ListJSONstores.insertarFinal(ListJSONstores,NameFile);  // agrego a la lista
-							ListJSONstores.imprimir(ListJSONstores);
+							
+							//String l = "Lista"+NameFile;
+									
+							ListaCD lis = new ListaCD();
+							
+							ListJSONstores.insertarFinal(lis,NameFile);  // agrego a la lista
+							
+							msj1.setText("Archivo/Carpeta Exitosamente creados");
+							msj2.setText("Proceso Completo");
+							
+							//ListJSONstores.imprimir(ListJSONstores);  ------- ListJSONstores.imprimir(l.imprimer());
 						}else{
 							System.out.println("La carpeta no fue creada  ERROR");
+							msj1.setText("Carpeta NO creada");
+							msj2.setText("Proceso Fallido");
 						}
 					}else{
 						System.out.println("La carpeta NO EXISTE");
