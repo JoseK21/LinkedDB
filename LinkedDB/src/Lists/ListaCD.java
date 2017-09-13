@@ -1,10 +1,11 @@
 package Lists;
+
+import javafx.scene.Node;
+
 public class ListaCD {
 	private NodoListaCD inicio = null;;
 	private NodoListaCD fin = null;
 	int size=0;
-	
-	private static  ListaCD uniqueInstance  =   null;
 	
 	public ListaCD() {
 		inicio = null;
@@ -18,7 +19,7 @@ public class ListaCD {
 	}
 	public void agregar(String val)
     {
-        NodoListaCD nuevo = new NodoListaCD(val, null, null);        
+        NodoListaCD nuevo = new NodoListaCD(val);        
         if (inicio == null)
         {
         	nuevo.setSiguiente(nuevo);
@@ -36,7 +37,7 @@ public class ListaCD {
         size++;
     }	
 	public void imprimir(Object list) {
-	      if (estaVacia(uniqueInstance)  ) {
+	      if (estaVacia(list)  ) {
 	         System.out.println( "Lista Vacía");
 	       
 	      }
@@ -50,6 +51,24 @@ public class ListaCD {
 		      } while(temp.getSiguiente() != inicio);		      
 		   }
 	   }
+	
+
+	public void imprimirLista() {
+	      if (inicio==null  ) {
+	         System.out.println( "Lista Vacía");
+	       
+	      }
+	      else{
+		      NodoListaCD temp = inicio;
+
+		      do {
+		         System.out.print("("+ temp.getDato() +")~");
+		         temp = temp.getSiguiente();
+		         
+		      } while(temp.getSiguiente() != inicio);		      
+		   }
+	   }
+	
 	public void desplazar(Object list){
 		NodoListaCD actual =inicio;
 			
@@ -121,14 +140,19 @@ public class ListaCD {
 		}
 		return false;
 	}
-	
-	public static ListaCD getInstance(){
-        if(uniqueInstance == null){
-              uniqueInstance = new ListaCD();
-        }
-        return uniqueInstance;
-    }
-	
+	public NodoListaCD buscarNodo(String dato){
+		NodoListaCD temporal = inicio;
+		
+		while (temporal!=fin){
+			if (temporal.getDato().equals(dato)){
+				return temporal;
+			}else{
+				temporal=temporal.getSiguiente();
+			}
+		}
+		return null;
+	}
+		
 	public static void main(String[] args){
 				
 	}

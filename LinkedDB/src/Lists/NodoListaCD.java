@@ -5,6 +5,8 @@ public class NodoListaCD {
 	private String dato;
 	private NodoListaCD siguiente,anterior;	
 	
+	private ListaS listaSimple = new ListaS();
+	
 	public NodoListaCD(String dato) {
 		this(dato,null,null);
 			
@@ -15,6 +17,13 @@ public class NodoListaCD {
 		siguiente=s;
 		anterior=a;
 
+	}
+	public ListaS getListaS() {
+		return listaSimple;
+	}
+	public void setListaS(ListaS listaS) {
+		this.listaSimple = listaS;
+		
 	}
 	public NodoListaCD() {
 		// TODO Auto-generated constructor stub
@@ -38,5 +47,11 @@ public class NodoListaCD {
 		this.anterior = anterior;
 	}
 	
+	public ListaS getListas() {
+		return listaSimple;
+	}
+	public void setListacs(ListaS listas) {
+		this.listaSimple = listas;
+	}
 	
 }

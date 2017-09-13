@@ -23,8 +23,12 @@ import javafx.stage.Stage;
 
 
 public class Create_DocJSONController implements Initializable {
-	ListaCD ListaDocJSON = ListaCD.getInstance();
+	//ListaCD ListaDocJSON = ListaCD.getInstance();
+	
+	
 	ListaD ListaJSONstore = ListaD.getInstance();
+	
+	
 	@FXML private Label textCorrecDocJSON;
 	@FXML private TextField nameJSONstore;
 	@FXML private TextField nameDocumento;
@@ -64,11 +68,12 @@ public class Create_DocJSONController implements Initializable {
 		
 		
 		//ListaDocJSON.desplazar(ListaDocJSON);
-		ListaDocJSON.imprimir(ListaDocJSON);
+		//ListaDocJSON.imprimir(ListaDocJSON);
 		System.out.println("\n");
 		ListaJSONstore.imprimir(ListaJSONstore);
 		
-		if (ListaDocJSON.buscar1(NameDoc) == false){
+		if (ListaJSONstore.buscar(NameJson) == true){
+			System.out.println("DAto encontrado dentro de JSON store = "+ NameJson);
 			msjVerJSONstore.setText("");
 			String carpetaJSONEspecifico = "JSONstore\\"+NameJson+"\\"+NameDoc;			 // creacion de la carpeta
 			File crearArchivoTxt = new File(carpetaJSONEspecifico);		
@@ -78,10 +83,15 @@ public class Create_DocJSONController implements Initializable {
 			if (!crearArchivoTxt.exists()){  // verifica si el txt existe
 				if (crearArchivoTxt.mkdirs()){ // crea carpeta
 					System.out.println("Archivo txt agregado en la carpeta respectiva");
-					ListaDocJSON.agregar(NameDoc);
+					
+					ListaJSONstore.getNodo(NameJson).getListacd().agregar(NameDoc);
+					//ListaDocJSON.agregar(NameDoc);
 					
 					System.out.println("Agregando a = "+NameJson);
-					ListaDocJSON.imprimir(ListaDocJSON);
+					//ListaDocJSON.imprimir(ListaDocJSON);
+					
+					System.out.println("Exito DOC  agregado a la lista " + ListaJSONstore.getNodo(NameJson).getListacd().buscarNodo(NameDoc));
+					
 					msjCreacionDocJSON.setText("Documento creado");
 					cont_Atributos.setDisable(false);
 					
@@ -96,6 +106,11 @@ public class Create_DocJSONController implements Initializable {
 							System.out.println("DAto a escribir en el txt :"+NameDoc);
 							
 							lineaDoc.println(NameDoc);
+							
+							ListaJSONstore.getInstance().getNodo(NameJson).getListacd().agregar(NameDoc);
+							
+							System.out.println("Nodo agregado : "+ ListaJSONstore.getInstance().getNodo(NameJson).getListacd().buscarNodo(NameDoc).getDato());
+							//System.out.println(ListaJSONstore.getInstance().getNodo(NameJson).getListacd().imprimirLista());
 							
 							lineaDoc.close();
 							escribirDoc.close();
@@ -158,7 +173,9 @@ public class Create_DocJSONController implements Initializable {
 	public void atras(ActionEvent event){
 		try{
 			((Node)event.getSource()).getScene().getWindow().hide();
+			
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("InterfaceMainFirst.fxml"));
+			
 			Parent root1 = (Parent) fxmlLoader.load();
 			Stage stage = new Stage();
 			

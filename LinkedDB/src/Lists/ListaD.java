@@ -16,8 +16,13 @@ public class ListaD {
 		return inicio==null;
 	}
 	
-	public void insertarFinal(ListaCD listaCD, String valor){		
-        NodoListaD nuevo = new NodoListaD(valor,null,null,listaCD);    // ListaCD listaCD ====> quitar pues ya aqui la puedo iniciar en null=vacia la listaCD
+	
+	public NodoListaD getNodo(Object nodo){
+		return inicio;		
+	}
+	
+	public void insertarFinal(String nombre){		
+        NodoListaD nuevo = new NodoListaD(nombre,null,null);    // ListaCD listaCD ====> quitar pues ya aqui la puedo iniciar en null=vacia la listaCD
         
         if(inicio == null){
         	inicio = nuevo;

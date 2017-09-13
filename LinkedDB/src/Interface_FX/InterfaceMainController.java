@@ -43,7 +43,7 @@ public class InterfaceMainController extends New_JSONStoreController implements 
 	@FXML private TextField textnameJSONStore;
 	@FXML private TreeView treeView1;
 	
-	int iniciacion = 0; 
+	int inicio = 0; 
 	
 	Image DBIcon = new Image(getClass().getResourceAsStream("/img/img4.png"));
 	Image FileIcon = new Image(getClass().getResourceAsStream("/img/img1.png"));	
@@ -72,6 +72,7 @@ public class InterfaceMainController extends New_JSONStoreController implements 
 	public void OpenCreate_DocJSON(ActionEvent event){		
 		try{
 			((Node)event.getSource()).getScene().getWindow().hide();
+			
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Create_DocJSON.fxml"));
 			Parent root2 = (Parent) fxmlLoader.load();
 			Stage stage = new Stage();
@@ -135,7 +136,8 @@ public class InterfaceMainController extends New_JSONStoreController implements 
 				
 				ListaCD lis = new ListaCD();
 				
-				ListJSONstores.insertarFinal(lis,cadena);
+				ListJSONstores.getInstance().insertarFinal(cadena);
+				//ListJSONstores.insertarFinal(lis,cadena);
 				//ListJSONstores.insertar(cadena);						
 				System.out.println("Carpeta Creada");
 				//ListJSONstores.imprimir();
@@ -209,10 +211,13 @@ public class InterfaceMainController extends New_JSONStoreController implements 
 						if(newFileJSON.mkdirs()){
 							System.out.println("Nuevo JSON file creado dentro del JSONstore =) ");
 							
-							ListJSONstores.insertarFinal(null, cadena);
+							
+							ListJSONstores.getInstance().insertarFinal(cadena);
+							//ListJSONstores.insertarFinal(null, cadena);
 						}else{
 							System.out.println("NO CREADO JSON file-----Existente B) ");
-							ListJSONstores.insertarFinal(null, cadena);
+							ListJSONstores.getInstance().insertarFinal(cadena);
+							//ListJSONstores.insertarFinal(null, cadena);
 							
 						}
 						ListJSONstores.imprimir(ListJSONstores);
@@ -230,10 +235,12 @@ public class InterfaceMainController extends New_JSONStoreController implements 
 							}
 							leerDOC.close();
 							almacenamientoDoc.close();
-							ListaCD lis = new ListaCD();						
-							ListJSONstores.insertarFinal(lis,cadena);
+							ListaCD lis = new ListaCD();	
+							ListJSONstores.getInstance().insertarFinal(cadena);
+							//ListJSONstores.insertarFinal(lis,cadena);
 							//crear carpetas aqui
-							ListJSONstores.getInstance().insertarFinal(null, cadena);
+							ListJSONstores.getInstance().insertarFinal(cadena);
+							//ListJSONstores.getInstance().insertarFinal(null, cadena);
 							
 							
 					}else{
@@ -257,7 +264,7 @@ public class InterfaceMainController extends New_JSONStoreController implements 
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb){		
-		if (iniciacion == 0){
+		if (inicio == 0){
 			cargarInicial(); // cargarInicial(iniciacion);
 							//iniciacion=1; 
 		}else{

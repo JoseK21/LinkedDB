@@ -105,9 +105,9 @@ public class New_JSONStoreController implements Initializable {
 							
 							//String l = "Lista"+NameFile;
 									
-							ListaCD lis = new ListaCD();
+							//ListaCD lis = new ListaCD();
 							
-							ListJSONstores.insertarFinal(lis,NameFile);  // agrego a la lista
+							ListJSONstores.insertarFinal(NameFile);  // agrego a la lista
 							
 							msj1.setText("Archivo/Carpeta Exitosamente creados");
 							msj2.setText("Proceso Completo");
