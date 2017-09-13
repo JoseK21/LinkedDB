@@ -208,11 +208,14 @@ public class InterfaceMainController extends New_JSONStoreController implements 
 						File newFileJSON = new File(carpetaEnJSON);						
 						if(newFileJSON.mkdirs()){
 							System.out.println("Nuevo JSON file creado dentro del JSONstore =) ");
+							
+							ListJSONstores.insertarFinal(null, cadena);
 						}else{
 							System.out.println("NO CREADO JSON file-----Existente B) ");
+							ListJSONstores.insertarFinal(null, cadena);
 							
 						}
-						
+						ListJSONstores.imprimir(ListJSONstores);
 						String rutaDOC = "JSONstore\\"+cadena+"\\lista"+cadena+"Doc.txt";
 						File crearArchivoListaTxt = new File(rutaDOC);
 						
@@ -230,13 +233,13 @@ public class InterfaceMainController extends New_JSONStoreController implements 
 							ListaCD lis = new ListaCD();						
 							ListJSONstores.insertarFinal(lis,cadena);
 							//crear carpetas aqui
-							
+							ListJSONstores.getInstance().insertarFinal(null, cadena);
 							
 							
 					}else{
 						System.out.println("!!!! No contiene una lista :"+cadena+". Salto a la otra carpeta");
 					}
-						
+					//ListJSONstores.getInstance().insertarFinal(null, cadena);
 					}
 					ListJSONstores.imprimir(ListJSONstores);
 					System.out.println("\n");

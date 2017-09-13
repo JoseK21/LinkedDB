@@ -1,1 +1,7 @@
-persona
+Persona
+Vehiculo
+Estudiante
+LaFlor
+a1
+JK21
+W2

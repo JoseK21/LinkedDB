@@ -85,6 +85,7 @@ public class New_JSONStoreController implements Initializable {
 			if(ListJSONstores.buscar(NameFile)==false){		
 				//--------------------------------------------------------------------
 				try {
+					System.out.println("Entro al buscar y lo encontro");	
 					File crearcarpeta = new File(ruta);				
 					if (crearcarpeta.exists()){
 						System.out.println("La Carpeta ya existe");	

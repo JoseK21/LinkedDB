@@ -39,10 +39,12 @@ public class Create_DocJSONController implements Initializable {
 	
 	@FXML
 	public void verificar(ActionEvent event){
+		
 		String NameJson = nameJSONstore.getText();
 		System.out.println("Nombre del JSON store a buscar: "+NameJson);
 		//ListaJSONstore.imprimir(ListaJSONstore);
-		if (ListaJSONstore.buscar(NameJson)== true){
+		
+		if (ListaJSONstore.buscar(NameJson) == true){
 			System.out.println("dentro de la lista luego de buscar bien el JSON store \n");
 			ListaJSONstore.imprimir(ListaJSONstore);
 			System.out.println("\nListo con la que verifique .!\n");

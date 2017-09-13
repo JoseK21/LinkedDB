@@ -54,6 +54,7 @@ public class ListaD {
 	      
 	
 	public boolean buscar(String dato){
+		
 		NodoListaD temporal = inicio;
 		
 		while (temporal!=null){
@@ -118,7 +119,7 @@ public class ListaD {
 			  }}
 		  }
 	}
-	
+	// CREO QUE NO ES NECESARIO PUES SOLO UCUPO UN SINGLETON DE DE JSONSTORE
     public static ListaD getInstance(){
         if(uniqueInstance == null){
               uniqueInstance = new ListaD();
