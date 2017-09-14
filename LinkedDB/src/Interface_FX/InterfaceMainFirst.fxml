@@ -47,8 +47,8 @@
          </items></ToolBar>
       <TableView layoutY="493.0" prefHeight="201.0" prefWidth="1400.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Nombre" />
-          <TableColumn prefWidth="75.0" text="Apellido" />
+          <TableColumn prefWidth="75.0" text="Name" />
+          <TableColumn prefWidth="75.0" text="LastName" />
         </columns>
       </TableView>         
    </children>

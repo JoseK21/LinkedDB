@@ -26,9 +26,7 @@ import javafx.stage.Stage;
 
 public class New_JSONStoreController implements Initializable {
 	ListaD ListJSONstores = ListaD.getInstance();
-	@FXML private Label msj2;
-	@FXML private Label msj1;
-	
+		
 	@FXML private TextField textJsonStore;
 	private String NameFile;
 	
@@ -119,14 +117,14 @@ public class New_JSONStoreController implements Initializable {
 							
 							
 							
-							msj1.setText("Archivo/Carpeta Exitosamente creados");
-							msj2.setText("Proceso Completo");
+							//msj1.setText("Archivo/Carpeta Exitosamente creados");
+							//msj2.setText("Proceso Completo");
 							
 							//ListJSONstores.imprimir(ListJSONstores);  ------- ListJSONstores.imprimir(l.imprimer());
 						}else{
 							System.out.println("La carpeta no fue creada  ERROR");
-							msj1.setText("Carpeta NO creada");
-							msj2.setText("Proceso Fallido");
+							//msj1.setText("Carpeta NO creada");
+							//msj2.setText("Proceso Fallido");
 						}
 					}else{
 						System.out.println("La carpeta NO EXISTE");
@@ -138,13 +136,13 @@ public class New_JSONStoreController implements Initializable {
 				
 			}else{
 				System.out.println("Dato existente =<"+NameFile+">");
-				msj1.setText("Archivo/Carpeta Dublicado");
-				msj2.setText("Proceso Fallido");
+				//msj1.setText("Archivo/Carpeta Dublicado");
+				//msj2.setText("Proceso Fallido");
 			}
 		}else{
 			
-			msj1.setText("----<SIN NOMBRE>--- ");
-			msj2.setText("Ingrese un nombre por favor");
+			//msj1.setText("----<SIN NOMBRE>--- ");
+			//msj2.setText("Ingrese un nombre por favor");
 			}
 		//MsjCreate.setText("YESSSSSSSS");
 		((Node)event.getSource()).getScene().getWindow().hide();
@@ -179,39 +177,15 @@ public class New_JSONStoreController implements Initializable {
 		}			
 	}
 	
-
-	public void borrarInf(ActionEvent event){
-		msj1.setText("");
-		msj2.setText("");
-		textJsonStore.setText("");
-	
-	}
-	
 	@FXML
 	public void atras(ActionEvent event){
 		try{
 			
 			((Node)event.getSource()).getScene().getWindow().hide();
-			
-			
-			//Platform.exit();
-			/*
-			
-			//((Node)event.getSource()).getScene().getWindow().hide();
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("InterfaceMainFirst.fxml"));
-			Parent root1 = (Parent) fxmlLoader.load();
-			Stage stage = new Stage();			
-			stage.setTitle("LInkedDB");
-			stage.setScene(new Scene(root1));
-			stage.show();
-			
-		}catch (Exception e){
-			System.out.println("Can´t load new window");		*/
 	}catch (Exception e) {
 		// TODO: handle exception
 		System.out.println("No se cierra la ventana cuando regreso");
-	}
-	
+	}	
 		}
 	
 	
