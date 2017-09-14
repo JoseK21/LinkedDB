@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="123.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface_FX.MsjCreateJsonStoreController">
+   <children>
+      <Label fx:id="MsjCreate" layoutX="37.0" layoutY="28.0" prefHeight="46.0" prefWidth="356.0" />
+      <Button layoutX="165.0" layoutY="89.0" mnemonicParsing="false" onAction="#accept" prefHeight="25.0" prefWidth="82.0" text="Accept" />
+   </children>
+</AnchorPane>

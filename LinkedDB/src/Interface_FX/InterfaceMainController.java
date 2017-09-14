@@ -26,6 +26,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
@@ -38,6 +39,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class InterfaceMainController extends New_JSONStoreController implements Initializable {
+	@FXML private Menu MenuJsonStore;
+	@FXML private Menu MenuJsonDocument;
+	@FXML private MenuItem CreateJsonStore;
+	@FXML private MenuItem CreateJsonDoc;
 	@FXML private Label msjCrearJSONstore;
 	@FXML private Label conf_Create;	
 	@FXML private TextField textnameJSONStore;
@@ -47,15 +52,16 @@ public class InterfaceMainController extends New_JSONStoreController implements 
 	
 	Image DBIcon = new Image(getClass().getResourceAsStream("/img/img4.png"));
 	Image FileIcon = new Image(getClass().getResourceAsStream("/img/img1.png"));	
-	Image DocIcon = new Image(getClass().getResourceAsStream("/img/img3.png"));	
+	Image DocIcon = new Image(getClass().getResourceAsStream("/img/FileB.png"));	
 	
 	//File archivo = new File("JSONstore.txt");
 	
 	@FXML
 	public void OpenNew_JSONStore(ActionEvent event){			
 		try{
-			((Node)event.getSource()).getScene().getWindow().hide();
+			//((Node)event.getSource()).getScene().getWindow().hide();
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("New_JSONStore.fxml"));
+			
 			Parent root1 = (Parent) fxmlLoader.load();
 			Stage stage = new Stage();
 			stage.initModality(Modality.WINDOW_MODAL);
@@ -71,9 +77,10 @@ public class InterfaceMainController extends New_JSONStoreController implements 
 	@FXML
 	public void OpenCreate_DocJSON(ActionEvent event){		
 		try{
-			((Node)event.getSource()).getScene().getWindow().hide();
 			
+			//((Node)event.getSource()).getScene().getWindow().hide();
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Create_DocJSON.fxml"));
+			
 			Parent root2 = (Parent) fxmlLoader.load();
 			Stage stage = new Stage();
 			stage.initModality(Modality.WINDOW_MODAL);
