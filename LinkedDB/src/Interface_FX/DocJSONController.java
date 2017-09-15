@@ -22,7 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 
-public class Create_DocJSONController implements Initializable {
+public class DocJSONController implements Initializable {
 	//ListaCD ListaDocJSON = ListaCD.getInstance();
 	
 	
@@ -154,7 +154,7 @@ public class Create_DocJSONController implements Initializable {
 		
 			try{
 				((Node)event.getSource()).getScene().getWindow().hide();
-				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Atribute_List.fxml"));
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ObjectJSON.fxml"));
 				Parent root3 = (Parent) fxmlLoader.load();
 				Stage stage = new Stage();
 				

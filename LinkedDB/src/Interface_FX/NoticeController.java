@@ -11,7 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class MsjCreateJsonStoreController implements Initializable{
+public class NoticeController implements Initializable{
 	
 	@FXML private Label MsjCreate;
 	@FXML private ImageView Imag1;

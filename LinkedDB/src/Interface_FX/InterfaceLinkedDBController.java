@@ -39,7 +39,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class InterfaceMainController extends New_JSONStoreController implements Initializable {
+public class InterfaceLinkedDBController extends JSONStoreController implements Initializable {
 	@FXML private Menu MenuJsonStore;
 	@FXML private Menu MenuJsonDocument;
 	@FXML private MenuItem CreateJsonStore;
@@ -61,7 +61,7 @@ public class InterfaceMainController extends New_JSONStoreController implements 
 	public void OpenNew_JSONStore(ActionEvent event){			
 		try{
 			//((Node)event.getSource()).getScene().getWindow().hide();
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("New_JSONStore.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("JSONStore.fxml"));
 			
 			Parent root1 = (Parent) fxmlLoader.load();
 			Stage stage = new Stage();
@@ -80,7 +80,7 @@ public class InterfaceMainController extends New_JSONStoreController implements 
 		try{
 			
 			//((Node)event.getSource()).getScene().getWindow().hide();
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Create_DocJSON.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DocJSON.fxml"));
 			
 			Parent root2 = (Parent) fxmlLoader.load();
 			Stage stage = new Stage();

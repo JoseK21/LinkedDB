@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="445.0" prefWidth="765.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface_FX.Create_DocJSONController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="445.0" prefWidth="765.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface_FX.DocJSONController">
    <children>
       <Label layoutX="269.0" layoutY="14.0" text="Create New JsonDocument">
          <font>

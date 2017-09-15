@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 
 import Lists.ListaCD;
 import Lists.ListaD;
-//import Interface_FX.MsjCreateJsonStoreController;
+//import Interface_FX.NoticeController;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 
-public class New_JSONStoreController implements Initializable {
+public class JSONStoreController implements Initializable {
 	ListaD ListJSONstores = ListaD.getInstance();
 		
 	@FXML private TextField textJsonStore;
@@ -86,9 +86,9 @@ public class New_JSONStoreController implements Initializable {
 		String msjCreate ;
 		String msj;
 		
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MsjCreateJSONStore.fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Notice.fxml"));
 		Parent root1 = (Parent) fxmlLoader.load();
-		MsjCreateJsonStoreController display = fxmlLoader.getController();
+		NoticeController display = fxmlLoader.getController();
 		
 		((Node)event.getSource()).getScene().getWindow().hide();
 		if (!NameFile.isEmpty()) {
@@ -107,7 +107,7 @@ public class New_JSONStoreController implements Initializable {
 						display.setImage1(msj);;
 						
 						//System.out.println("La Carpeta ya existe");	
-						//MsjCreateJsonStoreController.
+						//NoticeController.
 						
 					}else if (!crearcarpeta.exists()){						
 						System.out.println("La Carpeta no existe pero se creara");
@@ -168,6 +168,8 @@ public class New_JSONStoreController implements Initializable {
 			display.setImage1(msj);
 			display.setText("Warning..! Blank space");
 		} 
+		
+		
 		Stage stage = new Stage();
 		stage.initModality(Modality.WINDOW_MODAL);
 		stage.centerOnScreen();
@@ -181,11 +183,12 @@ public class New_JSONStoreController implements Initializable {
 	@FXML
 	public void OpenMsj_JSONStore(ActionEvent event){			
 		try{
+			System.out.println("ENTRO AL ABRIR LA VENTANA DE NOTICE");
 			String Name = textJsonStore.getText();
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MsjCreateJSONStore.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Notice.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
 			
-			MsjCreateJsonStoreController display = fxmlLoader.getController();	
+			NoticeController display = fxmlLoader.getController();	
 			
 			display.setText("Hola : "+Name);    
 			
@@ -203,8 +206,7 @@ public class New_JSONStoreController implements Initializable {
 	
 	@FXML
 	public void atras(ActionEvent event){
-		try{
-			
+		try{			
 			((Node)event.getSource()).getScene().getWindow().hide();
 	}catch (Exception e) {
 		// TODO: handle exception

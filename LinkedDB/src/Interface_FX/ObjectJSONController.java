@@ -17,7 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Atribute_ListController extends Application {
+public class ObjectJSONController extends Application {
 	ObservableList<String> tiposStatusList = FXCollections.observableArrayList("Entero","Flotante","Cadena","Fecha-Hora");
 	ObservableList<String> tiposEspecialesStatusList = FXCollections.observableArrayList("Llave Primaria","Llave Foranea");
 		
