@@ -29,6 +29,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
@@ -47,12 +48,12 @@ public class InterfaceMainController extends New_JSONStoreController implements 
 	@FXML private Label conf_Create;	
 	@FXML private TextField textnameJSONStore;
 	@FXML private TreeView treeView1;
-	
+	@FXML private TableView tabla;
 	int inicio = 0; 
 	
 	Image DBIcon = new Image(getClass().getResourceAsStream("/img/img4.png"));
 	Image FileIcon = new Image(getClass().getResourceAsStream("/img/img1.png"));	
-	Image DocIcon = new Image(getClass().getResourceAsStream("/img/FileB.png"));	
+	Image DocIcon = new Image(getClass().getResourceAsStream("/img/tabla.png"));	
 	
 	//File archivo = new File("JSONstore.txt");
 	

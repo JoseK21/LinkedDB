@@ -9,13 +9,14 @@
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface_FX.InterfaceMainController">
    <children>
-      <TreeView fx:id="treeView1" layoutY="30.0" onContextMenuRequested="#mouseClick" onMouseClicked="#mouseClick" prefHeight="463.0" prefWidth="498.0" /> 
+      <TreeView fx:id="treeView1" layoutY="30.0" onContextMenuRequested="#mouseClick" onMouseClicked="#mouseClick" prefHeight="670.0" prefWidth="430.0" /> 
          <ToolBar layoutX="14.0" layoutY="14.0" prefHeight="36.0" prefWidth="1000.0" AnchorPane.bottomAnchor="670.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
             <MenuBar prefHeight="25.0" prefWidth="374.0">
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
+                        <MenuItem mnemonicParsing="false" text="New DataBase" />
                         <MenuItem mnemonicParsing="false" text="Update" />
                     <MenuItem mnemonicParsing="false" onAction="#Close" text="Close" />
                   </items>
@@ -29,6 +30,8 @@
                 <Menu fx:id="MenuJsonDocument" mnemonicParsing="false" text="JsonDocument">
                   <items>
                     <MenuItem fx:id="CreateJsonDoc" mnemonicParsing="false" onAction="#OpenCreate_DocJSON" text="Create" />
+                        <MenuItem mnemonicParsing="false" text="Update" />
+                        <MenuItem mnemonicParsing="false" text="Search" />
                         <MenuItem mnemonicParsing="false" text="Delete" />
                   </items>
                 </Menu>
@@ -45,12 +48,25 @@
               </menus>
             </MenuBar>
          </items></ToolBar>
-      <TableView layoutY="493.0" prefHeight="201.0" prefWidth="1400.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="Name" />
-          <TableColumn prefWidth="75.0" text="LastName" />
-        </columns>
-      </TableView>         
+      <TableView fx:id="tabla" layoutX="430.0" layoutY="374.0" prefHeight="326.0" prefWidth="970.0">
+         <columns>
+            <TableColumn editable="false" prefWidth="75.0" text="doc">
+               <columns>
+                  <TableColumn prefWidth="75.0" text="Column X" />
+                  <TableColumn prefWidth="75.0" text="Column X" />
+               </columns>
+            </TableColumn>
+         </columns>
+      </TableView>
+      <MenuBar layoutX="470.0" layoutY="67.0" prefHeight="25.0" prefWidth="149.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="              Show             ">
+            <items>
+                  <CheckMenuItem mnemonicParsing="false" text="Unspecified Action" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>         
    </children>
    <cursor>
       <Cursor fx:constant="DEFAULT" />
