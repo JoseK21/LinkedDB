@@ -1,29 +1,21 @@
 package Lists;
 
-public class NodoListaCD {
-	
+public class NodoListaCD {	
 	private String dato;
 	private NodoListaCD siguiente,anterior;	
 	
 	private ListaS listaSimple = new ListaS();
 	
-	public NodoListaCD(String dato) {
-		this(dato,null,null);
-			
+	public NodoListaCD(String dato,ListaS LISTAS) {
+		this(dato,null,null,null);			
 	}
 	//COnstructor para cuando ya haya nodos
-	public NodoListaCD(String d,NodoListaCD s,NodoListaCD a){
+	public NodoListaCD(String d,NodoListaCD s,NodoListaCD a,ListaS LS){
 		dato=d; 
 		siguiente=s;
 		anterior=a;
+		listaSimple=LS;
 
-	}
-	public ListaS getListaS() {
-		return listaSimple;
-	}
-	public void setListaS(ListaS listaS) {
-		this.listaSimple = listaS;
-		
 	}
 	public NodoListaCD() {
 		// TODO Auto-generated constructor stub
@@ -46,12 +38,12 @@ public class NodoListaCD {
 	public void setAnterior(NodoListaCD anterior) {
 		this.anterior = anterior;
 	}
-	
-	public ListaS getListas() {
+
+	public ListaS getListaS() {
 		return listaSimple;
 	}
-	public void setListacs(ListaS listas) {
-		this.listaSimple = listas;
-	}
-	
+	public void setListaS(ListaS listaS) {
+		this.listaSimple = listaS;
+		
+	}	
 }

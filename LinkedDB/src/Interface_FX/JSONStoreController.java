@@ -26,18 +26,18 @@ import javafx.stage.StageStyle;
 
 
 public class JSONStoreController implements Initializable {
-	ListaD ListJSONstores = ListaD.getInstance();
-		
+	ListaD ListJSONstores = ListaD.getInstance();		
 	@FXML private TextField textJsonStore;
-	private String NameFile;
-	
-	//File archivo = new File("JSONstore.txt");
-	File archivoOtro;
-	FileWriter escribir; // para escribir en el archivo
-	PrintWriter linea;
-	FileReader leer;
-	BufferedReader almacenamiento;
-	String cadena;
+	private String NameFile;	
+	private File archivoOtro;
+	private File NewJsonStore;
+	private FileWriter escribir; // para escribir en el archivo
+	private PrintWriter linea;
+	private FileReader leer;
+	private BufferedReader almacenamiento;
+	private String cadena;
+	private String msjCreate ;
+	private String msj;
 	
 	@FXML
 	public void actualizar(Object dato){
@@ -79,97 +79,139 @@ public class JSONStoreController implements Initializable {
 		*/
 			
 	}
+	@FXML
+	public void createNewJsonStore(ActionEvent event) throws IOException{
+		NameFile = textJsonStore.getText();	
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Notice.fxml"));
+		Parent root1 = (Parent) fxmlLoader.load();
+		
+		
+		NoticeController display = fxmlLoader.getController();	
+		
+		//FXMLLoader fxmlLoader1 = display.s
+		FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("InterfaceLinkedDB.fxml"));
+		// Parent root2 = (Parent) fxmlLoader1.load();
+		InterfaceLinkedDBController displayCommit = fxmlLoader1.getController();	
+		
+		
+		((Node)event.getSource()).getScene().getWindow().hide();
+		
+		if (!NameFile.isEmpty()) {
+			if(ListJSONstores.getInstance().buscarNodoD(NameFile)==false){
+				msj = "correcto";
+				display.setText("Great .. Your JsonStore ( "+NameFile+" ) was successfully created");						
+				display.setImage1(msj);
+				
+				displayCommit.enableCommit(false);
+				
+				ListJSONstores.getInstance().agregarNodoD(NameFile);  // agrego a la lista			ListJSONstores.insertarFinal(NameFile); 
+				System.out.println("JsonStore agregado a la lista: "+NameFile+"\nLista Actualizada");
+				ListJSONstores.getInstance().imprimirListaD();
+			}else{
+				msj="incorrecto";
+				display.setText("Existing JsonStore ( "+ NameFile +" ),try using a different name");
+				display.setImage1(msj);
+				System.out.println("Dato existente =<"+NameFile+">");
+				System.out.println("INCORRECTO : El JsonStore No se tiene que agregar a la lista: "+NameFile+"\nLista sin cambios :");
+				ListJSONstores.getInstance().imprimirListaD();
+				System.out.println("\n");				
+			}
+		}else{
+			msj="vacio";
+			display.setImage1(msj);
+			display.setText("Warning..! Blank space");
+			System.out.println("Error : El JsonStore No tiene nombre : ("+NameFile+")\nLista sin cambios :");
+			ListJSONstores.getInstance().imprimirListaD();
+		}		
+		
+		Stage stage = new Stage();
+		stage.initModality(Modality.WINDOW_MODAL);
+		stage.centerOnScreen();
+		//stage.setTitle("LInkedDB");
+		stage.setScene(new Scene(root1));
+		stage.initStyle( StageStyle.UTILITY );
+		stage.show();
+		
+	}
 	
 	@FXML
-	public void crearArchivoCarpeta(ActionEvent event) throws IOException{		
+	public void crearJsonStore(ActionEvent event) throws Exception{		
 		NameFile = textJsonStore.getText();	
-		String msjCreate ;
-		String msj;
 		
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Notice.fxml"));
 		Parent root1 = (Parent) fxmlLoader.load();
-		NoticeController display = fxmlLoader.getController();
-		
+		NoticeController display = fxmlLoader.getController();		
 		((Node)event.getSource()).getScene().getWindow().hide();
-		if (!NameFile.isEmpty()) {
-			
-			String ruta = ("JSONstore\\"+NameFile); // Se crea la carpeta con el nombre correspondiente
-					
-			if(ListJSONstores.buscar(NameFile)==false){		
-				//--------------------------------------------------------------------
+		
+		if (!NameFile.isEmpty()) {			
+			String ruta = ("JSONstore\\"+NameFile); // Se crea la carpeta con el nombre correspondiente					
+			if(ListJSONstores.buscarNodoD(NameFile)==false){		// busco el nombre que le pasamos y verifico que no existia dentro de la lista
 				try {
-				 msj = "correcto";
-					System.out.println("Entro al buscar y lo encontro");	
-					File crearcarpeta = new File(ruta);				
-					if (crearcarpeta.exists()){
-						display.setText("Great .. your JsonStore ("+NameFile+") was successfully created");
+					msj = "correcto";
+					NewJsonStore= new File(ruta);	
+					
+					if (NewJsonStore.exists()){
+						display.setText("Great .. Your JsonStore ( "+NameFile+" ) was successfully created");						
+						display.setImage1(msj);
+						ListJSONstores.getInstance().agregarNodoD(NameFile);  // agrego a la lista			ListJSONstores.insertarFinal(NameFile); 
+						System.out.println("JsonStore agregado a la lista: "+NameFile+"\nLista Actualizada $$ carpeta existente:");
+						ListJSONstores.getInstance().imprimirListaD();
 						
-						display.setImage1(msj);;
-						
-						//System.out.println("La Carpeta ya existe");	
-						//NoticeController.
-						
-					}else if (!crearcarpeta.exists()){						
-						System.out.println("La Carpeta no existe pero se creara");
-						//crearcarpeta.mkdirs();	
-						if (crearcarpeta.mkdirs()){		
+					}else if (!NewJsonStore.exists()){		
+						if (NewJsonStore.mkdirs()){		
 							display.setImage1(msj);
-							display.setText("Great .. your JsonStore ("+NameFile+") was successfully created");
+							display.setText("Great .. Your JsonStore ( "+NameFile+" ) was successfully created");
+							/*
 							String ruta2 = ("JSONstore\\ListaJSONstore.txt");
-							System.out.println("ruta2::: "+ruta2);
 							escribir = new FileWriter(ruta2,true);
 							linea = new PrintWriter(escribir);
-							System.out.println("DAto a escribir en el txt :"+NameFile);
-							linea.println(NameFile);
+							
+							linea.println(NameFile);		
 							
 							linea.close();
 							escribir.close();
-							
-							//String l = "Lista"+NameFile;
-									
-							//ListaCD lis = new ListaCD();
-							
-							ListJSONstores.insertarFinal(NameFile);  // agrego a la lista
-							
-							
-							
-							//msj1.setText("Archivo/Carpeta Exitosamente creados");
-							//msj2.setText("Proceso Completo");
-							
-							//ListJSONstores.imprimir(ListJSONstores);  ------- ListJSONstores.imprimir(l.imprimer());
+							*/
+							ListJSONstores.getInstance().agregarNodoD(NameFile);  // agrego a la lista			ListJSONstores.insertarFinal(NameFile); 
+							System.out.println("JsonStore agregado a la lista: "+NameFile+"\nLista Actualizada :");
+							ListJSONstores.getInstance().imprimirListaD();
+							System.out.println("\n");
 						}else{
 							msj="incorrecto";
 							display.setText("!!!.........Error of the Software.......!!!!");
 							display.setImage1(msj);
+							System.out.println("El JsonStore No se tiene que agregar a la lista: "+NameFile+"\nLista sin cambios : :");
+							ListJSONstores.getInstance().imprimirListaD();
+							System.out.println("\n");
 							System.out.println("La carpeta no fue creada  ERROR");
 							//msj1.setText("Carpeta NO creada");
 							//msj2.setText("Proceso Fallido");
 						}
 					}else{
 						display.setText("Never show this.......... ;)");
-						System.out.println("La carpeta NO EXISTE");
-					}// txt en escritorio REP21	
-				}catch (IOException e) {
-					// TODO: handle exception
+						System.out.println("La carpeta NO EXISTE ERROR DEL SISTEMA");
+					}
+				}catch (Exception e) {
 					System.out.println("ERROR GRAVE");
 					display.setText("Serious System Error");
-				}							
-				
-			}else{
+					}
+			}				
+			else{
 				msj="incorrecto";
-				display.setText("Existing JsonStore ("+ NameFile +"),try using a different name");
+				display.setText("Existing JsonStore ( "+ NameFile +" ),try using a different name");
 				display.setImage1(msj);
 				System.out.println("Dato existente =<"+NameFile+">");
-				//msj1.setText("Archivo/Carpeta Dublicado");
-				//msj2.setText("Proceso Fallido");
+				System.out.println("INCORRECTO : El JsonStore No se tiene que agregar a la lista: "+NameFile+"\nLista sin cambios :");
+				ListJSONstores.getInstance().imprimirListaD();
+				System.out.println("\n");
 			}
 		}else{
 			msj="vacio";
 			display.setImage1(msj);
 			display.setText("Warning..! Blank space");
+			System.out.println("Error : El JsonStore No tiene nombre : ("+NameFile+")\nLista sin cambios :");
+			ListJSONstores.getInstance().imprimirListaD();
 		} 
-		
-		
+				
 		Stage stage = new Stage();
 		stage.initModality(Modality.WINDOW_MODAL);
 		stage.centerOnScreen();
@@ -183,6 +225,7 @@ public class JSONStoreController implements Initializable {
 	@FXML
 	public void OpenMsj_JSONStore(ActionEvent event){			
 		try{
+			((Node)event.getSource()).getScene().getWindow().hide();
 			System.out.println("ENTRO AL ABRIR LA VENTANA DE NOTICE");
 			String Name = textJsonStore.getText();
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Notice.fxml"));
@@ -203,33 +246,8 @@ public class JSONStoreController implements Initializable {
 			System.out.println("no se puede abrir la ventana ");
 		}			
 	}
-	
-	@FXML
-	public void atras(ActionEvent event){
-		try{			
-			((Node)event.getSource()).getScene().getWindow().hide();
-	}catch (Exception e) {
-		// TODO: handle exception
-		System.out.println("No se cierra la ventana cuando regreso");
-	}	
-		}
-	
-	
+		
 	@Override
-	public void initialize(URL url, ResourceBundle rb){		 
-		// preparando el archivo		
-		/*if(!archivo.exists()){
-			try {
-				archivo.createNewFile();
-				
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		}else{
-			System.out.println("Archivo ya antes creado");
-		}
-	*/
+	public void initialize(URL url, ResourceBundle rb){	
 		}   
 	}

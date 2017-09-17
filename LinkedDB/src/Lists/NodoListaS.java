@@ -1,22 +1,22 @@
 package Lists;
 
 public class NodoListaS {
-	private Object dato;
+	private String dato;
 	private NodoListaS siguiente;	
 		
-	public NodoListaS(Object dato) {
+	public NodoListaS(String date) {
 		this.siguiente=null;
-		this.dato=dato;
+		this.dato=date;
 	}
-	public NodoListaS(Object d,NodoListaS n){
+	public NodoListaS(String d,NodoListaS n){
 		dato=d;
 		siguiente=n;
 	}
-	public Object getDato() {
+	public String getDato() {
 		return this.dato;
 	}
 
-	public void setDato(Object dato) {
+	public void setDato(String dato) {
 		this.dato = dato;
 	}
 	

@@ -1,47 +1,36 @@
 package Lists;
 
 public class ListaS {
-	//Punteros para saber donde esta el inicio y el final
 	private NodoListaS inicio ;
 	private NodoListaS fin;
 	private int size = 0;
 	
-	private static  ListaS uniqueInstance  =   null;
-	
 	public ListaS(){
-		// inicializo los punteros
 		inicio =null;
 		fin=null;
 	}
 	// Metodo para preguntar si esta vacia la lista de JSON store
-	public boolean estaVacia(){
-		if (inicio == null){
-			return true;
-		}else 
-			return false;
+	public boolean estaListaSVacia(){
+		return inicio==null;
 	}
-	//Metodo para insertar JSON store
-	public void insertar(Object dato){
-		NodoListaS nuevo = new NodoListaS(dato);
-		
-		if (estaVacia()){
-			inicio=nuevo;
-			size++;
-			}
-		else{
-			NodoListaS auxiliar = inicio;
-			while(auxiliar.getSiguiente() != null){
-				auxiliar = auxiliar.getSiguiente();
-			}
-			auxiliar.setSiguiente(nuevo);
-			size++;
-			
-			}
-		System.out.println("\nTamaño de la lista Simple: "+size);
-		
-		
-		
+	public NodoListaS getFirstNodeS(){
+		NodoListaS temp = inicio;
+		return temp;
 	}
+	public void agregarNodoS(String nombre){	
+        NodoListaS nuevo = new NodoListaS(nombre);    // ListaCD listaCD ====> quitar pues ya aqui la puedo iniciar en null=vacia la listaCD
+        if(inicio == null){
+        	inicio = nuevo;
+        }else{
+	        NodoListaS aux = inicio;
+	        while(aux.getSiguiente() != null){
+	        	aux = aux.getSiguiente();       
+		    }
+	        aux.setSiguiente(nuevo);
+        }
+        
+        System.out.println("JsonStore Agregado : "+nuevo.getDato()); 
+        }
 
 	//Metodo para ver los nombres de los JSON store
 	public void mostrar(){
@@ -81,44 +70,29 @@ public class ListaS {
 	            }
 	            System.out.println("Nothing to delete");
 	        }
-
 	    } 
 	    }
 	    public void setFirstNode(NodoListaS inicio) {
 	        this.inicio = inicio;
 	    }  
 	//metodo para buscar un elemento
-	public void buscar(Object dato){
+	public boolean buscar(Object dato){
 		NodoListaS temporal = inicio;
 		
 		while (temporal!=null && temporal.getDato()!=dato){			
 			temporal=temporal.getSiguiente();								// enviar la informacion..... Nombre y sus datos
 		}
-		if(temporal!=null){
+		if(temporal!=null){			
 			System.out.println("SI EXISTE EL ELEMENTO {"+dato+"}");
-		}else{
+			return true;
+		}else{			
 			System.out.println("NO EXIST {"+dato+"}");
+			return false;
 
 		}
 	}
-	
-	public static ListaS getInstance(){
-        if(uniqueInstance == null){
-              uniqueInstance = new ListaS();
-        }
-        return uniqueInstance;
-    }
-	
+		
 	public static void main(String[] args){
 		
-		ListaS listaS = new ListaS();
-		
-		listaS.insertar(2);
-		listaS.mostrar();
-		listaS.insertar(177);
-		listaS.insertar(24);
-		listaS.mostrar();
-		listaS.eliminar(22);
-		listaS.mostrar();
 	}
 }

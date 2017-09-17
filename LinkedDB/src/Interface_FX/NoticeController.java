@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -46,6 +47,10 @@ public class NoticeController implements Initializable{
 	public void accept(ActionEvent event){
 		try{
 			((Node)event.getSource()).getScene().getWindow().hide();
+			FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("InterfaceLinkedDB.fxml"));
+			InterfaceLinkedDBController displayCommit = fxmlLoader1.getController();
+			
+			displayCommit.enableCommit(false);
 			
 		}catch (Exception e) {
 			// TODO: handle exception

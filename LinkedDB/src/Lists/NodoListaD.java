@@ -2,23 +2,34 @@ package Lists;
 
 public class NodoListaD {
 	private String dato;
-	private NodoListaD siguiente,anterior;
-	
+	private NodoListaD siguiente,anterior;	
 	
 	private ListaCD listacd = new ListaCD();
 	
-	
-	//Constructor para cuando aun ni hay nodos
-	public NodoListaD(String nombreNodo) {
-		this(nombreNodo,null,null);
-	}
-	//COnstructor para cuando ya haya nodos
-	
-	public NodoListaD(String lista,NodoListaD s,NodoListaD a){
+	public NodoListaD(String nombreNodo,ListaCD LISTACD) {
+		this(nombreNodo,null,null,null);
+	}	
+	public NodoListaD(String lista,NodoListaD s,NodoListaD a,ListaCD LCD){
 		dato=lista; 
 		siguiente=s;
 		anterior=a;
-		//listacd= L;   																				 //LISTA VACIAAAAA .?????
+		listacd= LCD;   																				 //LISTA VACIAAAAA .?????
+	}
+
+	public ListaCD getListacd() {
+		if (listacd == null) {
+			System.out.println("Lista Vacia");
+			System.out.println("\n-Lista Nueva agregada ");
+			return listacd =new ListaCD();
+			
+		}else{
+			System.out.println("Lista existente enviada ");
+			return listacd;
+			}
+	}
+	
+	public void setListacd(ListaCD listacd) {
+		this.listacd = listacd;
 	}
 	public String getDato() {
 		return dato;
@@ -39,13 +50,6 @@ public class NodoListaD {
 		this.anterior = anterior;
 	}	
 	
-	
-	public ListaCD getListacd() {
-		return listacd;
-	}
-	public void setListacd(ListaCD listacd) {
-		this.listacd = listacd;
-	}
 	
 	
 }

@@ -3,7 +3,8 @@ package Lists;
 public class ListaD {
 	private NodoListaD inicio;
 	private NodoListaD fin;
-	private int size = 0;
+	private int size = 0;	
+	
     private static  ListaD uniqueInstance  =   null;
 
 	
@@ -12,53 +13,68 @@ public class ListaD {
 		inicio=fin=null;	
 	}
 	//Metodo para saber si la lista esta vacia											REVISAR SE ES ListaD lista ó si es en BLANCO.
-	public boolean estaVacia(ListaD lista){
+	public boolean estaListaDVacia(){
 		return inicio==null;
 	}
-	
-	
-	public NodoListaD getNodo(Object nodo){
-		return inicio;		
+	public ListaD limpiar(){
+		this.uniqueInstance=null;
+		return uniqueInstance;
 	}
 	
-	public void insertarFinal(String nombre){		
-        NodoListaD nuevo = new NodoListaD(nombre,null,null);    // ListaCD listaCD ====> quitar pues ya aqui la puedo iniciar en null=vacia la listaCD
-        
+	public NodoListaD getNodoD(String nodoName){
+		NodoListaD aux = inicio;
+		while (aux != null){
+			if(aux.getDato().equals(nodoName)){
+				return aux;
+			}
+			else{
+				aux=aux.getSiguiente();
+			}
+		}return null;	
+		
+	}
+	public int getSize(){
+		NodoListaD temp = inicio;
+		while (temp != null){
+			size++;
+		}
+		return size;
+	}
+	
+	public void agregarNodoD(String nombre){	
+		ListaCD ListCD = new ListaCD();
+        NodoListaD nuevo = new NodoListaD(nombre,ListCD);    // ListaCD listaCD ====> quitar pues ya aqui la puedo iniciar en null=vacia la listaCD
         if(inicio == null){
         	inicio = nuevo;
         }else{
 	        NodoListaD aux = inicio;
 	        while(aux.getSiguiente() != null){
-	        	aux = aux.getSiguiente();
-       
+	        	aux = aux.getSiguiente();       
 		    }
 	        aux.setSiguiente(nuevo);
 	        nuevo.setAnterior(aux);
-
         }
-        System.out.println("!_!_"+nuevo.getDato());
-       
+        System.out.println("JsonStore Agregado : "+nuevo.getDato());       
+        System.out.println("Lista en memoria : "+ListCD);
         }
 	
-	public void imprimir(Object list) {
-	      if (estaVacia(uniqueInstance) == true ) {
-	         System.out.println( "Lista Vacía");
+	public void imprimirListaD() {
+	      if (estaListaDVacia() == true ) {
+	         System.out.println("Lista Vacía");
 	       
 	      }
 	      else{
 		      NodoListaD temp = inicio;
-
+		      System.out.print("Inicio->");
 		      do {
-		         System.out.print("["+ temp.getDato() +"]-");
-		         
-		         temp = temp.getSiguiente();
-		         
-		      } while ( temp != null );		      
+		         System.out.print("["+ temp.getDato() +"]->");		         
+		         temp = temp.getSiguiente();		         
+		      } while ( temp != null );	
+		      System.out.print("Fin-||");
 		   }
 	   }
-	      
 	
-	public boolean buscar(String dato){
+	public boolean buscarNodoD(String dato){
 		
 		NodoListaD temporal = inicio;
 		
@@ -73,9 +89,13 @@ public class ListaD {
 		
 	
 	}	
-	public void eliminar(Object dato){
+	public NodoListaD getFirstNodeD(){
+		NodoListaD temporal = inicio;
+		return temporal;
+	}
+	public void eliminarNodoD(Object dato){
 		  
-		  if(estaVacia(uniqueInstance)){
+		  if(estaListaDVacia()){
 			  System.out.println("Lista vacia");
 		  }
 		  else{ 

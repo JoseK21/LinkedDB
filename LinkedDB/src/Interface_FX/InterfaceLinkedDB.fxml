@@ -17,7 +17,7 @@
                 <Menu mnemonicParsing="false" text="File">
                   <items>
                         <MenuItem mnemonicParsing="false" text="New DataBase" />
-                        <MenuItem mnemonicParsing="false" text="Update" />
+                        <MenuItem mnemonicParsing="false" onAction="#update" text="Update" />
                     <MenuItem mnemonicParsing="false" onAction="#Close" text="Close" />
                   </items>
                 </Menu>
@@ -37,7 +37,7 @@
                 </Menu>
                   <Menu mnemonicParsing="false" text="Team">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Commit" />
+                      <MenuItem fx:id="MenuItemMenuCommit" mnemonicParsing="false" onAction="#commit1" text="Commit" />
                     </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Help">

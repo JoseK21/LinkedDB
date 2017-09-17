@@ -1,33 +1,43 @@
 package Lists;
-
 import javafx.scene.Node;
-
 public class ListaCD {
 	private NodoListaCD inicio = null;;
 	private NodoListaCD fin = null;
 	int size=0;
 	
 	public ListaCD() {
-		inicio = null;
-		fin=null;
+		inicio=fin=null;
 	}
-	public boolean estaVacia(Object list){
-		if (inicio == null){
-			return true;
-		}else{
-			return false;}
+	public boolean estaListaCDVacia(){
+		return inicio==null;
 	}
-	public void agregar(String val)
-    {
-        NodoListaCD nuevo = new NodoListaCD(val);        
-        if (inicio == null)
-        {
+	
+	
+	public NodoListaCD getNodoCD(String nodoName){
+		NodoListaCD aux = inicio;
+		while (aux != null){
+			if(aux.getDato().equals(nodoName)){
+				return aux;
+			}
+			else{
+				aux=aux.getSiguiente();
+			}
+		}return null;		
+	}	
+	
+	
+	public void agregarNodoCD(String nombreDoc){
+		ListaS listSim = new ListaS();		
+        NodoListaCD nuevo = new NodoListaCD(nombreDoc,listSim);      
+        
+        if (inicio == null){
+        	System.out.println("LISTA VACIA...Entro al agregar con el valor correcto y dandole una lista simple vacia");
         	nuevo.setSiguiente(nuevo);
         	nuevo.setAnterior(nuevo);
         	inicio=nuevo;
         	fin=inicio;
-        }
-        else {
+        }else {
+        	System.out.println("Otro nodo simple111111111111111111111111111111111111111111");
         	nuevo.setAnterior(fin);
         	fin.setSiguiente(nuevo);
         	inicio.setAnterior(nuevo);
@@ -35,54 +45,33 @@ public class ListaCD {
         	fin=nuevo;  
         }
         size++;
-    }	
-	public void imprimir(Object list) {
-	      if (estaVacia(list)  ) {
-	         System.out.println( "Lista Vacía");
-	       
-	      }
-	      else{
-		      NodoListaCD temp = inicio;
-
-		      do {
-		         System.out.print("("+ temp.getDato() +")~");
-		         temp = temp.getSiguiente();
-		         
-		      } while(temp.getSiguiente() != inicio);		      
-		   }
-	   }
+        System.out.println(listSim);
+    }
 	
-
-	public void imprimirLista() {
-	      if (inicio==null  ) {
-	         System.out.println( "Lista Vacía");
-	       
-	      }
-	      else{
-		      NodoListaCD temp = inicio;
-
-		      do {
-		         System.out.print("("+ temp.getDato() +")~");
-		         temp = temp.getSiguiente();
-		         
-		      } while(temp.getSiguiente() != inicio);		      
-		   }
-	   }
-	
-	public void desplazar(Object list){
-		NodoListaCD actual =inicio;
-			
-		System.out.println("\nInicio~>");
-		do{
-			String v = actual.getDato();
-			System.out.print("<"+v+">~<");
-			actual=actual.getSiguiente();
-		}while(actual !=inicio);
-		System.out.println("\n");
+	public NodoListaCD getFirstNodeCD(){
+		NodoListaCD temporal = inicio;
+		return temporal;
 	}
-	  
 	
-	public void eliminar(Object dato){
+	public void imprimirListaCD() { // pasarle el nombre de la lista a imprimir
+	      if (estaListaCDVacia()==true) {
+	         System.out.println("Lista Vacía");	       
+	      }
+	      else{
+		      NodoListaCD temp = inicio;
+		      System.out.print("Inicio~>");
+		      
+		      do {
+		         System.out.print("("+ temp.getDato() +")~");
+		         temp = temp.getSiguiente();
+		         
+		      } while(temp.getSiguiente() != inicio);	
+		      System.out.print("("+ temp.getDato() +")~");
+		      System.out.print("Fin~Inicio");
+		   }
+	   }
+		
+	public void eliminarNodoCD(Object dato){
 		NodoListaCD actual = new NodoListaCD();
 		NodoListaCD anterior = new NodoListaCD();
 		actual=inicio;
@@ -108,7 +97,7 @@ public class ListaCD {
 			
 	}
 	
-	public void eliminar2(Object dato){
+	public void eliminar2NodoCD(Object dato){
 		NodoListaCD actual;
 		boolean encontrado = false;
 		actual=fin;
@@ -128,7 +117,7 @@ public class ListaCD {
 		}
 	}
 	
-	public boolean buscar1(String dato){
+	public boolean buscarNodoCD(String dato){
 		NodoListaCD temporal = inicio;
 		
 		while (temporal!=fin){
@@ -140,7 +129,8 @@ public class ListaCD {
 		}
 		return false;
 	}
-	public NodoListaCD buscarNodo(String dato){
+	
+	public NodoListaCD obtenerNodoCD(String dato){
 		NodoListaCD temporal = inicio;
 		
 		while (temporal!=fin){
