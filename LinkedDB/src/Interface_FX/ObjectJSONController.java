@@ -20,9 +20,8 @@ import javafx.stage.Stage;
 public class ObjectJSONController extends Application {
 	ObservableList<String> tiposStatusList = FXCollections.observableArrayList("Entero","Flotante","Cadena","Fecha-Hora");
 	ObservableList<String> tiposEspecialesStatusList = FXCollections.observableArrayList("Llave Primaria","Llave Foranea");
-		
-	@FXML private ChoiceBox<String> tiposStatusBox;	
 	@FXML private ChoiceBox<String> tiposEspecialesStatusBox;
+	@FXML private ChoiceBox<String> tiposStatusBox;	
 	@FXML private RadioButton textRequerido ;
 	@FXML private Label val_def;
 	@FXML private TextField dataval_def;

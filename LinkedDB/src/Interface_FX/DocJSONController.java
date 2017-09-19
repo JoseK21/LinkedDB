@@ -148,6 +148,34 @@ public class DocJSONController implements Initializable {
 		}	
 		
 	}
+	//-------------------------------------------------------------------------
+	
+	public void crearDocJSON1(ActionEvent event) throws IOException{			
+		String NameJson = nameJSONstore.getText();
+		String NameDoc = nameDocumento.getText();
+		System.out.println("\nNameJson("+NameJson+")__NameDoc("+NameDoc+")__\n");
+		
+		if (ListaJSONstores.getInstance().buscarNodoD(NameJson) == true){
+			
+			ListaJSONstores.getInstance().getNodoD(NameJson).getListacd().agregarNodoCD(NameDoc);
+			msjCreacionDocJSON.setText("Documento creado");
+			
+			cont_Atributos.setDisable(false); 
+			System.out.println("\n\nLista CD de "+NameJson+".  con nuevo hijoNodo :"+NameDoc+"_____.\n\n");
+			System.out.println("Lista Actual de este Json store : " );
+			ListaJSONstores.getInstance().getNodoD(NameJson).getListacd().imprimirListaCD();
+		
+			System.out.println(" \n");
+		}
+		else{
+			System.out.println("Lista CD de "+NameJson+". Sin cambios");
+			msjCreacionDocJSON.setText("Documento existente");
+			System.out.println("Lista SIn cambios: " );
+			ListaJSONstores.getInstance().getNodoD(NameJson).getListacd().imprimirListaCD();
+		}	
+		
+	}
+	
 	@FXML
 	public void continuar(ActionEvent event){
 		//if (Existe un JSON Store )

@@ -1,5 +1,2 @@
-Persona
-Vehiculo
-Ave
-Vivienda
-Motocicleta
+f2
+fqqq

@@ -1,5 +1,5 @@
 package Lists;
-import javafx.scene.Node;
+
 public class ListaCD {
 	private NodoListaCD inicio = null;;
 	private NodoListaCD fin = null;
@@ -11,7 +11,6 @@ public class ListaCD {
 	public boolean estaListaCDVacia(){
 		return inicio==null;
 	}
-	
 	
 	public NodoListaCD getNodoCD(String nodoName){
 		NodoListaCD aux = inicio;
@@ -61,14 +60,13 @@ public class ListaCD {
 		      NodoListaCD temp = inicio;
 		      System.out.print("Inicio~>");
 		      
-		      do {
-		         System.out.print("("+ temp.getDato() +")~");
-		         temp = temp.getSiguiente();
-		         
-		      } while(temp.getSiguiente() != inicio);	
+		      while (temp.getSiguiente()!=inicio){
+		    	  System.out.print("("+ temp.getDato() +")~");
+			       temp = temp.getSiguiente();
+		      }
 		      System.out.print("("+ temp.getDato() +")~");
-		      System.out.print("Fin~Inicio");
-		   }
+		      System.out.print("Fin~~~~~~");
+	      }
 	   }
 		
 	public void eliminarNodoCD(Object dato){
@@ -142,10 +140,11 @@ public class ListaCD {
 		}
 		return null;
 	}
-		
+	
+	/*
 	public static void main(String[] args){
 				
 	}
-	
+	*/
 }
 

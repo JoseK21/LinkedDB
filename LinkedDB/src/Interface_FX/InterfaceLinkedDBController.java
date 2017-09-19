@@ -1,6 +1,7 @@
 package Interface_FX;
 
 
+import java.awt.event.MouseListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -14,6 +15,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.SwingUtilities;
 import javax.swing.plaf.synth.SynthOptionPaneUI;
 
 import Lists.ListaCD;
@@ -24,6 +26,8 @@ import Lists.NodoListaD;
 import Lists.NodoListaS;
 import Interface_FX.*;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,6 +35,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckMenuItem;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuButton;
@@ -47,6 +53,7 @@ import javafx.stage.Stage;
 
 public class InterfaceLinkedDBController implements Initializable {
 	ListaD ListJSONstores = ListaD.getInstance();
+	
 	@FXML private Menu MenuJsonStore;
 	@FXML private Menu MenuJsonDocument;
 	@FXML private MenuItem CreateJsonStore;
@@ -85,12 +92,27 @@ public class InterfaceLinkedDBController implements Initializable {
 	private BufferedReader almacenamientoObj;
 	private String cadenaObj;
 	private TreeItem treeitemObj;
-	private String carpetaObj1;
+	private String carpetaObj11;
 	private File newFileObj4 ;
 	private String rutaArchivos ;
 	private File crearArchivoListaTxt ;
 	
 	int inicio = 0; 
+	
+	//MenuItem tiposEspecialesStatusList = (MenuItem) FXCollections.observableArrayList("Show All Object","Add new Object","Delete All Object","Delete Document","Delete/Search Object Key","Delete Object","Search for Attribute","Update Object");                             
+
+	CheckMenuItem men1 = new CheckMenuItem("Show All Object");
+	CheckMenuItem men2 = new CheckMenuItem("Add new Object");
+	CheckMenuItem men3 = new CheckMenuItem("Delete All Object");
+	CheckMenuItem men4 = new CheckMenuItem("Delete Document");
+	CheckMenuItem men5 = new CheckMenuItem("Delete/Search Object Key");
+	CheckMenuItem men6 = new CheckMenuItem("Delete Object");
+	CheckMenuItem men7 = new CheckMenuItem("Search for Attribute");
+	CheckMenuItem men8 = new CheckMenuItem("Update Object");
+	
+	@FXML private ChoiceBox<String> tiposEspecialesStatusBox;
+	
+	
 	
 	Image DBIcon = new Image(getClass().getResourceAsStream("/img/img4.png"));
 	Image FileIcon = new Image(getClass().getResourceAsStream("/img/img1.png"));	
@@ -114,6 +136,8 @@ public class InterfaceLinkedDBController implements Initializable {
 			System.out.println("no se puede abrir la ventana ");
 		}			
 	}
+	
+	
 	public void enableCommit(boolean v){
 		MenuItemMenuCommit.setDisable(false);
 		
@@ -147,15 +171,29 @@ public class InterfaceLinkedDBController implements Initializable {
 		}
 	}
 	// codigo parahacer chil derecho y desplegar las opciones
-	@FXML
-	public void mouseClick(MouseEvent mouseEvent){      
-		/*
+	
+	
+		//MouseListener listener = new MouseListener() {
 		
+			/*
+			if(SwingUtilities.isRightMouseButton(e)){
+				TreeItem itemWindow = (TreeItem) treeView1.getSelectionModel().getSelectedItem();
+				//MenuItem tiposEspecialesStatusList = (MenuItem) FXCollections.observableArrayList("Show All Object","Add new Object","Delete All Object","Delete Document","Delete/Search Object Key","Delete Object","Search for Attribute","Update Object");
+				itemWindow.getChildren().addAll(men1,men2,men3,men4,men5,men6,men7,men8);
+				
+			}else{
+				System.out.println("Nada que hacer click izq");
+			}
+	*/
+		
+
+	
+	@FXML
+	public void mouseClick(MouseEvent mouseEvent){  
+		/*
 		if (mouseEvent.getClickCount()==1){
 			TreeItem item = (TreeItem) treeView1.getSelectionModel().getSelectedItem();
-			System.out.println("Objeto seleccionado : "+item.getValue());
-			
-			
+			System.out.println("Objeto seleccionado : "+item.getValue());			
 			try{
 				((Node)mouseEvent.getSource()).getScene().getWindow().hide();
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ClickRight_Document.fxml"));
@@ -169,7 +207,8 @@ public class InterfaceLinkedDBController implements Initializable {
 			}catch (Exception e){
 				System.out.println("Can´t load new window");
 			}
-			*/
+		}*/
+			
 	}
 	@FXML
 	public void cerrarSistema(ActionEvent event){
@@ -206,16 +245,6 @@ public class InterfaceLinkedDBController implements Initializable {
 	*/
 }
 	
-	public void crearTxt(File archi){
-		if (!archi.exists()){
-			try {
-				archi.createNewFile();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
 	@FXML
 	public void commit(ActionEvent event){
 		NodoListaD nuevoA = ListJSONstores.getInstance().getFirstNodeD();
@@ -469,109 +498,6 @@ public class InterfaceLinkedDBController implements Initializable {
 		
 }
 	
-	public void cargarInicial(){
-		
-		TreeItem baseDatos = new TreeItem("LinkedDB",new ImageView(DBIcon));
-		//TreeItem DB = new TreeItem("LinkedDB");
-		treeView1.setRoot(baseDatos);
-		baseDatos.setExpanded(true);
-		//PrintWriter escribir;
-		
-		//if (num == 0){
-		
-			try {
-				String nombreArchivo = "JSONstore";
-				File crearcarpeta = new File(nombreArchivo);
-				String txt = "\\ListaJSONstore.txt";
-				String listaTxt = "JSONstore\\ListaJSONstore.txt";
-				
-				File crearArchivoTxt = new File(nombreArchivo+txt);
-				
-				if (crearArchivoTxt.exists()){
-					System.out.println("El Archivo ya existe ListaJSONstore.txt");	
-				}else{
-					System.out.println("El Archivo no existe pero se creara");
-					crearcarpeta.mkdirs(); // creo la carpeta inicialmente
-					try {
-						if (crearArchivoTxt.createNewFile()){
-							System.out.println("Archivo creado ListaJSONstore.txt");
-						}else{
-							System.out.println("Archivo NO !! creado NO SE PUEDO CREAR EL TXT /ListaJSONstore.txt/");
-						}
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-				}
-				
-				try{	
-					leerTexto = new FileReader(listaTxt);
-					almacenamientoTexto=new BufferedReader(leerTexto);
-					String cadena="";
-					
-					while((cadena=almacenamientoTexto.readLine()) != null){
-						TreeItem treeitem =new TreeItem(cadena,new ImageView(FileIcon));
-						baseDatos.getChildren().addAll(treeitem);
-						
-						String carpetaEnJSON = "JSONstore\\"+cadena;						
-						File newFileJSON = new File(carpetaEnJSON);						
-						if(newFileJSON.mkdirs()){
-							System.out.println("Nuevo JSON file creado dentro del JSONstore =) ");
-							
-							
-							ListJSONstores.getInstance().agregarNodoD(cadena);
-							//ListJSONstores.insertarFinal(null, cadena);
-						}else{
-							System.out.println("NO CREADO JSON file-----Existente B) ");
-							ListJSONstores.getInstance().agregarNodoD(cadena);
-							//ListJSONstores.insertarFinal(null, cadena);
-							
-						}
-						ListJSONstores.imprimirListaD();
-						//ListJSONstores.imprimir(ListJSONstores);
-						String rutaDOC = "JSONstore\\"+cadena+"\\lista"+cadena+"Doc.txt";
-						File crearArchivoListaTxt = new File(rutaDOC);
-						
-						if (crearArchivoListaTxt.exists()){
-							FileReader leerDOC = new FileReader(rutaDOC);							
-							BufferedReader almacenamientoDoc=new BufferedReader(leerDOC);
-							String cadenaDOC="";
-							
-							while((cadenaDOC=almacenamientoDoc.readLine()) != null){	// ERROR NO ESTOY METIENDO DENTRO DEL ITEM DE ESA CARPETA
-								TreeItem treeitemDOC =new TreeItem(cadenaDOC,new ImageView(DocIcon));
-								treeitem.getChildren().addAll(treeitemDOC);
-							}
-							leerDOC.close();
-							almacenamientoDoc.close();
-							ListaCD lis = new ListaCD();	
-							ListJSONstores.getInstance().agregarNodoD(cadena);
-							//ListJSONstores.insertarFinal(lis,cadena);
-							//crear carpetas aqui
-							ListJSONstores.getInstance().agregarNodoD(cadena);
-							//ListJSONstores.getInstance().insertarFinal(null, cadena);
-							
-							
-					}else{
-						System.out.println("!!!! No contiene una lista :"+cadena+". Salto a la otra carpeta");
-					}
-					//ListJSONstores.getInstance().insertarFinal(null, cadena);
-					}
-					ListJSONstores.imprimirListaD();
-					//ListJSONstores.imprimir(ListJSONstores);
-					System.out.println("\n");
-					leerTexto.close();
-					almacenamientoTexto.close();
-				}catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}catch (Exception e) {
-				// TODO: handle exception
-			}
-		}
-	// PRUEBA DE CARGA INICIAL -------------------------------------------------------------------!!!!!---------------------------------!!!!!--
-	
 	public void cargarInicial1(){
 	//MenuItemMenuCommit.setDisable(true);
 	
@@ -590,6 +516,7 @@ public class InterfaceLinkedDBController implements Initializable {
 	
 	if (!carpetaJson.exists()){
 		carpetaJson.mkdirs();      // paso inicial de creacion  Al inicio no existia
+		
 		System.out.println("Se creo una inicial Carpeta JsonStore");
 		System.out.println("Se detuvo el programa");
 		try {
@@ -603,7 +530,7 @@ public class InterfaceLinkedDBController implements Initializable {
 		try {
 			leerTexto = new FileReader(listaTxtJson);
 			almacenamientoTexto=new BufferedReader(leerTexto);
-		} catch (FileNotFoundException e1) {
+		}catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
@@ -620,19 +547,13 @@ public class InterfaceLinkedDBController implements Initializable {
 				System.out.println("Creo Arbol de JsonStores");
 				carpetaEnJSON = "JSONstore\\"+cadena;						
 				newFileJSON = new File(carpetaEnJSON);		
-								
+				rutaDOC = "JSONstore\\"+cadena+"\\"+cadena+"_listaDeDoc.txt";			
 				if(!newFileJSON.exists()){
-					newFileJSON.mkdirs(); // Crea carpeta JSONstore
-					System.out.println("Se detuvo el programa2");
-				}else{
-					
-				rutaDOC = "JSONstore\\"+cadena+"\\listaDeDoc.txt";
-				crearDocListaTxt = new File(rutaDOC);		
-			
-				if (!crearDocListaTxt.exists()){
+					newFileJSON.mkdirs(); // Crea carpeta JSONstore					
+					crearDocListaTxt = new File(rutaDOC);	
 					crearDocListaTxt.createNewFile();
-				}else{
-					
+					System.out.println("Se detuvo el programa2");
+				}else{					
 					leerDOC = new FileReader(rutaDOC);							
 					almacenamientoDoc=new BufferedReader(leerDOC);
 					cadenaDOC="";
@@ -643,146 +564,239 @@ public class InterfaceLinkedDBController implements Initializable {
 						System.out.println("\nHijo Doc: "+cadenaDOC+" al JsonStore :"+cadena);
 						
 						ListJSONstores.getInstance().getNodoD(cadena).getListacd().agregarNodoCD(cadenaDOC);  // agrego a la listaCD (etapa2)
-						
+						System.out.println("Valor del Nodo CD ."+cadenaDOC+" . agreegado al JsonStore : "+cadena+"\n");
 						carpetaEnDoc = "JSONstore\\"+cadena+"\\"+cadenaDOC;						
 						newFileDoc = new File(carpetaEnDoc);			
 						
+						rutaObj = "JSONstore\\"+cadena+"\\"+cadenaDOC+"\\"+cadenaDOC+"_listaDeObj.txt"; 
 						if(!newFileDoc.exists()){
 							newFileDoc.mkdirs(); // Crea carpeta JSONstore      IGUAL QUE ANTES......................................
-						}else{
-							rutaObj = "JSONstore\\"+cadena+"\\"+cadenaDOC+"\\listaDeObj_"+cadenaDOC+".txt"; // RUTAAAAA
+							
 							crearObjListaTxt = new File(rutaObj);	
+							crearObjListaTxt.createNewFile();
 							
-							if (!crearObjListaTxt.exists()){
-								crearObjListaTxt.createNewFile();
-							}else{
+						}else{
+							leerObj = new FileReader(rutaObj);							
+							almacenamientoObj=new BufferedReader(leerObj);
+							while((cadenaObj=almacenamientoObj.readLine()) != null){
 								
-								leerObj = new FileReader(rutaObj);							
-								almacenamientoObj=new BufferedReader(leerObj);
-								cadenaObj="";
+								carpetaObj11 = "JSONstore\\"+cadena+"\\"+cadenaDOC+"\\"+cadenaObj+"_listaAtributos.txt";	
+								newFileObj4 = new File(carpetaObj11);			
 								
-								while((cadenaObj=almacenamientoObj.readLine()) != null){					// ERROR NO ESTOY METIENDO DENTRO DEL ITEM DE ESA CARPETA
-									treeitemObj = new TreeItem(cadenaObj,new ImageView(ArcIcon));
-									treeitemDOC.getChildren().addAll(treeitemObj);
-									System.out.println("\n............................lllll.........."+cadenaObj);
-									
-									//ListJSONstores.getNodoD(cadena).getListacd().getNodoCD(cadenaDOC).getListaS().agregarNodoS(cadenaObj); // agrego a la listaCD (etapa2)
-									//ListJSONstores.getNodoD(cadena).getListacd().getNodoCD(cadenaDOC).getListaS().getFirstNodeS();
-									
-									carpetaObj1 = "JSONstore\\"+cadena+"\\"+cadenaDOC+"\\"+cadenaObj;	
-									newFileObj4 = new File(carpetaObj1);			
-									
-									if(!newFileObj4.exists()){
-										newFileObj4.mkdirs(); // Crea carpeta JSONstore      IGUAL QUE ANTES......................................
-									}else{
-										rutaArchivos = "JSONstore\\"+cadena+"\\"+cadenaDOC+"\\"+cadenaObj+"\\listaDeArchivosGeneralFinal.txt";
-										crearArchivoListaTxt = new File(rutaArchivos);	
-										System.out.println("VAAAAA A CREAR ARCHIVO TABLA");
-	
-										if (!crearArchivoListaTxt.exists()){
-											crearArchivoListaTxt.createNewFile();
-											
-											System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++\n");
-										}else{
-											System.out.println("/////////////////////////////////////////////////\n");
-										}	
-									}System.out.println("SALTO DE OBJ--!----!---!--!");
-									//ListJSONstores.getInstance().getNodoD(cadena).getListacd().getNodoCD(cadenaDOC).getListaS().agregarNodoS(cadenaObj);  // agrego a la listaCD (etapa2)
-	
-									}
-								leerObj.close();
-								almacenamientoObj.close();
-							}
-							}
-					}
-					leerDOC.close();
-					almacenamientoDoc.close();
-					
-				}
-			}
-			}
-			System.out.println("NO EXISTEN JSON ::............");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			leerTexto.close();
-			almacenamientoTexto.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-}		
+								if(!newFileObj4.exists()){										
+									newFileObj4.createNewFile(); // Crea carpeta JSONstore      IGUAL QUE ANTES......................................
+								}
+								
+								System.out.println("Objeto : "+cadenaObj +"Proveniente de :"+cadenaDOC+"\n");// ERROR NO ESTOY METIENDO DENTRO DEL ITEM DE ESA CARPETA
+								treeitemObj = new TreeItem(cadenaObj,new ImageView(ArcIcon));
+								treeitemDOC.getChildren().addAll(treeitemObj);
+								System.out.println("\n.Elemento para la lista Simple :."+cadenaObj);
+								
+								//ListJSONstores.getInstance().getNodoD(cadena).getListacd().getNodoCD(cadenaDOC).getListaS().agregarNodoS(cadenaObj);  // agrego a la listaCD (etapa2)
+								System.out.println("\n.______________Elemento CORRECTAMENTE agregado para la lista Simple :."+cadenaObj+"_______________________________");
 
-
-public void commit1(){
-	
-	TreeItem baseDatos = new TreeItem("LinkedDB",new ImageView(DBIcon));
-	treeView1.setRoot(baseDatos);
-	baseDatos.setExpanded(true);
-	
-	String listaTxtA = "JSONstore\\ListaJSONstore.txt";
-    try {
-		leerTextoA = new FileReader(listaTxtA);
-	} catch (FileNotFoundException e1) {
-		// TODO Auto-generated catch block
-		e1.printStackTrace();
-	}
-	almacenamientoTextoA=new BufferedReader(leerTextoA);
-	String cadenaA="";
-	ListJSONstores.getInstance().limpiar();		
-		try {
-			while((cadenaA=almacenamientoTextoA.readLine()) != null){
-				
-			TreeItem treeitem =new TreeItem(cadenaA,new ImageView(FileIcon));
-			baseDatos.getChildren().addAll(treeitem);
-			
-			ListJSONstores.getInstance().agregarNodoD(cadenaA);    // Se agrega a la ListaDoble (etapa1)
-							
-			String rutaDOC = "JSONstore\\"+cadenaA+"\\listaDeDoc.txt";	
-			FileReader leerDOC = new FileReader(rutaDOC);							
-			BufferedReader almacenamientoDoc=new BufferedReader(leerDOC);
-			String cadenaDOC="";
-				
-			while((cadenaDOC=almacenamientoDoc.readLine()) != null){					// ERROR NO ESTOY METIENDO DENTRO DEL ITEM DE ESA CARPETA
-					TreeItem treeitemDOC =new TreeItem(cadenaDOC,new ImageView(DocIcon));
-					treeitem.getChildren().addAll(treeitemDOC);
-					
-					ListJSONstores.getInstance().getNodoD(cadenaA).getListacd().agregarNodoCD(cadenaDOC);  // agrego a la listaCD (etapa2)
-					String rutaObj = "JSONstore\\"+cadenaA+"\\"+cadenaDOC+"\\listaDeObj.txt";
-					FileReader leerObj = new FileReader(rutaObj);							
-					BufferedReader almacenamientoObj=new BufferedReader(leerObj);
-					String cadenaObj="";
-							
-					while((cadenaObj=almacenamientoObj.readLine()) != null){					// ERROR NO ESTOY METIENDO DENTRO DEL ITEM DE ESA CARPETA
-						TreeItem treeitemObj =new TreeItem(cadenaObj,new ImageView(ArcIcon));
-						treeitemDOC.getChildren().addAll(treeitemObj);
+																	
+								
+								}
+							//ListJSONstores.getInstance().getNodoD(cadena).getListacd().getNodoCD(cadenaDOC).getListaS().mostrar();
+							System.out.println("SALTO DE OBJ--!----!---!--!");
+							leerObj.close();
+							almacenamientoObj.close();
+							}
 						
-						ListJSONstores.getInstance().getNodoD(cadenaA).getListacd().getNodoCD(cadenaDOC).getListaS().agregarNodoS(cadenaObj);  // agrego a la listaCD (etapa2)
-												
-					}
-					leerObj.close();
-					almacenamientoObj.close();
+							System.out.println("Proceso de Agregar Objetos Finalizado....!!....!! :) =) :) ");
+							
+						}
+						System.out.println("Finalización de la creacion/agregacion de los Doc");
+						leerDOC.close();
+						almacenamientoDoc.close();
+					
 				}
-			leerDOC.close();
-			almacenamientoDoc.close();
+			}			
+			System.out.println("NO EXISTEN JSON para seguir leyendo::.......fin.....");
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			
+			
+			
+			
+			}try {
+				leerTexto.close();
+				almacenamientoTexto.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		try {
-			leerTextoA.close();
-			almacenamientoTextoA.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
-	}catch (Exception e) {
-		// TODO: handle exception
+		}
+	}		
+
+	 private void deleteFolder(File fileDel) {
+	        if(fileDel.isDirectory()){            
+	            
+	            if(fileDel.list().length == 0)
+	                fileDel.delete();
+	            else{
+	                
+	               for (String temp : fileDel.list()) {
+	                   File fileDelete = new File(fileDel, temp);
+	                   //recursive delete
+	                   deleteFolder(fileDelete);
+	               }
+
+	               //check the directory again, if empty then delete it
+	               if(fileDel.list().length==0)
+	                   fileDel.delete();
+	               
+	            }
+
+	        }else{
+	            
+	            //if file, then delete it
+	            fileDel.delete();            
+	        }
+	    }
+	
+	public void lastCommit(){		
+		baseDatos = new TreeItem("LinkedDB",new ImageView(DBIcon));
+		//TreeItem DB = new TreeItem("LinkedDB");
+		treeView1.setRoot(baseDatos);
+		baseDatos.setExpanded(true);
+		
+		
+		carpetaJson = new File("C:\\Users\\kenne\\git\\LinkedDB\\LinkedDB\\JSONstore");
+		listaTxtJson = "JSONstore\\ListaJSONstore.txt";
+		
+		System.out.println("Creo Arbol Vacio Nuevo<commit>\n");
+		
+		ArchivoTxtJson = new File(listaTxtJson);
+		
+		if (carpetaJson.exists()){
+			System.out.println("Se va a eliminar la carpeta........");
+			deleteFolder(carpetaJson);
+			if(carpetaJson.delete()){   				// borra la vieja y crea una nueva en blanco......
+				System.out.println("\nCarpeta eliminada........");
+			}else{
+				System.out.println("\nCarpeta NO eliminada........");
+
+			}
+
+			
+			nombreArchivo = "JSONstore";
+			carpetaJson = new File(nombreArchivo);
+			listaTxtJson = "JSONstore\\ListaJSONstore.txt";
+			ArchivoTxtJson = new File(listaTxtJson);
+			carpetaJson.mkdirs();      // paso inicial de creacion  Al inicio no existia
+			try {
+				ArchivoTxtJson.createNewFile();
+
+				try {
+					FileWriter escribirA = new FileWriter(listaTxtJson); // si no escribe poner ArchivoTxtJson		,true
+					PrintWriter pw = new PrintWriter(escribirA);
+							
+					NodoListaD temp = ListJSONstores.getInstance().getFirstNodeD();
+					
+					while(temp != null){  // ver si me da el ultimo de la lista ---------- sino temp.getDato oooo solo temp
+						String valueNodeD = temp.getDato();
+						System.out.println("___________________________ nodo Obtenido :" +valueNodeD+".\n");
+						pw.println(valueNodeD);		// escribe en el txt
+						
+						treeitemJson =new TreeItem(valueNodeD,new ImageView(FileIcon));
+						baseDatos.getChildren().addAll(treeitemJson);
+												
+						carpetaEnJSON = "JSONstore\\"+temp.getDato();						
+						newFileJSON = new File(carpetaEnJSON);		
+						newFileJSON.mkdirs(); 						// Crea carpeta JSONstore
+						
+						rutaDOC = "JSONstore\\"+valueNodeD+"\\"+valueNodeD+"_listaDeDoc.txt";
+						crearDocListaTxt = new File(rutaDOC);		
+						
+						crearDocListaTxt.createNewFile();
+						
+						FileWriter escribirB = new FileWriter(rutaDOC,true);
+						PrintWriter lineaB = new PrintWriter(escribirB);
+						
+						
+						NodoListaCD temp1 = ListJSONstores.getInstance().getNodoD(valueNodeD).getListacd().getFirstNodeCD();
+						
+						while(temp1 != null){		 // igual que arriba si no guarda el ultimo hay que poner solo temp1	
+							String valueNodeCD = temp1.getDato();
+							System.out.println("Nodo CD del :"+valueNodeCD+" agregado a :"+valueNodeD+"\n");
+							lineaB.println(valueNodeCD);
+							
+							treeitemDOC =new TreeItem(valueNodeCD,new ImageView(DocIcon));
+							
+							treeitemJson.getChildren().addAll(treeitemDOC);
+							
+							
+							//NodoListaS nls = ListJSONstores.getInstance().getFirstNodeD().getListacd().getFirstNodeCD().getListaS().getFirstNodeS();
+							//ListJSONstores.getInstance().getNodoD(cadena).getListacd().agregarNodoCD(cadenaDOC);  // agrego a la listaCD (etapa2)
+							
+							carpetaEnDoc = "JSONstore\\"+valueNodeD+"\\"+valueNodeCD;		// crea la carpeta del documentoJson					
+							newFileDoc = new File(carpetaEnDoc);			
+							
+							newFileDoc.mkdirs(); // Crea carpeta JSONstore      IGUAL QUE ANTES......................................
+							rutaObj = "JSONstore\\"+valueNodeD+"\\"+valueNodeCD+"\\"+valueNodeCD+"_listaDeObj.txt"; // RUTAAAAA-----------------------------------------------------------------------------------------
+							crearObjListaTxt = new File(rutaObj);	
+							crearObjListaTxt.createNewFile();
+											
+							/*
+							
+										while((cadenaObj=almacenamientoObj.readLine()) != null){
+											
+											System.out.println("=0000000000000000000000000============= "+cadenaObj);// ERROR NO ESTOY METIENDO DENTRO DEL ITEM DE ESA CARPETA
+											treeitemObj = new TreeItem(cadenaObj,new ImageView(ArcIcon));
+											treeitemDOC.getChildren().addAll(treeitemObj);
+											System.out.println("\n............................lllll.........."+cadenaObj);
+																				
+											carpetaObj11 = "JSONstore\\"+cadena+"\\"+cadenaDOC+"\\"+cadenaObj+".txt";	
+											newFileObj4 = new File(carpetaObj11);			
+											
+											if(!newFileObj4.exists()){										
+												newFileObj4.createNewFile(); // Crea carpeta JSONstore      IGUAL QUE ANTES......................................
+												ListJSONstores.getInstance().getNodoD(cadena).getListacd().getNodoCD(cadenaDOC).getListaS().agregarNodoS(cadenaObj);  // agrego a la listaCD (etapa2)
+
+											}else{
+												System.out.println("++++++++++++++++++++++++ ANTES DE AGREGAR +++++++++++++++++++++++++\n = " + cadenaObj);
+												ListJSONstores.getInstance().getNodoD(cadena).getListacd().getNodoCD(cadenaDOC).getListaS().agregarNodoS(cadenaObj); 
+												System.out.println("++++++++++++++++++++++++ LUEGO DE AGREGAR +++++++++++++++++++++++++\n = " + cadenaObj);
+														// hacer txt......
+													
+												
+											}System.out.println("SALTO DE OBJ--!----!---!--!");
+											
+										}
+										//leerObj.close();
+										//almacenamientoObj.close();
+									}
+									}
+									
+									*/
+							
+						temp1 = temp1.getSiguiente();
+						}
+											
+					temp = temp.getSiguiente();
+					}
+					escribirA.close();
+					System.out.println("\nNO EXISTEN JSON ::..... o no mas .......");
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+			}catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}
+		System.out.println("Proceso de commit finalizado........................!");
+
 	}
-}
 
 
 	@Override

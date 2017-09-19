@@ -2,12 +2,10 @@ package Lists;
 
 public class ListaS {
 	private NodoListaS inicio ;
-	private NodoListaS fin;
 	private int size = 0;
 	
 	public ListaS(){
-		inicio =null;
-		fin=null;
+		inicio=null;
 	}
 	// Metodo para preguntar si esta vacia la lista de JSON store
 	public boolean estaListaSVacia(){
@@ -17,19 +15,20 @@ public class ListaS {
 		NodoListaS temp = inicio;
 		return temp;
 	}
+	
 	public void agregarNodoS(String nombre){	
-        NodoListaS nuevo = new NodoListaS(nombre);    // ListaCD listaCD ====> quitar pues ya aqui la puedo iniciar en null=vacia la listaCD
+        NodoListaS nuevotemp = new NodoListaS(nombre);    // ListaCD listaCD ====> quitar pues ya aqui la puedo iniciar en null=vacia la listaCD
         if(inicio == null){
-        	inicio = nuevo;
+        	inicio = nuevotemp;
         }else{
 	        NodoListaS aux = inicio;
 	        while(aux.getSiguiente() != null){
 	        	aux = aux.getSiguiente();       
 		    }
-	        aux.setSiguiente(nuevo);
+	        aux.setSiguiente(nuevotemp);
         }
         
-        System.out.println("JsonStore Agregado : "+nuevo.getDato()); 
+        System.out.println("Objeto Agregado : "+nuevotemp.getDato()); 
         }
 
 	//Metodo para ver los nombres de los JSON store
@@ -72,7 +71,8 @@ public class ListaS {
 	        }
 	    } 
 	    }
-	    public void setFirstNode(NodoListaS inicio) {
+	   
+	public void setFirstNode(NodoListaS inicio) {
 	        this.inicio = inicio;
 	    }  
 	//metodo para buscar un elemento

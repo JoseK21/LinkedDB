@@ -18,6 +18,7 @@ public class ListaD {
 	}
 	public ListaD limpiar(){
 		this.uniqueInstance=null;
+		ListaD uniqueInstance  =   null;
 		return uniqueInstance;
 	}
 	
@@ -66,10 +67,10 @@ public class ListaD {
 	      else{
 		      NodoListaD temp = inicio;
 		      System.out.print("Inicio->");
-		      do {
-		         System.out.print("["+ temp.getDato() +"]->");		         
-		         temp = temp.getSiguiente();		         
-		      } while ( temp != null );	
+		      while(temp != null){
+		    	  System.out.print("["+ temp.getDato() +"]->");	
+		    	  temp = temp.getSiguiente();
+		      }
 		      System.out.print("Fin-||");
 		   }
 	   }
@@ -144,8 +145,8 @@ public class ListaD {
 			  }}
 		  }
 	}
-	// CREO QUE NO ES NECESARIO PUES SOLO UCUPO UN SINGLETON DE DE JSONSTORE
-    public static ListaD getInstance(){
+
+	public static ListaD getInstance(){
         if(uniqueInstance == null){
               uniqueInstance = new ListaD();
         }

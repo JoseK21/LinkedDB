@@ -2,8 +2,8 @@ package Lists;
 
 public class NodoListaD {
 	private String dato;
-	private NodoListaD siguiente,anterior;	
 	
+	private NodoListaD siguiente,anterior;		
 	private ListaCD listacd = new ListaCD();
 	
 	public NodoListaD(String nombreNodo,ListaCD LISTACD) {
