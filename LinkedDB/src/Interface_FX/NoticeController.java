@@ -12,6 +12,11 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+/**
+ * Clase que permite la creación de mensajes informativos hacia el Usuario
+ * @author José C.Núñez 
+ *
+ */
 public class NoticeController implements Initializable{
 	
 	@FXML private Label MsjCreate;
@@ -20,21 +25,34 @@ public class NoticeController implements Initializable{
 	Image imgC = new Image(getClass().getResourceAsStream("/img/correcto.png"));
 	Image imgInc = new Image(getClass().getResourceAsStream("/img/incorrect.png"));
 	Image imgErr = new Image(getClass().getResourceAsStream("/img/error.png"));
+	Image imgDel = new Image(getClass().getResourceAsStream("/img/delete.png"));
 	
+	/**
+	 * Método para asignar un texto(renglón) al mensaje informativo
+	 * @param name
+	 */
 	public void setText(String name){
 		this.MsjCreate.setText(name);
 			
 	}
+	/**
+	 *  Método para asignar una imagen al mensaje informativo
+	 * @param msj
+	 */
 	public void setImage1(String msj){
 		String c = "correcto";
 		String inc = "incorrecto";
 		String v = "vacio";
+		String d = "del";
 		
 		if (msj == c){			
 			this.Imag1.setImage(imgC);
 			
 		}else if(msj == inc){
 			this.Imag1.setImage(imgErr);
+			
+		}else if(msj == d){
+			this.Imag1.setImage(imgDel);
 			
 		}else{
 			this.Imag1.setImage(imgInc);
@@ -43,6 +61,10 @@ public class NoticeController implements Initializable{
 			
 	}
 	
+	/**
+	 * Método para proseguir en el sistema-pantalla inicial-
+	 * @param event
+	 */
 	@FXML
 	public void accept(ActionEvent event){
 		try{
@@ -50,7 +72,7 @@ public class NoticeController implements Initializable{
 			FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("InterfaceLinkedDB.fxml"));
 			InterfaceLinkedDBController displayCommit = fxmlLoader1.getController();
 			
-			displayCommit.enableCommit(false);
+			//displayCommit.enableCommit(false);
 			
 		}catch (Exception e) {
 			// TODO: handle exception

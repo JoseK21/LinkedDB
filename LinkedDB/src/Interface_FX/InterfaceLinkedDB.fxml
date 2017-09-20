@@ -24,7 +24,7 @@
                 <Menu fx:id="MenuJsonStore" mnemonicParsing="false" text="JsonStore">
                   <items>
                         <MenuItem fx:id="CreateJsonStore" mnemonicParsing="false" onAction="#OpenNew_JSONStore" text="Create" />
-                    <MenuItem mnemonicParsing="false" text="Delete" />
+                    <MenuItem mnemonicParsing="false" onAction="#delete_JSONstore" text="Delete" />
                   </items>
                 </Menu>
                 <Menu fx:id="MenuJsonDocument" mnemonicParsing="false" text="JsonDocument">

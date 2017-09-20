@@ -1,6 +1,6 @@
 package Interface_FX;
 
-import java.io.*;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -18,34 +18,27 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 /**
- * Clase para realizar Json Stores
+ * Clase que permite proporcionar una interface gráfica para la creación de Json Store
  * @author José C.Núñez 
  *
  */
-public class JSONStoreController implements Initializable {
-	ListaD ListJSONstores = ListaD.getInstance();		
-	@FXML private TextField textJsonStore;
+public class JsonStoreDeleteController implements Initializable {
+	
 	@FXML private TextField textJsonStoreD;
-	private String NameFile;	
-	private File archivoOtro;
-	private File NewJsonStore;
-	private FileWriter escribir; // para escribir en el archivo
-	private PrintWriter linea;
-	private FileReader leer;
-	private BufferedReader almacenamiento;
-	private String cadena;
-	private String msjCreate ;
+	private String NameFileD;	
 	private String msj;
+	
 
-		
 	/**
-	 * Método para crear un nuevo Json Store implicando realizar las verificaciones pertinentes
+	 * Método para eliminar un Json Store de la lista doblemente enlazada
 	 * @param event
 	 * @throws IOException
 	 */
 	@FXML
-	public void createNewJsonStore(ActionEvent event) throws IOException{	
-		NameFile = textJsonStore.getText();	
+	public void deleteJsonStore(ActionEvent event) throws IOException{	
+		ListaD ListJSONstores = ListaD.getInstance();		
+		NameFileD = textJsonStoreD.getText();	
+		
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Notice.fxml"));
 		Parent root1 = (Parent) fxmlLoader.load();
 				
@@ -53,23 +46,22 @@ public class JSONStoreController implements Initializable {
 		
 		((Node)event.getSource()).getScene().getWindow().hide();
 		
-		if (!NameFile.isEmpty()) {
-			if(ListJSONstores.getInstance().buscarNodoD(NameFile)==false){
-				msj = "correcto";
-				display.setText("Great .. Your JsonStore ( "+NameFile+" ) was successfully created");						
+		if (!NameFileD.isEmpty()) {
+			if(ListJSONstores.getInstance().buscarNodoD(NameFileD)==true){
+				msj = "del";
+				display.setText("Your JsonStore ( "+NameFileD+" ) was successfully deleted");						
 				display.setImage1(msj);
 				
 				//displayCommit.enableCommit(false);
 				
-				ListJSONstores.getInstance().agregarNodoD(NameFile);  // agrego a la lista			ListJSONstores.insertarFinal(NameFile); 
-				System.out.println("JsonStore agregado a la lista: "+NameFile+"\nLista Actualizada");
+				ListJSONstores.getInstance().eliminarNodoD(NameFileD);   
+				System.out.println("JsonStore eliminado a la lista: "+NameFileD+"\nLista Actualizada");
 				ListJSONstores.getInstance().imprimirListaD();
 			}else{
 				msj="incorrecto";
-				display.setText("Existing JsonStore ( "+ NameFile +" ),try using a different name");
+				display.setText("JsonStore ( "+ NameFileD +" ) does not exist,try using a different name");
 				display.setImage1(msj);
-				System.out.println("Dato existente =<"+NameFile+">");
-				System.out.println("INCORRECTO : El JsonStore No se tiene que agregar a la lista: "+NameFile+"\nLista sin cambios :");
+				
 				ListJSONstores.getInstance().imprimirListaD();
 				System.out.println("\n");				
 			}
@@ -77,7 +69,7 @@ public class JSONStoreController implements Initializable {
 			msj="vacio";
 			display.setImage1(msj);
 			display.setText("Warning..! Blank space");
-			System.out.println("Error : El JsonStore No tiene nombre : ("+NameFile+")\nLista sin cambios :");
+			System.out.println("Error : El JsonStore No tiene nombre : ("+NameFileD+")\nLista sin cambios :");
 			ListJSONstores.getInstance().imprimirListaD();
 		}		
 		
@@ -90,7 +82,9 @@ public class JSONStoreController implements Initializable {
 		
 	}
 	
+	
 	@Override
 	public void initialize(URL url, ResourceBundle rb){	
 		}   
-	}
+	
+}

@@ -1,21 +1,41 @@
 package Lists;
 
+/**
+ * Clase de listas simplemntes enlazadas, que permite el almacenamiento temporal de los Objetos Json
+ * @author José C.Núñez 
+ *
+ */
 public class ListaS {
 	private NodoListaS inicio ;
 	private int size = 0;
 	
+	/**
+	 * Constructor de la lista simplemente enlazada
+	 */
 	public ListaS(){
 		inicio=null;
 	}
-	// Metodo para preguntar si esta vacia la lista de JSON store
+	
+	/**
+	 *  Método para saber si la lista simple esta vacia
+	 * @return
+	 */
 	public boolean estaListaSVacia(){
 		return inicio==null;
 	}
+	/**
+	 * Método para obtener el primer nodo de la lista simple
+	 * @return
+	 */
 	public NodoListaS getFirstNodeS(){
 		NodoListaS temp = inicio;
 		return temp;
 	}
 	
+	/**
+	 * Método para agrenar un nodo a la lista simple
+	 * @param nombre
+	 */
 	public void agregarNodoS(String nombre){	
         NodoListaS nuevotemp = new NodoListaS(nombre);    // ListaCD listaCD ====> quitar pues ya aqui la puedo iniciar en null=vacia la listaCD
         if(inicio == null){
@@ -31,7 +51,10 @@ public class ListaS {
         System.out.println("Objeto Agregado : "+nuevotemp.getDato()); 
         }
 
-	//Metodo para ver los nombres de los JSON store
+	
+	/**
+	 * Método para mostrar la lista simple
+	 */
 	public void mostrar(){
 		NodoListaS temporal = inicio;
 		System.out.print("INICIO>");
@@ -43,6 +66,10 @@ public class ListaS {
 		System.out.print("| <-fin");
 		
 	}
+	/**
+	 * Método para eliminar un nodo la lista simple
+	 * @param dato
+	 */
 	public void eliminar(Object dato) {
 	    if (inicio != null) {
 	        NodoListaS temporal = inicio;
@@ -72,10 +99,18 @@ public class ListaS {
 	    } 
 	    }
 	   
+	/**
+	 * Método para seleccionar el primer nodo de la lista simple
+	 * @param inicio
+	 */
 	public void setFirstNode(NodoListaS inicio) {
-	        this.inicio = inicio;
-	    }  
-	//metodo para buscar un elemento
+	        this.inicio = inicio;  }  
+	
+	/**
+	 * Método para buscar un elemento dentro de la lista simple
+	 * @param dato
+	 * @return
+	 */
 	public boolean buscar(Object dato){
 		NodoListaS temporal = inicio;
 		
@@ -90,9 +125,5 @@ public class ListaS {
 			return false;
 
 		}
-	}
-		
-	public static void main(String[] args){
-		
 	}
 }

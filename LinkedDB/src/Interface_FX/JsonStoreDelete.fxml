@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="211.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface_FX.JsonStoreDeleteController">
+   <children>
+      <Label layoutX="188.0" layoutY="34.0" text="Delete Json Store" />
+      <Button layoutX="208.0" layoutY="145.0" mnemonicParsing="false" onAction="#deleteJsonStore" text="Delete" />
+      <TextField fx:id="textJsonStoreD" layoutX="29.0" layoutY="81.0" prefHeight="25.0" prefWidth="389.0" promptText="Json Store" />
+   </children>
+</AnchorPane>

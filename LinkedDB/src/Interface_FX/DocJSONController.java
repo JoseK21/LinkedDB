@@ -22,10 +22,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 
+/**
+ * Esta clase permite la creación de Documentos Json a partir de las verificaciones correspondientes de este
+ * @author José C.Núñez 
+ */
 public class DocJSONController implements Initializable {
-	//ListaCD ListaDocJSON = ListaCD.getInstance();
-	
-	
 	ListaD ListaJSONstores = ListaD.getInstance();
 	
 	
@@ -36,11 +37,13 @@ public class DocJSONController implements Initializable {
 	@FXML private Button verificarNameDoc;
 	@FXML private Label msjVerJSONstore;
 	@FXML private Label msjCreacionDocJSON;
-	/*
-	 *verificarNameDoc.setDisable(true);
-	 * nameDocumento.setDisable(true); 
-	 */
+		
 	
+	
+	/**
+	 * Método 1° inicial para realizar la creación de documentos Json a partir de los datos en la lista doblemente enlazada
+	 * @param event
+	 */
 	@FXML
 	public void verificar(ActionEvent event){
 		
@@ -58,98 +61,12 @@ public class DocJSONController implements Initializable {
 		}
 	}
 	
-	public void crearDocJSON(ActionEvent event) throws IOException{			
-		String NameJson = nameJSONstore.getText();
-		String NameDoc = nameDocumento.getText();
-		System.out.println("\nNameJson("+NameJson+")__NameDoc("+NameDoc+")__\n");
-		
-		if (ListaJSONstores.getInstance().buscarNodoD(NameJson) == true){
-			System.out.println("JSON store encontrado Dentro de la lista =("+ NameJson+")");
-			//msjVerJSONstore.setText("");
-			String carpetaJSONEspecifico = "JSONstore\\"+NameJson+"\\"+NameDoc;			 // creacion de la carpeta
-			File crearArchivoTxt = new File(carpetaJSONEspecifico);		
-			String carpetaDOC = "JSONstore\\"+NameJson+"\\lista";
-			String newruta;
-			
-			if (!crearArchivoTxt.exists()){  // verifica si el txt existe
-				if (crearArchivoTxt.mkdirs()){ // crea carpeta
-					System.out.println("Archivo txt agregado en la carpeta respectiva");					
-					//ListaJSONstore.getNodo(NameJson).getListacd().agregar(NameDoc);		//ListaDocJSON.agregar(NameDoc);
-					
-					System.out.println("------ "+ListaJSONstores.getInstance().getNodoD(NameJson).getListacd()); // xxxxxxxxxxxxxxxxxxxxxxxxxxx
-					
-					//ListaJSONstore.getInstance().getNodo(NameJson).getListacd();
-					System.out.println("ANtes del error!!!! ");
-					
-					//ListaJSONstore.getInstance1().getNodo(NameJson).getListacd().agregarAlFinal(NameDoc);
-					
-					//ListaJSONstore.getInstance().getNodo(NameJson).getListacd().agregarAlFinal(NameDoc);					
-					System.out.println("DocJson /"+NameDoc +"/  Agregando al JsonStore = "+NameJson+"\n");
-					//ListaDocJSON.imprimir(ListaDocJSON);
-					ListaJSONstores.getInstance().getNodoD(NameJson).getListacd().agregarNodoCD(NameDoc);
-					//System.out.println("Exito DOC  agregado a la lista " + ListaJSONstore.getInstance().getNodo(NameJson).getListacd().imprimirLista(); //ListaJSONstore.getNodo(NameJson).getListacd().buscarNodo(NameDoc))
-					
-					msjCreacionDocJSON.setText("Documento creado");
-					cont_Atributos.setDisable(false);
-					
-					newruta = carpetaDOC +NameJson +"Doc.txt";  // crear txt GENERAL 
-					String rutaestablecida = newruta;
-					try{
-						File archi = new File(rutaestablecida);
-						if(archi.createNewFile()){    										// creo que solo se crea el txt ty sele agrega el nombre
-							System.out.println("LIsta Agregada al JSON respectivo");
-							FileWriter escribirDoc = new FileWriter(rutaestablecida,true);
-							PrintWriter lineaDoc = new PrintWriter(escribirDoc);
-							System.out.println("DAto a escribir en el txt :"+NameDoc);
-							
-							lineaDoc.println(NameDoc);
-							
-							//ListaJSONstore.getInstance().getNodo(NameJson).getListacd().agregar(NameDoc);
-							ListaJSONstores.getInstance().getNodoD(NameJson).getListacd().agregarNodoCD(NameDoc);
-							System.out.println("Nodo agregado : "+ ListaJSONstores.getInstance().getNodoD(NameJson).getListacd().buscarNodoCD(NameDoc));
-							ListaJSONstores.getInstance().getNodoD(NameJson).getListacd().imprimirListaCD();
-							//System.out.println(ListaJSONstore.getInstance().getNodo(NameJson).getListacd().imprimirLista());
-							
-							lineaDoc.close();
-							escribirDoc.close();
-						}else{
-							System.out.println("LIsta no Agregada..... ya existe =)");
-							System.out.println("LIsta Agregada al JSON respectivo");
-							FileWriter escribirDoc = new FileWriter(rutaestablecida,true);
-							PrintWriter lineaDoc = new PrintWriter(escribirDoc);
-							System.out.println("DAto a escribir en el txt :"+NameDoc);
-							
-							ListaJSONstores.getInstance().getNodoD(NameJson).getListacd().agregarNodoCD(NameDoc);
-							System.out.println("Nodo agregado : "+ ListaJSONstores.getInstance().getNodoD(NameJson).getListacd().buscarNodoCD(NameDoc));
-							ListaJSONstores.getInstance().getNodoD(NameJson).getListacd().imprimirListaCD();
-							
-							lineaDoc.println(NameDoc);
-							
-							lineaDoc.close();
-							escribirDoc.close();
-							
-							
-						}
-					}catch (Exception e) {
-						// TODO: handle exception
-					}
-					
-				}
-				else{
-					System.out.println("Archivo txt NOOOOOOOO agregado en la carpeta");
-				}
-			}else{
-				System.out.println("El Archivo ya existe dentro del JSON store");	
-			}
-			
-		}else{
-			msjCreacionDocJSON.setText("Documento existente");
-			
-		}	
-		
-	}
-	//-------------------------------------------------------------------------
 	
+	/**
+	 * Método 2° final para la creación de un Documento Json
+	 * @param event
+	 * @throws IOException
+	 */
 	public void crearDocJSON1(ActionEvent event) throws IOException{			
 		String NameJson = nameJSONstore.getText();
 		String NameDoc = nameDocumento.getText();
@@ -176,6 +93,10 @@ public class DocJSONController implements Initializable {
 		
 	}
 	
+	/**
+	 * Método que permite proseguir a formular las listas de atributos a partir de un Documento Json particular
+	 * @param event
+	 */
 	@FXML
 	public void continuar(ActionEvent event){
 		//if (Existe un JSON Store )
@@ -199,6 +120,10 @@ public class DocJSONController implements Initializable {
 	}
 	
 	
+	/**
+	 * Método para regresar a la pantalla inicial 
+	 * @param event
+	 */
 	@FXML
 	public void atras(ActionEvent event){
 		try{

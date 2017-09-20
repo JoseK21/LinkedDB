@@ -17,6 +17,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * Clase para crear los Objetos Json de un Documento Json correspondiente
+ * @author José C.Núñez 
+ *
+ */
 public class ObjectJSONController extends Application {
 	ObservableList<String> tiposStatusList = FXCollections.observableArrayList("Entero","Flotante","Cadena","Fecha-Hora");
 	ObservableList<String> tiposEspecialesStatusList = FXCollections.observableArrayList("Llave Primaria","Llave Foranea");
@@ -30,6 +35,10 @@ public class ObjectJSONController extends Application {
 	
 	
 	
+	/**
+	 * Método para asignar un valor por defecto
+	 * @param event
+	 */
 	@FXML
 	public void DisableVal_Defaul(ActionEvent event){
 		if (textRequerido.isSelected()){
@@ -41,17 +50,29 @@ public class ObjectJSONController extends Application {
 		}
 	}
 	
+	/**
+	 * Método para guardar la modificación dentro de la lista simplemente enlazada
+	 * @param event
+	 */
 	@FXML
 	public void guardarLista_Atributos(ActionEvent event){
 		txtmsjAccion.setText("Guardado Correcto");
 	
 	}
 	
+	/**
+	 * Método para modificar la lista simplemente enlazada de un Objeto
+	 * @param event
+	 */
 	@FXML
 	public void moficicarLista_Atributos(ActionEvent event){
 		// Busca los valores que tenia y los muestra para que el usuario veo lo que tenia y asai pueda cambiar lo que el quiere
 	}
 	
+	/**
+	 * Método pare regresar a la pantalla inicial desde la Lista de Atributos
+	 * @param event
+	 */
 	@FXML
 	public void volverInicio(ActionEvent event){
 		
@@ -68,6 +89,10 @@ public class ObjectJSONController extends Application {
 			System.out.println("Can´t load new window");
 	}}
 	
+	/**
+	 * Método pare regresar a la pantalla inicial
+	 * @param event
+	 */
 	@FXML
 	public void atras(ActionEvent event){
 		// String valor = tiposStatusBox.getValue();         Forma de pasar valores 
@@ -96,12 +121,6 @@ public class ObjectJSONController extends Application {
 		
 		val_def.setDisable(true);
 		dataval_def.setDisable(true);
-		
-	}
-
-	
-	@Override
-	public void start(Stage primaryStage) {
 		
 	}
 

@@ -1,5 +1,10 @@
 package Lists;
 
+/**
+ * Clase de listas doblemente enlazadas, que permite el almacenamiento temporal de los Json Stores
+ * @author José C.Núñez 
+ *
+ */
 public class ListaD {
 	private NodoListaD inicio;
 	private NodoListaD fin;
@@ -8,20 +13,37 @@ public class ListaD {
     private static  ListaD uniqueInstance  =   null;
 
 	
-	// Constructor por defecto
+	
+	/**
+	 * Constructor de la lista doblemente enlazada
+	 */
 	public ListaD(){
 		inicio=fin=null;	
 	}
-	//Metodo para saber si la lista esta vacia											REVISAR SE ES ListaD lista ó si es en BLANCO.
+											
+	/**
+	 * Metodo para obtener una respuesta si la lista doblemente enlazada esta vacia
+	 * @return
+	 */
 	public boolean estaListaDVacia(){
 		return inicio==null;
 	}
+	
+	/**
+	 * Método para borrar todo la lista doble
+	 * @return
+	 */
 	public ListaD limpiar(){
 		this.uniqueInstance=null;
 		ListaD uniqueInstance  =   null;
 		return uniqueInstance;
 	}
 	
+	/**
+	 * Método para obtener un nodo de la lista doble
+	 * @param nodoName
+	 * @return
+	 */
 	public NodoListaD getNodoD(String nodoName){
 		NodoListaD aux = inicio;
 		while (aux != null){
@@ -34,6 +56,10 @@ public class ListaD {
 		}return null;	
 		
 	}
+	/**
+	 * Método para obtener el largo de la lista doble
+	 * @return
+	 */
 	public int getSize(){
 		NodoListaD temp = inicio;
 		while (temp != null){
@@ -42,6 +68,10 @@ public class ListaD {
 		return size;
 	}
 	
+	/**
+	 * Método para agregar un nodo a la lista doble
+	 * @param nombre
+	 */
 	public void agregarNodoD(String nombre){	
 		ListaCD ListCD = new ListaCD();
         NodoListaD nuevo = new NodoListaD(nombre,ListCD);    // ListaCD listaCD ====> quitar pues ya aqui la puedo iniciar en null=vacia la listaCD
@@ -59,6 +89,9 @@ public class ListaD {
         System.out.println("Lista en memoria : "+ListCD);
         }
 	
+	/**
+	 * Método para mostrar la lista doble
+	 */
 	public void imprimirListaD() {
 	      if (estaListaDVacia() == true ) {
 	         System.out.println("Lista Vacía");
@@ -75,6 +108,11 @@ public class ListaD {
 		   }
 	   }
 	
+	/**
+	 * Método para buscar dentro de la lista doble un elemento
+	 * @param dato
+	 * @return
+	 */
 	public boolean buscarNodoD(String dato){
 		
 		NodoListaD temporal = inicio;
@@ -90,11 +128,19 @@ public class ListaD {
 		
 	
 	}	
+	/**
+	 * Método para obtener el primer nodo de todo la lista doble
+	 * @return
+	 */
 	public NodoListaD getFirstNodeD(){
 		NodoListaD temporal = inicio;
 		return temporal;
 	}
-	public void eliminarNodoD(Object dato){
+	/**
+	 * Método para elimiar un noodo de la lista doble
+	 * @param dato
+	 */
+	public void eliminarNodoD(String dato){
 		  
 		  if(estaListaDVacia()){
 			  System.out.println("Lista vacia");
@@ -124,19 +170,24 @@ public class ListaD {
 				  anterior = inicio;
 				   
 				  while(siguiente !=  null && siguiente.getDato() != dato){  
+					  System.out.println("1.............. while .........");
 					  temporal = temporal.getSiguiente();		    
 					  siguiente = siguiente.getSiguiente();		    
 					  anterior = anterior.getSiguiente();
 				  }
 				  if(siguiente != null && siguiente != fin){
+					  System.out.println("2____________________ if _______");
 					  System.out.println("Se elimino /"+siguiente.getDato()+"/");
 					  siguiente.getSiguiente().setAnterior(temporal.getAnterior());
 					  anterior.getAnterior().setSiguiente(temporal.getSiguiente());
 					  }
 				  else{ 
 					  if(siguiente == fin){
+						  System.out.println("Se elimino -------------------/"+siguiente.getDato()+"/");
+
+						  System.out.println("2__________140__________ else _______");
+
 						  System.out.println("elemento ULTIMO de la lista/");
-						  System.out.println("Se elimino /"+siguiente.getDato()+"/");
 						  fin = fin.getAnterior();
 						  fin.setSiguiente(null);
 					  }else{
@@ -146,18 +197,17 @@ public class ListaD {
 		  }
 	}
 
+	/**
+	 * Método para obtener una unica instancia 
+	 * @return
+	 */
 	public static ListaD getInstance(){
         if(uniqueInstance == null){
               uniqueInstance = new ListaD();
         }
         return uniqueInstance;
     }
-
 	
-	public static void main(String[] args){
-		
-	}
-
 
 }
 		   

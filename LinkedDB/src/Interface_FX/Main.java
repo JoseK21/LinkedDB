@@ -21,10 +21,15 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 
 
+/**
+ * Clase Principal del sistema 
+ * @author José C.Núñez 
+ *
+ */
 public class Main extends Application {
 	
 	@FXML private TreeView treeView1;
-	// Abre la ventana inicial
+	
 	@Override
 	public void start(Stage primarystage) throws Exception{
 		primarystage.setTitle("LinkedDB");
@@ -38,6 +43,11 @@ public class Main extends Application {
 		
 	}
 	
+	/**
+	 * Método para iniciar el sistema
+	 * @param args
+	 * @throws Exception
+	 */
 	public static void main(String[] args) throws Exception {	
 			
 		launch(args);
