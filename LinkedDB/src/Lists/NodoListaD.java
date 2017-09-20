@@ -18,12 +18,9 @@ public class NodoListaD {
 
 	public ListaCD getListacd() {
 		if (listacd == null) {
-			System.out.println("Lista Vacia");
-			System.out.println("\n-Lista Nueva agregada ");
 			return listacd =new ListaCD();
 			
 		}else{
-			System.out.println("Lista existente enviada ");
 			return listacd;
 			}
 	}

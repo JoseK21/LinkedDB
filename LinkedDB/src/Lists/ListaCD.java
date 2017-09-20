@@ -51,13 +51,11 @@ public class ListaCD {
         NodoListaCD nuevo = new NodoListaCD(nombreDoc,listSim);      
         
         if (inicio == null){
-        	System.out.println("LISTA VACIA...Entro al agregar con el valor correcto y dandole una lista simple vacia");
         	nuevo.setSiguiente(nuevo);
         	nuevo.setAnterior(nuevo);
         	inicio=nuevo;
         	fin=inicio;
         }else {
-        	System.out.println("Otro nodo simple111111111111111111111111111111111111111111");
         	nuevo.setAnterior(fin);
         	fin.setSiguiente(nuevo);
         	inicio.setAnterior(nuevo);
@@ -65,7 +63,6 @@ public class ListaCD {
         	fin=nuevo;  
         }
         size++;
-        System.out.println(listSim);
     }
 	
 	/**

@@ -84,9 +84,7 @@ public class ListaD {
 		    }
 	        aux.setSiguiente(nuevo);
 	        nuevo.setAnterior(aux);
-        }
-        System.out.println("JsonStore Agregado : "+nuevo.getDato());       
-        System.out.println("Lista en memoria : "+ListCD);
+        }        
         }
 	
 	/**

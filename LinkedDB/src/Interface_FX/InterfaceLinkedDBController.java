@@ -59,50 +59,21 @@ import javafx.stage.Stage;
 public class InterfaceLinkedDBController implements Initializable {
 	ListaD ListJSONstores = ListaD.getInstance();
 	
-	@FXML private Menu MenuJsonStore;
-	@FXML private Menu MenuJsonDocument;
-	@FXML private MenuItem CreateJsonStore;
-	@FXML private MenuItem DeleteJsonStore;
-	@FXML private MenuItem CreateJsonDoc;
-	@FXML private MenuItem MenuItemMenuCommit;
-	@FXML private Label msjCrearJSONstore;
-	@FXML private Label conf_Create;	
+	@FXML private Menu MenuJsonStore,MenuJsonDocument;
+	@FXML private MenuItem CreateJsonStore,DeleteJsonStore,CreateJsonDoc,MenuItemMenuCommit;
+	@FXML private Label msjCrearJSONstore , conf_Create;	
 	@FXML private TextField textnameJSONStore;
-	@FXML private TreeView treeView1;
-	@FXML private TableView tabla;
-	@FXML private TreeItem baseDatos;
-	@FXML private TreeItem treeitemJson;
-	private String texto;
-	private FileReader leerTexto;
-	private BufferedReader almacenamientoTexto;
-	private FileReader leerTextoA;
-	private BufferedReader almacenamientoTextoA;
-	private String nombreArchivo;
-	private File carpetaJson;
-	private File ArchivoTxtJson;
-	private File newFileJSON;
-	private String listaTxtJson;
-	private String cadena;
-	private String carpetaEnJSON;
-	private String rutaDOC;
-	private File crearDocListaTxt;
-	private FileReader leerDOC ;
-	private BufferedReader almacenamientoDoc;
-	private String cadenaDOC;
-	private TreeItem treeitemDOC;
-	private String carpetaEnDoc;
-	private File newFileDoc;
-	private String rutaObj ;
-	private File crearObjListaTxt ;
-	private FileReader leerObj ;
-	private BufferedReader almacenamientoObj;
-	private String cadenaObj;
-	private TreeItem treeitemObj;
-	private String carpetaObj11;
-	private File newFileObj4 ;
-	private String rutaArchivos ;
-	private File crearArchivoListaTxt ;
+	@FXML private TreeView treeView1;	
+	@FXML private TableView tabla;	
+	@FXML private TreeItem baseDatos,treeitemJson,treeitemDOC,treeitemObj;
+	private FileReader leerTexto,leerTextoA ,leerDOC,leerObj ;
+	private BufferedReader almacenamientoTexto , almacenamientoTextoA,almacenamientoDoc,almacenamientoObj;	
+	private File carpetaJson,ArchivoTxtJson,newFileJSON,newFileDoc,crearDocListaTxt,crearObjListaTxt,crearArchivoListaTxt,newFileObj4;
+	private String listaTxtJson,cadena,carpetaEnJSON,rutaDOC ,rutaArchivos,carpetaObj11,rutaObj,cadenaObj,texto,nombreArchivo,cadenaDOC,carpetaEnDoc;
+
+
 	
+
 	
 	//MenuItem tiposEspecialesStatusList = (MenuItem) FXCollections.observableArrayList("Show All Object","Add new Object","Delete All Object","Delete Document","Delete/Search Object Key","Delete Object","Search for Attribute","Update Object");                             
 
@@ -131,9 +102,7 @@ public class InterfaceLinkedDBController implements Initializable {
 	@FXML
 	public void OpenNew_JSONStore(ActionEvent event){			
 		try{
-			//((Node)event.getSource()).getScene().getWindow().hide();
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("JSONStore.fxml"));
-			
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("JSONStore.fxml"));			
 			Parent root1 = (Parent) fxmlLoader.load();
 			Stage stage = new Stage();
 			stage.initModality(Modality.WINDOW_MODAL);
@@ -153,7 +122,6 @@ public class InterfaceLinkedDBController implements Initializable {
 	 */
 	public void enableCommit(boolean v){
 		MenuItemMenuCommit.setDisable(false);
-		
 	}
 	/**
 	 * Método para abrir una nueva ventana para la creación de Documentos Json 
@@ -162,9 +130,7 @@ public class InterfaceLinkedDBController implements Initializable {
 	@FXML
 	public void OpenCreate_DocJSON(ActionEvent event){		
 		try{			
-			//((Node)event.getSource()).getScene().getWindow().hide();
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DocJSON.fxml"));
-			
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DocJSON.fxml"));			
 			Parent root2 = (Parent) fxmlLoader.load();
 			Stage stage = new Stage();
 			stage.initModality(Modality.WINDOW_MODAL);
@@ -182,7 +148,7 @@ public class InterfaceLinkedDBController implements Initializable {
 	 * @param event
 	 */
 	@FXML
-	public void delete_JSONstore(ActionEvent event){		
+	public void doorDelete_JSONstore(ActionEvent event){		
 		try{
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("JsonStoreDelete.fxml"));
 			Parent root = (Parent) fxmlLoader.load();
@@ -234,10 +200,7 @@ public class InterfaceLinkedDBController implements Initializable {
 				System.out.println("Can´t load new window");
 			}
 		}*/
-			
-	}
-	
-		
+	}		
 	
 	/**
 	 *  Método para actualizar cualquier cambio que realice el usuario
@@ -249,18 +212,14 @@ public class InterfaceLinkedDBController implements Initializable {
 		PrintWriter escribir;
 				
 		if (ListJSONstores.estaListaDVacia()==false){				
-			NodoListaD t = ListJSONstores.getFirstNodeD();
-			
+			NodoListaD t = ListJSONstores.getFirstNodeD();			
 			while(t != null){
 				String tname = t.getDato();			
 				TreeItem treeitem =new TreeItem(tname,new ImageView(FileIcon));
-				baseDatos.getChildren().addAll(treeitem);
-				System.out.println("Nombre del Json << En Interface>> = ---["+t.getDato()+"]");					
-				
+				baseDatos.getChildren().addAll(treeitem);					
 				if(t.getListacd().estaListaCDVacia()==false){	
 					NodoListaCD t1 = t.getListacd().getFirstNodeCD();	
-					NodoListaCD first = t.getListacd().getInicio();	
-					
+					NodoListaCD first = t.getListacd().getInicio();						
 					do{
 						String t1name = t1.getDato();
 						System.out.println("Nombre del Doc Json = <<<-"+t1name);
@@ -284,12 +243,10 @@ public class InterfaceLinkedDBController implements Initializable {
 				}
 				t= t.getSiguiente();												//CORRECTO
 			}
-			System.out.println("LLego al ultimo nodo de JSON store");
+			
 		}
-		System.out.println("Nada que Actualizar Lista JSONstore VACIAAAAA... :) ");
+		
 	}
-	
-	
 	
 	/**
 	 * Método para cargar todo el contenido de los ficheros (txt) hacia el sistema
@@ -298,23 +255,16 @@ public class InterfaceLinkedDBController implements Initializable {
 	//MenuItemMenuCommit.setDisable(true);
 	
 	baseDatos = new TreeItem("LinkedDB",new ImageView(DBIcon));
-	//TreeItem DB = new TreeItem("LinkedDB");
 	treeView1.setRoot(baseDatos);
 	baseDatos.setExpanded(true);
 	
 	nombreArchivo = "JSONstore";
 	carpetaJson = new File(nombreArchivo);
-	listaTxtJson = "JSONstore\\ListaJSONstore.txt";
-	
-	System.out.println("Creo Arbol Vacio");
-	
-	
+	listaTxtJson = "JSONstore\\ListaJSONstore.txt";	
 	
 	if (!carpetaJson.exists()){
 		carpetaJson.mkdirs();      // paso inicial de creacion  Al inicio no existia
 		ArchivoTxtJson = new File(listaTxtJson);
-		System.out.println("Se creo una inicial Carpeta JsonStore");
-		System.out.println("Se detuvo el programa");
 		try {
 			ArchivoTxtJson.createNewFile();
 		} catch (IOException e) {
@@ -322,25 +272,20 @@ public class InterfaceLinkedDBController implements Initializable {
 			e.printStackTrace();
 		}
 	}else{
-		System.out.println("Ya existia la carpeta de JsonStore");
 		try {
 			leerTexto = new FileReader(listaTxtJson);
 			almacenamientoTexto=new BufferedReader(leerTexto);
 		}catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
-		
-		cadena="";
-			
+		}			
 		try {
 			while((cadena=almacenamientoTexto.readLine()) != null){
-				
 				treeitemJson =new TreeItem(cadena,new ImageView(FileIcon));
-				baseDatos.getChildren().addAll(treeitemJson);
-				
+				System.out.println("-JsonStore :" +cadena);
+				baseDatos.getChildren().addAll(treeitemJson);				
 				ListJSONstores.getInstance().agregarNodoD(cadena);    // Se agrega a la ListaDoble (etapa1)
-				System.out.println("Creo Arbol de JsonStores");
+				
 				carpetaEnJSON = "JSONstore\\"+cadena;						
 				newFileJSON = new File(carpetaEnJSON);		
 				rutaDOC = "JSONstore\\"+cadena+"\\"+cadena+"_listaDeDoc.txt";			
@@ -348,19 +293,19 @@ public class InterfaceLinkedDBController implements Initializable {
 					newFileJSON.mkdirs(); // Crea carpeta JSONstore					
 					crearDocListaTxt = new File(rutaDOC);	
 					crearDocListaTxt.createNewFile();
-					System.out.println("Se detuvo el programa2");
 				}else{					
 					leerDOC = new FileReader(rutaDOC);							
 					almacenamientoDoc=new BufferedReader(leerDOC);
 					cadenaDOC="";
 					
 					while((cadenaDOC=almacenamientoDoc.readLine()) != null){					// ERROR NO ESTOY METIENDO DENTRO DEL ITEM DE ESA CARPETA
+						System.out.println("  > DocJson: " +cadenaDOC);
+
 						treeitemDOC =new TreeItem(cadenaDOC,new ImageView(DocIcon));
 						treeitemJson.getChildren().addAll(treeitemDOC);
-						System.out.println("\nHijo Doc: "+cadenaDOC+" al JsonStore :"+cadena);
+						//System.out.println("\nHijo Doc: "+cadenaDOC+" al JsonStore :"+cadena);
 						
 						ListJSONstores.getInstance().getNodoD(cadena).getListacd().agregarNodoCD(cadenaDOC);  // agrego a la listaCD (etapa2)
-						System.out.println("Valor del Nodo CD ."+cadenaDOC+" . agreegado al JsonStore : "+cadena+"\n");
 						carpetaEnDoc = "JSONstore\\"+cadena+"\\"+cadenaDOC;						
 						newFileDoc = new File(carpetaEnDoc);			
 						
@@ -395,21 +340,19 @@ public class InterfaceLinkedDBController implements Initializable {
 								
 								}
 							//ListJSONstores.getInstance().getNodoD(cadena).getListacd().getNodoCD(cadenaDOC).getListaS().mostrar();
-							System.out.println("SALTO DE OBJ--!----!---!--!");
+							
 							leerObj.close();
 							almacenamientoObj.close();
 							}
 						
-							System.out.println("Proceso de Agregar Objetos Finalizado....!!....!! :) =) :) ");
 							
 						}
-						System.out.println("Finalización de la creacion/agregacion de los Doc");
 						leerDOC.close();
 						almacenamientoDoc.close();
 					
 				}
 			}			
-			System.out.println("NO EXISTEN JSON para seguir leyendo::.......fin.....");
+			
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -444,13 +387,10 @@ public class InterfaceLinkedDBController implements Initializable {
 	                   //recursive delete
 	                   deleteFolder(fileDelete);
 	               }
-
 	               //check the directory again, if empty then delete it
 	               if(fileDel.list().length==0)
 	                   fileDel.delete();
-	               
 	            }
-
 	        }else{
 	            
 	            //if file, then delete it
@@ -461,30 +401,26 @@ public class InterfaceLinkedDBController implements Initializable {
 	/**
 	 * Método para realizar un respaldo del cualquier cambio que se halla realizado en el sistema 
 	 */
-	public void lastCommit(){		
+	public void lastCommit(){	
+		
 		baseDatos = new TreeItem("LinkedDB",new ImageView(DBIcon));
 		//TreeItem DB = new TreeItem("LinkedDB");
 		treeView1.setRoot(baseDatos);
-		baseDatos.setExpanded(true);
+		baseDatos.setExpanded(true);		
 		
-		
-		carpetaJson = new File("C:\\Users\\kenne\\git\\LinkedDB\\LinkedDB\\JSONstore");
+		carpetaJson = new File("JSONstore");
 		listaTxtJson = "JSONstore\\ListaJSONstore.txt";
 		
-		System.out.println("Creo Arbol Vacio Nuevo<commit>\n");
 		
 		ArchivoTxtJson = new File(listaTxtJson);
 		
 		if (carpetaJson.exists()){
-			System.out.println("Se va a eliminar la carpeta........");
 			deleteFolder(carpetaJson);
 			if(carpetaJson.delete()){   				// borra la vieja y crea una nueva en blanco......
 				System.out.println("\nCarpeta eliminada........");
 			}else{
 				System.out.println("\nCarpeta NO eliminada........");
-
 			}
-
 			
 			nombreArchivo = "JSONstore";
 			carpetaJson = new File(nombreArchivo);
@@ -502,7 +438,7 @@ public class InterfaceLinkedDBController implements Initializable {
 					
 					while(temp != null){  // ver si me da el ultimo de la lista ---------- sino temp.getDato oooo solo temp
 						String valueNodeD = temp.getDato();
-						System.out.println("___________________________ nodo Obtenido :" +valueNodeD+".\n");
+						System.out.println("-JsonStore :" +valueNodeD+".\n");
 						pw.println(valueNodeD);		// escribe en el txt
 						
 						treeitemJson =new TreeItem(valueNodeD,new ImageView(FileIcon));
@@ -525,7 +461,7 @@ public class InterfaceLinkedDBController implements Initializable {
 						
 						while(temp1 != null){		 // igual que arriba si no guarda el ultimo hay que poner solo temp1	
 							String valueNodeCD = temp1.getDato();
-							System.out.println("Nodo CD del :"+valueNodeCD+" agregado a :"+valueNodeD+"\n");
+							System.out.println("  > DocJson: " +valueNodeCD+".\n");
 							lineaB.println(valueNodeCD);
 							
 							treeitemDOC =new TreeItem(valueNodeCD,new ImageView(DocIcon));
@@ -548,7 +484,7 @@ public class InterfaceLinkedDBController implements Initializable {
 							/*
 							
 										while((cadenaObj=almacenamientoObj.readLine()) != null){
-											
+											System.out.println("____________________ObjJson: " +xxxxxxx +".\n");
 											System.out.println("=0000000000000000000000000============= "+cadenaObj);// ERROR NO ESTOY METIENDO DENTRO DEL ITEM DE ESA CARPETA
 											treeitemObj = new TreeItem(cadenaObj,new ImageView(ArcIcon));
 											treeitemDOC.getChildren().addAll(treeitemObj);
@@ -588,7 +524,6 @@ public class InterfaceLinkedDBController implements Initializable {
 					}
 					escribirA.close();
 					pw.close();
-					System.out.println("\nNO EXISTEN JSON ::..... o no mas .......");
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -598,7 +533,7 @@ public class InterfaceLinkedDBController implements Initializable {
 					e.printStackTrace();
 				}
 		}
-		System.out.println("Proceso de commit finalizado........................!");
+		System.out.println("\nCommit Finalizado........................!");
 
 	}
 

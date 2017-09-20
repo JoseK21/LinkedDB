@@ -16,7 +16,6 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                        <MenuItem mnemonicParsing="false" text="New DataBase" />
                         <MenuItem mnemonicParsing="false" onAction="#update" text="Update" />
                     <MenuItem mnemonicParsing="false" onAction="#Close" text="Close" />
                   </items>
@@ -24,7 +23,7 @@
                 <Menu fx:id="MenuJsonStore" mnemonicParsing="false" text="JsonStore">
                   <items>
                         <MenuItem fx:id="CreateJsonStore" mnemonicParsing="false" onAction="#OpenNew_JSONStore" text="Create" />
-                    <MenuItem mnemonicParsing="false" onAction="#delete_JSONstore" text="Delete" />
+                    <MenuItem mnemonicParsing="false" onAction="#doorDelete_JSONstore" text="Delete" />
                   </items>
                 </Menu>
                 <Menu fx:id="MenuJsonDocument" mnemonicParsing="false" text="JsonDocument">
