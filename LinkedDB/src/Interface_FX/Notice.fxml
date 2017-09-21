@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="111.0" prefWidth="455.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface_FX.NoticeController">
+<AnchorPane prefHeight="111.0" prefWidth="455.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface_FX.Notice">
    <children>
       <Label fx:id="MsjCreate" alignment="CENTER" contentDisplay="CENTER" layoutX="39.0" layoutY="38.0" prefHeight="25.0" prefWidth="394.0" textAlignment="CENTER">
          <font>

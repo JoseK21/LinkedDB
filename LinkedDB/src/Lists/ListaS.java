@@ -15,7 +15,18 @@ public class ListaS {
 	public ListaS(){
 		inicio=null;
 	}
-	
+	public NodoListaS getNodoS(String nodoNameS){
+		NodoListaS aux = inicio;
+		while (aux != null){
+			if(aux.getDato().equals(nodoNameS)){
+				return aux;
+			}
+			else{
+				aux=aux.getSiguiente();
+			}
+		}return null;	
+		
+	}
 	/**
 	 *  Método para saber si la lista simple esta vacia
 	 * @return
@@ -55,7 +66,7 @@ public class ListaS {
 	/**
 	 * Método para mostrar la lista simple
 	 */
-	public void mostrar(){
+	public void imprimirListaS(){
 		NodoListaS temporal = inicio;
 		System.out.print("INICIO>");
 		while (temporal!=null){
@@ -70,7 +81,7 @@ public class ListaS {
 	 * Método para eliminar un nodo la lista simple
 	 * @param dato
 	 */
-	public void eliminar(Object dato) {
+	public void eliminarNodoS(String dato) {
 	    if (inicio != null) {
 	        NodoListaS temporal = inicio;
 	        if (temporal.getDato() == dato) {
@@ -78,7 +89,7 @@ public class ListaS {
 	            	System.out.println("NODO ELIMINADO"+dato);
 	                inicio = temporal.getSiguiente();
 	            }else{
-	                setFirstNode(null);
+	                this.inicio = null;   
 	            }
 	        } else {
 	        	NodoListaS previous = temporal;
@@ -99,19 +110,13 @@ public class ListaS {
 	    } 
 	    }
 	   
-	/**
-	 * Método para seleccionar el primer nodo de la lista simple
-	 * @param inicio
-	 */
-	public void setFirstNode(NodoListaS inicio) {
-	        this.inicio = inicio;  }  
 	
 	/**
 	 * Método para buscar un elemento dentro de la lista simple
 	 * @param dato
 	 * @return
 	 */
-	public boolean buscar(Object dato){
+	public boolean buscarNodoS(Object dato){
 		NodoListaS temporal = inicio;
 		
 		while (temporal!=null && temporal.getDato()!=dato){			

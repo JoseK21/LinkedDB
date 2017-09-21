@@ -17,7 +17,7 @@ import javafx.scene.image.ImageView;
  * @author José C.Núñez 
  *
  */
-public class NoticeController implements Initializable{
+public class Notice implements Initializable{
 	
 	@FXML private Label MsjCreate;
 	@FXML private ImageView Imag1;
@@ -70,7 +70,7 @@ public class NoticeController implements Initializable{
 		try{
 			((Node)event.getSource()).getScene().getWindow().hide();
 			FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("InterfaceLinkedDB.fxml"));
-			InterfaceLinkedDBController displayCommit = fxmlLoader1.getController();
+			Interface displayCommit = fxmlLoader1.getController();
 			
 			//displayCommit.enableCommit(false);
 			

@@ -9,6 +9,7 @@ public class ListaCD {
 	private NodoListaCD inicio = null;;
 	private NodoListaCD fin = null;
 	ListaS listSim = new ListaS();
+	
 	int size=0;
 	
 	/**
@@ -32,6 +33,7 @@ public class ListaCD {
 	 */
 	public NodoListaCD getNodoCD(String nodoName){
 		NodoListaCD aux = inicio;
+		
 		while (aux != null){
 			if(aux.getDato().equals(nodoName)){
 				return aux;
@@ -100,11 +102,8 @@ public class ListaCD {
 	 * @param dato
 	 */
 	public void eliminarNodoCD(String dato){
-		NodoListaCD actual = new NodoListaCD();
-		NodoListaCD anterior = new NodoListaCD();
-		actual=inicio;
-		anterior = fin;
-		
+		NodoListaCD actual = inicio;
+		NodoListaCD anterior = fin;
 		do{
 			if (actual.getDato()==dato){
 				if(actual == inicio){
@@ -164,27 +163,6 @@ public class ListaCD {
 		return false;
 	}
 	
-	/**
-	 * Método para ontener un nodo especifico de la lista circular doble
-	 * @param dato
-	 * @return
-	 */
-	public NodoListaCD obtenerNodoCD(String dato){
-		NodoListaCD temporal = inicio;
 		
-		while (temporal!=fin){
-			if (temporal.getDato().equals(dato)){
-				return temporal;
-			}else{
-				temporal=temporal.getSiguiente();
-			}
-		}
-		return null;
-	}
-	
-	public NodoListaCD getInicio(){
-		NodoListaCD temporal = inicio;
-		return temporal;
-	}
 }
 

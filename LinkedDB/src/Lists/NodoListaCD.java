@@ -20,6 +20,18 @@ public class NodoListaCD {
 	public NodoListaCD() {
 		// TODO Auto-generated constructor stub
 	}
+	public ListaS getListaS() {
+		if (listaSimple == null) {
+			return listaSimple =new ListaS();
+			
+		}else{
+			return listaSimple;
+			}
+	}
+	public void setListaS(ListaS listaS) {
+		this.listaSimple = listaS;
+		
+	}	
 	public String getDato() {
 		return dato;
 	}
@@ -39,11 +51,5 @@ public class NodoListaCD {
 		this.anterior = anterior;
 	}
 
-	public ListaS getListaS() {
-		return listaSimple;
-	}
-	public void setListaS(ListaS listaS) {
-		this.listaSimple = listaS;
-		
-	}	
+	
 }

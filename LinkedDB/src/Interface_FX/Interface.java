@@ -56,7 +56,7 @@ import javafx.stage.Stage;
  * @author José C.Núñez 
  *
  */
-public class InterfaceLinkedDBController implements Initializable {
+public class Interface implements Initializable {
 	ListaD ListJSONstores = ListaD.getInstance();
 	
 	@FXML private Menu MenuJsonStore,MenuJsonDocument;
@@ -188,7 +188,7 @@ public class InterfaceLinkedDBController implements Initializable {
 				
 				if(t.getListacd().estaListaCDVacia()==false){	
 					NodoListaCD t1 = t.getListacd().getFirstNodeCD();	
-					NodoListaCD first = t.getListacd().getInicio();	
+					NodoListaCD first = t.getListacd().getFirstNodeCD();	
 					
 					while (t1.getSiguiente() != first){
 						String t1name = t1.getDato();
@@ -196,25 +196,35 @@ public class InterfaceLinkedDBController implements Initializable {
 						TreeItem treeitemDoc =new TreeItem(t1name,new ImageView(DocIcon));
 						treeitem.getChildren().addAll(treeitemDoc);
 						
+						System.out.println(ListJSONstores.getInstance().getNodoD(tname));
+						System.out.println(ListJSONstores.getInstance().getNodoD(tname).getListacd());
+						System.out.println(ListJSONstores.getInstance().getNodoD(tname).getListacd().getNodoCD(t1name));
+						System.out.println(ListJSONstores.getInstance().getNodoD(tname).getListacd().getNodoCD(t1name).getDato());
 											
-						if(ListJSONstores.getInstance().getNodoD(tname).getListacd().getNodoCD(t1name).getDato() != null){
-						//if(ListJSONstores.getInstance().getNodoD(tname).getListacd().getFirstNodeCD().getListaS().estaListaSVacia()==false){																			//t1= t1.getSiguiente();
-							NodoListaS t2 =ListJSONstores.getInstance().getNodoD(tname).getListacd().getNodoCD(t1name).getListaS().getFirstNodeS();
-							while(t2!=null){
-								String t2name = t2.getDato();
-								TreeItem treeArc =new TreeItem(t2name,new ImageView(ArcIcon));
-								treeitemDoc.getChildren().addAll(treeArc);
-								t2=t2.getSiguiente();
-							}							
+						if(ListJSONstores.getNodoD(tname).getListacd().getNodoCD(t1name).getListaS() != null){
+							System.out.println("\nVerifico si la lista era null o no.... y da como resultado que ");	
+							
+							if(ListJSONstores.getNodoD(tname).getListacd().getNodoCD(t1name).getListaS().estaListaSVacia()==false){
+								NodoListaS t2 =ListJSONstores.getInstance().getNodoD(tname).getListacd().getNodoCD(t1name).getListaS().getFirstNodeS();
+								System.out.println("    } OBJETO : "+ t2.getDato());
+								
+								while(t2!=null){
+									String t2name = t2.getDato();
+									TreeItem treeArc =new TreeItem(t2name,new ImageView(ArcIcon));
+									treeitemDoc.getChildren().addAll(treeArc);
+									t2=t2.getSiguiente();
+								}
+							}
 						}
 						t1= t1.getSiguiente();	
-				}
-					String t1name = t1.getDato();
+					}
+					String t1name = t1.getDato();								// PARA AGREGAR EL ULTIMO QUE EL WHILE NO ISO
 					System.out.println("Nombre del Doc Json = <<<-"+t1name);
 					TreeItem treeitemDoc =new TreeItem(t1name,new ImageView(DocIcon));
 					treeitem.getChildren().addAll(treeitemDoc);
 					
-										
+					
+					/*
 					if(ListJSONstores.getInstance().getNodoD(tname).getListacd().getNodoCD(t1name).getDato() != null){
 					//if(ListJSONstores.getInstance().getNodoD(tname).getListacd().getFirstNodeCD().getListaS().estaListaSVacia()==false){																			//t1= t1.getSiguiente();
 						NodoListaS t2 =ListJSONstores.getInstance().getNodoD(tname).getListacd().getNodoCD(t1name).getListaS().getFirstNodeS();
@@ -224,11 +234,12 @@ public class InterfaceLinkedDBController implements Initializable {
 							treeitemDoc.getChildren().addAll(treeArc);
 							t2=t2.getSiguiente();
 						}							
-					}
+					}		*/
 					
 				//t= t.getSiguiente();												//CORRECTO
+				t1= t1.getSiguiente();	
 			}
-				t= t.getSiguiente();	
+			t= t.getSiguiente();	
 			}
 		}
 		
@@ -388,7 +399,6 @@ public class InterfaceLinkedDBController implements Initializable {
 	            
 	            //if file, then delete it
 	            fileDel.delete();    
-	            System.out.println("1___Archivo eliminado............");
 	        }
 	    }
 	

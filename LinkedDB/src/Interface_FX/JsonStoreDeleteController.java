@@ -42,7 +42,7 @@ public class JsonStoreDeleteController implements Initializable {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Notice.fxml"));
 		Parent root1 = (Parent) fxmlLoader.load();
 				
-		NoticeController display = fxmlLoader.getController();	
+		Notice display = fxmlLoader.getController();	
 		
 		((Node)event.getSource()).getScene().getWindow().hide();
 		

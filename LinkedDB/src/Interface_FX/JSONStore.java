@@ -22,7 +22,7 @@ import javafx.stage.StageStyle;
  * @author José C.Núñez 
  *
  */
-public class JSONStoreController implements Initializable {
+public class JSONStore implements Initializable {
 	ListaD ListJSONstores = ListaD.getInstance();		
 	@FXML private TextField textJsonStore;
 	@FXML private TextField textJsonStoreD;
@@ -49,7 +49,7 @@ public class JSONStoreController implements Initializable {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Notice.fxml"));
 		Parent root1 = (Parent) fxmlLoader.load();
 				
-		NoticeController display = fxmlLoader.getController();	
+		Notice display = fxmlLoader.getController();	
 		
 		((Node)event.getSource()).getScene().getWindow().hide();
 		

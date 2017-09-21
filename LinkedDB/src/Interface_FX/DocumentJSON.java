@@ -26,7 +26,7 @@ import javafx.stage.Stage;
  * Esta clase permite la creación de Documentos Json a partir de las verificaciones correspondientes de este
  * @author José C.Núñez 
  */
-public class DocJSONController implements Initializable {
+public class DocumentJSON implements Initializable {
 	ListaD ListJSONstores = ListaD.getInstance();
 	
 	

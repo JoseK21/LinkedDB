@@ -9,6 +9,7 @@ public class ListaD {
 	private NodoListaD inicio;
 	private NodoListaD fin;
 	ListaCD ListCD = new ListaCD();
+	
 	private int size = 0;	
 	
     private static  ListaD uniqueInstance  =   null;
@@ -139,8 +140,7 @@ public class ListaD {
 	 * Método para elimiar un noodo de la lista doble
 	 * @param dato
 	 */
-	public void eliminarNodoD(String dato){
-		  
+	public void eliminarNodoD(String dato){		  
 		  if(estaListaDVacia()){
 			  System.out.println("Lista vacia");
 		  }

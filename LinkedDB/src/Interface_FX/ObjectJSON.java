@@ -22,7 +22,7 @@ import javafx.stage.Stage;
  * @author José C.Núñez 
  *
  */
-public class ObjectJSONController extends Application {
+public class ObjectJSON extends Application {
 	ObservableList<String> tiposStatusList = FXCollections.observableArrayList("Entero","Flotante","Cadena","Fecha-Hora");
 	ObservableList<String> tiposEspecialesStatusList = FXCollections.observableArrayList("Llave Primaria","Llave Foranea");
 	@FXML private ChoiceBox<String> tiposEspecialesStatusBox;
