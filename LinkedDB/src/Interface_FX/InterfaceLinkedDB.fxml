@@ -9,7 +9,19 @@
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface_FX.InterfaceLinkedDBController">
    <children>
-      <TreeView fx:id="treeView1" layoutY="30.0" prefHeight="670.0" prefWidth="430.0" /> 
+      <TreeView fx:id="treeView1" layoutY="30.0" prefHeight="670.0" prefWidth="430.0">
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                  <MenuItem disable="true" mnemonicParsing="false" text="Show Object List" />
+                <MenuItem disable="true" mnemonicParsing="false" text="Add New Object" />
+                  <MenuItem disable="true" mnemonicParsing="false" text="Remove All Objects" />
+                  <MenuItem disable="true" mnemonicParsing="false" text="Remove Object Per Key." />
+                  <MenuItem disable="true" mnemonicParsing="false" text="Search By Attribute" />
+                  <MenuItem disable="true" mnemonicParsing="false" text="Update Object(s)" />
+              </items>
+            </ContextMenu>
+         </contextMenu></TreeView> 
          <ToolBar layoutX="14.0" layoutY="14.0" prefHeight="36.0" prefWidth="1000.0" AnchorPane.bottomAnchor="670.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
             <MenuBar prefHeight="25.0" prefWidth="374.0">

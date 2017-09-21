@@ -8,6 +8,7 @@ package Lists;
 public class ListaCD {
 	private NodoListaCD inicio = null;;
 	private NodoListaCD fin = null;
+	ListaS listSim = new ListaS();
 	int size=0;
 	
 	/**
@@ -47,7 +48,7 @@ public class ListaCD {
 	 * @param nombreDoc
 	 */
 	public void agregarNodoCD(String nombreDoc){
-		ListaS listSim = new ListaS();		
+				
         NodoListaCD nuevo = new NodoListaCD(nombreDoc,listSim);      
         
         if (inicio == null){
@@ -83,14 +84,14 @@ public class ListaCD {
 	      }
 	      else{
 		      NodoListaCD temp = inicio;
-		      System.out.print("Inicio~>");
+		      System.out.print("ListaCircularDoble ~>");
 		      
 		      while (temp.getSiguiente()!=inicio){
 		    	  System.out.print("("+ temp.getDato() +")~");
 			       temp = temp.getSiguiente();
 		      }
 		      System.out.print("("+ temp.getDato() +")~");
-		      System.out.print("Fin~~~~~~");
+		      System.out.print("<<fin/inicio>>.");
 	      }
 	   }
 		

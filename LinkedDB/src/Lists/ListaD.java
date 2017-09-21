@@ -8,6 +8,7 @@ package Lists;
 public class ListaD {
 	private NodoListaD inicio;
 	private NodoListaD fin;
+	ListaCD ListCD = new ListaCD();
 	private int size = 0;	
 	
     private static  ListaD uniqueInstance  =   null;
@@ -73,7 +74,7 @@ public class ListaD {
 	 * @param nombre
 	 */
 	public void agregarNodoD(String nombre){	
-		ListaCD ListCD = new ListaCD();
+		
         NodoListaD nuevo = new NodoListaD(nombre,ListCD);    // ListaCD listaCD ====> quitar pues ya aqui la puedo iniciar en null=vacia la listaCD
         if(inicio == null){
         	inicio = nuevo;

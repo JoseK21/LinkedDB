@@ -27,7 +27,7 @@ import javafx.stage.Stage;
  * @author José C.Núñez 
  */
 public class DocJSONController implements Initializable {
-	ListaD ListaJSONstores = ListaD.getInstance();
+	ListaD ListJSONstores = ListaD.getInstance();
 	
 	
 	@FXML private Label textCorrecDocJSON;
@@ -49,9 +49,9 @@ public class DocJSONController implements Initializable {
 		
 		String NameJson = nameJSONstore.getText();
 		System.out.println("\n Nombre del JSON store a buscar: "+NameJson+" adentro de esta lista: \n");
-		ListaJSONstores.getInstance().imprimirListaD();
+		ListJSONstores.getInstance().imprimirListaD();
 		
-		if (ListaJSONstores.getInstance().buscarNodoD(NameJson) == true){ 			//ListaJSONstore.buscar(NameJson) 
+		if (ListJSONstores.getInstance().buscarNodoD(NameJson) == true){ 			//ListaJSONstore.buscar(NameJson) 
 			verificarNameDoc.setDisable(false);
 			nameDocumento.setDisable(false); 
 			msjVerJSONstore.setText("Existing JsonStore");			
@@ -72,15 +72,15 @@ public class DocJSONController implements Initializable {
 		String NameDoc = nameDocumento.getText();
 		System.out.println("\nNameJson("+NameJson+")__NameDoc("+NameDoc+")__\n");
 		
-		if (ListaJSONstores.getInstance().buscarNodoD(NameJson) == true){
+		if (ListJSONstores.getInstance().buscarNodoD(NameJson) == true){
 			
-			ListaJSONstores.getInstance().getNodoD(NameJson).getListacd().agregarNodoCD(NameDoc);
+			ListJSONstores.getInstance().getNodoD(NameJson).getListacd().agregarNodoCD(NameDoc);
 			msjCreacionDocJSON.setText("Documento creado");
 			
 			cont_Atributos.setDisable(false); 
 			System.out.println("\n\nLista CD de "+NameJson+".  con nuevo hijoNodo :"+NameDoc+"_____.\n\n");
 			System.out.println("Lista Actual de este Json store : " );
-			ListaJSONstores.getInstance().getNodoD(NameJson).getListacd().imprimirListaCD();
+			ListJSONstores.getInstance().getNodoD(NameJson).getListacd().imprimirListaCD();
 		
 			System.out.println(" \n");
 		}
@@ -88,7 +88,7 @@ public class DocJSONController implements Initializable {
 			System.out.println("Lista CD de "+NameJson+". Sin cambios");
 			msjCreacionDocJSON.setText("Documento existente");
 			System.out.println("Lista SIn cambios: " );
-			ListaJSONstores.getInstance().getNodoD(NameJson).getListacd().imprimirListaCD();
+			ListJSONstores.getInstance().getNodoD(NameJson).getListacd().imprimirListaCD();
 		}	
 		
 	}

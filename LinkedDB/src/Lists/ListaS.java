@@ -48,7 +48,7 @@ public class ListaS {
 	        aux.setSiguiente(nuevotemp);
         }
         
-        System.out.println("Objeto Agregado : "+nuevotemp.getDato()); 
+        //System.out.println("Objeto Agregado : "+nuevotemp.getDato()); 
         }
 
 	

@@ -3,7 +3,8 @@ package Lists;
 public class NodoListaS {
 	private String dato;
 	private NodoListaS siguiente;
-	private NodoListaCD listasimp;	
+	
+	private NodoListaS listasimp;	
 	
 	//private ListaS listasimp = new ListaS();
 	
@@ -25,13 +26,13 @@ public class NodoListaS {
 			//return listasimp =new ListaS();
 			
 		}else{
-			//System.out.println("Lista existente enviada ");
+			
 			return node.getListaS();
 			}
 	}
 	
 	public void setListaS(NodoListaCD listasimple) {
-		this.listasimp = listasimple;
+		this.listasimp = listasimp;
 	}
 	public void setDato(String dato) {
 		this.dato = dato;
