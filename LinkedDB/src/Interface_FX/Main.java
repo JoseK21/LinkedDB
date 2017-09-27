@@ -34,6 +34,7 @@ public class Main extends Application {
 	public void start(Stage primarystage) throws Exception{
 		primarystage.setTitle("LinkedDB");
 		Parent root =FXMLLoader.load(getClass().getResource("InterfaceLinkedDB.fxml"));		
+		
 		//Scene scene = new Scene(root);
 		primarystage.setScene(new Scene(root,1400,700) );
 		primarystage.show();

@@ -77,6 +77,11 @@ public class ListaCD {
 		return temporal;
 	}
 	
+	public NodoListaCD getLastNodeCD(){
+		NodoListaCD temporalfin = fin;
+		return temporalfin;
+	}
+	
 	/**
 	 * Método para mostrar la lista circular doble
 	 */

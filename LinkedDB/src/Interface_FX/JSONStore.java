@@ -47,23 +47,34 @@ public class JSONStore implements Initializable {
 	public void createNewJsonStore(ActionEvent event) throws IOException{	
 		NameFile = textJsonStore.getText();	
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Notice.fxml"));
-		Parent root1 = (Parent) fxmlLoader.load();
-				
-		Notice display = fxmlLoader.getController();	
-		
+		Parent root1 = (Parent) fxmlLoader.load();				
+		Notice display = fxmlLoader.getController();			
 		((Node)event.getSource()).getScene().getWindow().hide();
+		
+		
 		
 		if (!NameFile.isEmpty()) {
 			if(ListJSONstores.getInstance().buscarNodoD(NameFile)==false){
+				//_________________________
+				// FXMLLoader fxmljson = new FXMLLoader(getClass().getResource("InterfaceLinkedDB.fxml"));
+				// Parent rootjson = (Parent) fxmljson.load();				
+				// Interface display2 = fxmljson.getController();			
+				// ((Node)event.getSource()).getScene().getWindow().hide();
+				
+				// display2.update(); // pasa el element0 (JSONSTORE) para colocarlo en la inteface
+				
 				msj = "correcto";
 				display.setText("Great .. Your JsonStore ( "+NameFile+" ) was successfully created");						
 				display.setImage1(msj);
+				
 				
 				//displayCommit.enableCommit(false);
 				
 				ListJSONstores.getInstance().agregarNodoD(NameFile);  // agrego a la lista			ListJSONstores.insertarFinal(NameFile); 
 				System.out.println("JsonStore agregado a la lista: "+NameFile+"\nLista Actualizada");
 				ListJSONstores.getInstance().imprimirListaD();
+				
+			
 			}else{
 				msj="incorrecto";
 				display.setText("Existing JsonStore ( "+ NameFile +" ),try using a different name");

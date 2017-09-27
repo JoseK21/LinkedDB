@@ -58,26 +58,7 @@
                   </Menu>
               </menus>
             </MenuBar>
-         </items></ToolBar>
-      <TableView fx:id="tabla" layoutX="430.0" layoutY="374.0" prefHeight="326.0" prefWidth="970.0">
-         <columns>
-            <TableColumn editable="false" prefWidth="75.0" text="doc">
-               <columns>
-                  <TableColumn prefWidth="75.0" text="Column X" />
-                  <TableColumn prefWidth="75.0" text="Column X" />
-               </columns>
-            </TableColumn>
-         </columns>
-      </TableView>
-      <MenuBar layoutX="470.0" layoutY="67.0" prefHeight="25.0" prefWidth="149.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="              Show             ">
-            <items>
-                  <CheckMenuItem mnemonicParsing="false" text="Unspecified Action" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>         
+         </items></ToolBar>         
    </children>
    <cursor>
       <Cursor fx:constant="DEFAULT" />

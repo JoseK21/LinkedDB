@@ -65,11 +65,11 @@ public class Interface implements Initializable {
 	@FXML private TextField textnameJSONStore;
 	@FXML private TreeView treeView1;	
 	@FXML private TableView tabla;	
-	@FXML private TreeItem baseDatos,treeitemJson,treeitemDOC,treeitemObj;
+	@FXML private TreeItem baseDatos,treeitemJson,treeitemDOC,treeitemObj,treeNewJson;
 	private FileReader leerTexto,leerTextoA ,leerDOC,leerObj ;
 	private BufferedReader almacenamientoTexto , almacenamientoTextoA,almacenamientoDoc,almacenamientoObj;	
 	private File carpetaJson,ArchivoTxtJson,newFileJSON,newFileDoc,crearDocListaTxt,crearObjListaTxt,crearArchivoListaTxt,newFileObj4;
-	private String listaTxtJson,cadena,carpetaEnJSON,rutaDOC ,rutaArchivos,carpetaObj11,rutaObj,cadenaObj,texto,nombreArchivo,cadenaDOC,carpetaEnDoc;
+	private String listaTxtJson,cadena,carpetaEnJSON,rutaDOC ,rutaArchivos,carpetaObj11,rutaObj,cadenaObj,texto,fileJsonStore,cadenaDOC,carpetaEnDoc;
 
 
 	
@@ -168,82 +168,65 @@ public class Interface implements Initializable {
 		}
 	}
 			
-	
-	/**
-	 *  Método para actualizar cualquier cambio que realice el usuario
-	 */
+		// VER CUANDO SE AGREGAN LOS DOC............!	Ver el eliminar tambien!!!!
 	public void update(){		
 		MenuItemMenuCommit.setDisable(false);
 		TreeItem baseDatos = new TreeItem("LinkedDB",new ImageView(DBIcon));
 		treeView1.setRoot(baseDatos);
 		baseDatos.setExpanded(true);
 		PrintWriter escribir;
-				
+		
 		if (ListJSONstores.estaListaDVacia()==false){				
-			NodoListaD t = ListJSONstores.getFirstNodeD();			
-			while(t != null){
-				String tname = t.getDato();			
-				TreeItem treeitem =new TreeItem(tname,new ImageView(FileIcon));
+			NodoListaD nodeD = ListJSONstores.getFirstNodeD();	
+			
+			while(nodeD != null){
+				String nameJsonStore = nodeD.getDato();			
+				TreeItem treeitem =new TreeItem(nameJsonStore,new ImageView(FileIcon));
 				baseDatos.getChildren().addAll(treeitem);		
 				
-				if(t.getListacd().estaListaCDVacia()==false){	
-					NodoListaCD t1 = t.getListacd().getFirstNodeCD();	
-					NodoListaCD first = t.getListacd().getFirstNodeCD();	
-					
-					while (t1.getSiguiente() != first){
-						String t1name = t1.getDato();
-						System.out.println("Nombre del Doc Json = <<<-"+t1name);
-						TreeItem treeitemDoc =new TreeItem(t1name,new ImageView(DocIcon));
+				if(nodeD.getListacd().estaListaCDVacia()==false){		
+					// NodoListaCD nodeCD = nodeD.getListacd().getFirstNodeCD();
+		            //System.out.print("<--> Inicio");
+					NodoListaCD aux = nodeD.getListacd().getFirstNodeCD();
+					NodoListaCD auxInicio = nodeD.getListacd().getFirstNodeCD();
+
+					do{
+	                    String nameDocJson = aux.getDato();
+						TreeItem treeitemDoc =new TreeItem(nameDocJson,new ImageView(DocIcon));
 						treeitem.getChildren().addAll(treeitemDoc);
 						
-						System.out.println(ListJSONstores.getInstance().getNodoD(tname));
-						System.out.println(ListJSONstores.getInstance().getNodoD(tname).getListacd());
-						System.out.println(ListJSONstores.getInstance().getNodoD(tname).getListacd().getNodoCD(t1name));
-						System.out.println(ListJSONstores.getInstance().getNodoD(tname).getListacd().getNodoCD(t1name).getDato());
-											
-						if(ListJSONstores.getNodoD(tname).getListacd().getNodoCD(t1name).getListaS() != null){
-							System.out.println("\nVerifico si la lista era null o no.... y da como resultado que ");	
+						
+						if(ListJSONstores.getNodoD(nameJsonStore).getListacd().getNodoCD(nameDocJson).getListaS().estaListaSVacia() == false){
+							NodoListaS t2 =ListJSONstores.getInstance().getNodoD(nameJsonStore).getListacd().getNodoCD(nameDocJson).getListaS().getFirstNodeS();
 							
-							if(ListJSONstores.getNodoD(tname).getListacd().getNodoCD(t1name).getListaS().estaListaSVacia()==false){
-								NodoListaS t2 =ListJSONstores.getInstance().getNodoD(tname).getListacd().getNodoCD(t1name).getListaS().getFirstNodeS();
+							// como manda null puede ser que no ejecute el programa bien .. lo qe hace es tomar el final
+							while(t2 != null){
 								System.out.println("    } OBJETO : "+ t2.getDato());
-								
-								while(t2!=null){
-									String t2name = t2.getDato();
-									TreeItem treeArc =new TreeItem(t2name,new ImageView(ArcIcon));
-									treeitemDoc.getChildren().addAll(treeArc);
-									t2=t2.getSiguiente();
-								}
+								String t2name = t2.getDato();
+								TreeItem treeArc =new TreeItem(t2name,new ImageView(ArcIcon));
+								treeitemDoc.getChildren().addAll(treeArc);
+								t2=t2.getSiguiente();
 							}
+							 System.out.println("-----------------entro al otro while ---------");
 						}
-						t1= t1.getSiguiente();	
-					}
-					String t1name = t1.getDato();								// PARA AGREGAR EL ULTIMO QUE EL WHILE NO ISO
-					System.out.println("Nombre del Doc Json = <<<-"+t1name);
-					TreeItem treeitemDoc =new TreeItem(t1name,new ImageView(DocIcon));
-					treeitem.getChildren().addAll(treeitemDoc);
-					
-					
-					/*
-					if(ListJSONstores.getInstance().getNodoD(tname).getListacd().getNodoCD(t1name).getDato() != null){
-					//if(ListJSONstores.getInstance().getNodoD(tname).getListacd().getFirstNodeCD().getListaS().estaListaSVacia()==false){																			//t1= t1.getSiguiente();
-						NodoListaS t2 =ListJSONstores.getInstance().getNodoD(tname).getListacd().getNodoCD(t1name).getListaS().getFirstNodeS();
-						while(t2!=null){
-							String t2name = t2.getDato();
-							TreeItem treeArc =new TreeItem(t2name,new ImageView(ArcIcon));
-							treeitemDoc.getChildren().addAll(treeArc);
-							t2=t2.getSiguiente();
-						}							
-					}		*/
-					
-				//t= t.getSiguiente();												//CORRECTO
-				t1= t1.getSiguiente();	
+						aux = aux.getSiguiente();
+						 System.out.println("SALTO DE AUX... :) :) ");
+
+						// nodeCD = nodeCD.getSiguiente();
+														           		                            
+		            }while(aux!=auxInicio);
+		            
+	           		
 			}
-			t= t.getSiguiente();	
+			nodeD= nodeD.getSiguiente();    
 			}
+			
 		}
-		
+		 System.out.println("Successful Update.");
 	}
+	
+	
+		
 	
 	/**
 	 * Método para cargar todo el contenido de los ficheros (txt) hacia el sistema
@@ -255,8 +238,8 @@ public class Interface implements Initializable {
 	treeView1.setRoot(baseDatos);
 	baseDatos.setExpanded(true);
 	
-	nombreArchivo = "JSONstore";
-	carpetaJson = new File(nombreArchivo);
+	fileJsonStore = "JSONstore";
+	carpetaJson = new File(fileJsonStore);
 	listaTxtJson = "JSONstore\\ListaJSONstore.txt";	
 	
 	if (!carpetaJson.exists()){
@@ -279,7 +262,7 @@ public class Interface implements Initializable {
 		try {
 			while((cadena=almacenamientoTexto.readLine()) != null){
 				treeitemJson =new TreeItem(cadena,new ImageView(FileIcon));
-				System.out.println("-JsonStore :" +cadena);
+				System.out.println("• JsonStore :" +cadena);
 				baseDatos.getChildren().addAll(treeitemJson);				
 				ListJSONstores.getInstance().agregarNodoD(cadena);    // Se agrega a la ListaDoble (etapa1)
 				
@@ -296,7 +279,7 @@ public class Interface implements Initializable {
 					cadenaDOC="";
 					
 					while((cadenaDOC=almacenamientoDoc.readLine()) != null){					// ERROR NO ESTOY METIENDO DENTRO DEL ITEM DE ESA CARPETA
-						System.out.println("  > DocJson: " +cadenaDOC);
+						System.out.println("     > DocJson: " +cadenaDOC);
 
 						treeitemDOC =new TreeItem(cadenaDOC,new ImageView(DocIcon));
 						treeitemJson.getChildren().addAll(treeitemDOC);
@@ -317,8 +300,9 @@ public class Interface implements Initializable {
 							almacenamientoObj=new BufferedReader(leerObj);
 							while((cadenaObj=almacenamientoObj.readLine()) != null){
 								ListJSONstores.getInstance().getNodoD(cadena).getListacd().agregarNodoCD(cadenaObj);
-								System.out.println("    |-ObjJson: " +cadenaObj);
-								//ListJSONstores.getInstance().getNodoD(cadena).getListacd().imprimirListaCD();
+								System.out.println("          ‡ ObjJson: " +cadenaObj);
+								
+								
 								carpetaObj11 = "JSONstore\\"+cadena+"\\"+cadenaDOC+"\\"+cadenaObj+"_listaAtributos.txt";	
 								newFileObj4 = new File(carpetaObj11);			
 								
@@ -328,23 +312,15 @@ public class Interface implements Initializable {
 								}catch (Exception e) {
 									System.out.println("Error al crear txt de atributos");
 								}
-									// TODO: handle exception
-								}
+								}	
 								
-								//System.out.println("Objeto : "+cadenaObj +" Proveniente de :"+cadenaDOC+"\n");// ERROR NO ESTOY METIENDO DENTRO DEL ITEM DE ESA CARPETA
 								treeitemObj = new TreeItem(cadenaObj,new ImageView(ArcIcon));
 								treeitemDOC.getChildren().addAll(treeitemObj);
-								// System.out.println("\n.Elemento para la lista Simple :."+cadenaObj);
-								ListJSONstores.getInstance().getNodoD(cadena).getListacd().getNodoCD(cadenaDOC).getListaS();
 								
-								//ListJSONstores.getInstance().getNodoD(cadena).getListacd().getNodoCD(cadenaDOC).getListaS().agregarNodoS(cadenaObj);  // agrego a la listaCD (etapa2)
-								//System.out.println("\n.______________Elemento CORRECTAMENTE agregado para la lista Simple :."+cadenaObj+"_______________________________");
-
-																	
 								
-								}
-							//ListJSONstores.getInstance().getNodoD(cadena).getListacd().getNodoCD(cadenaDOC).getListaS().mostrar();
-							
+								ListJSONstores.getInstance().getNodoD(cadena).getListacd().getNodoCD(cadenaDOC).getListaS();																	
+								
+								}							
 							leerObj.close();
 							almacenamientoObj.close();
 							}
@@ -387,8 +363,8 @@ public class Interface implements Initializable {
 	                System.out.println("2___Archivo eliminado............");
 	            }
 	            else{	                
-	               for (String temp : fileDel.list()) {
-	                   File fileDelete = new File(fileDel, temp);
+	               for (String tempNodoD : fileDel.list()) {
+	                   File fileDelete = new File(fileDel, tempNodoD);
 	                   deleteFolder(fileDelete);
 	               }
 	               //check the directory again, if empty then delete it
@@ -396,8 +372,6 @@ public class Interface implements Initializable {
 	                   fileDel.delete();
 	            }
 	        }else{
-	            
-	            //if file, then delete it
 	            fileDel.delete();    
 	        }
 	    }
@@ -417,10 +391,11 @@ public class Interface implements Initializable {
 		
 		
 		ArchivoTxtJson = new File(listaTxtJson);
+		System.out.println("Committing\n...\n...\n...");
 		if (carpetaJson.exists()){
 			deleteFolder(carpetaJson);
-			nombreArchivo = "JSONstore";
-			carpetaJson = new File(nombreArchivo);
+			fileJsonStore = "JSONstore";
+			carpetaJson = new File(fileJsonStore);
 			listaTxtJson = "JSONstore\\ListaJSONstore.txt";
 			ArchivoTxtJson = new File(listaTxtJson);
 			carpetaJson.mkdirs();      // paso inicial de creacion  Al inicio no existia
@@ -431,52 +406,112 @@ public class Interface implements Initializable {
 					FileWriter escribirA = new FileWriter(listaTxtJson); // si no escribe poner ArchivoTxtJson		,true
 					PrintWriter pw = new PrintWriter(escribirA);
 							
-					NodoListaD temp = ListJSONstores.getInstance().getFirstNodeD();
+					NodoListaD tempNodoD = ListJSONstores.getInstance().getFirstNodeD();
 					
-					while(temp != null){  // ver si me da el ultimo de la lista ---------- sino temp.getDato oooo solo temp
-						String valueNodeD = temp.getDato();
-						System.out.println("-JsonStore :" +valueNodeD+".\n");
-						pw.println(valueNodeD);		// escribe en el txt
+					while(tempNodoD != null){  									// ver si me da el ultimo de la lista ---------- sino tempNodoD.getDato oooo solo tempNodoD
+						String valueNodeD = tempNodoD.getDato();
+						
+						pw.println(valueNodeD);		// escribe en el txt que se borrar porque se borro la carpeta JSON
 						
 						treeitemJson =new TreeItem(valueNodeD,new ImageView(FileIcon));
 						baseDatos.getChildren().addAll(treeitemJson);
 												
-						carpetaEnJSON = "JSONstore\\"+temp.getDato();						
+						carpetaEnJSON = "JSONstore\\"+valueNodeD;						
 						newFileJSON = new File(carpetaEnJSON);		
-						newFileJSON.mkdirs(); 						// Crea carpeta JSONstore
-						
+						newFileJSON.mkdirs(); 						// Crea carpeta JSONstore						
 						rutaDOC = "JSONstore\\"+valueNodeD+"\\"+valueNodeD+"_listaDeDoc.txt";
-						crearDocListaTxt = new File(rutaDOC);		
-						
+						crearDocListaTxt = new File(rutaDOC);							
 						crearDocListaTxt.createNewFile();
 						
 						FileWriter escribirB = new FileWriter(rutaDOC,true);
 						PrintWriter lineaB = new PrintWriter(escribirB);
 						
 						
-						NodoListaCD temp1 = ListJSONstores.getInstance().getFirstNodeD().getListacd().getFirstNodeCD(); //getNodoD(valueNodeD)
 						
-						while(temp1 != null){		 // igual que arriba si no guarda el ultimo hay que poner solo temp1	
-							String valueNodeCD = temp1.getDato();
+						// HACER DO , WHILE
+						if (ListJSONstores.getInstance().getNodoD(valueNodeD).getListacd().estaListaCDVacia()==false ){
+							NodoListaCD tempNodoCD = ListJSONstores.getInstance().getNodoD(valueNodeD).getListacd().getFirstNodeCD(); //getNodoD(valueNodeD)
+
+							do{
+								String valueNodeCD = tempNodoCD.getDato();
+								System.out.println("  > DocJson: " +valueNodeCD+".\n");
+								lineaB.println(valueNodeCD);
+								
+								treeitemDOC =new TreeItem(valueNodeCD,new ImageView(DocIcon));							
+								treeitemJson.getChildren().addAll(treeitemDOC);
+								
+								carpetaEnDoc = "JSONstore\\"+valueNodeD+"\\"+valueNodeCD;		// crea la carpeta del documentoJson					
+								newFileDoc = new File(carpetaEnDoc);										
+								newFileDoc.mkdirs();												 // Crea carpeta JSONstore      IGUAL QUE ANTES......................................
+								rutaObj = "JSONstore\\"+valueNodeD+"\\"+valueNodeCD+"\\"+valueNodeCD+"_listaDeObj.txt"; 
+								crearObjListaTxt = new File(rutaObj);	
+								crearObjListaTxt.createNewFile();
+								
+								FileWriter escribirC = new FileWriter(rutaObj,true);
+								PrintWriter lineaC = new PrintWriter(escribirC);
+								
+								if (ListJSONstores.getInstance().getNodoD(valueNodeD).getListacd().getNodoCD(valueNodeCD).getListaS().estaListaSVacia()==false ){
+									NodoListaS tempNodoS = ListJSONstores.getInstance().getNodoD(valueNodeD).getListacd().getNodoCD(valueNodeCD).getListaS().getFirstNodeS();
+									while(tempNodoS!=null){
+										// REVISAR DE AQUI PARA ABAJO------------------------------------------------------------------
+										String valueNodeS = tempNodoS.getDato();
+										System.out.println("  > ObjJson: " +valueNodeS+".\n");
+										lineaC.println(valueNodeS);
+										
+										treeitemObj = new TreeItem(valueNodeS,new ImageView(ArcIcon));
+										treeitemDOC.getChildren().addAll(treeitemObj);
+																			
+										carpetaObj11 = "JSONstore\\"+valueNodeD+"\\"+valueNodeCD+"\\"+valueNodeS+".txt";	
+										newFileObj4 = new File(carpetaObj11);			
+										
+										if(!newFileObj4.exists()){										
+											newFileObj4.createNewFile(); // Crea carpeta JSONstore      IGUAL QUE ANTES......................................
+											ListJSONstores.getInstance().getNodoD(valueNodeD).getListacd().getNodoCD(valueNodeCD).getListaS().agregarNodoS(valueNodeS);  // agrego a la listaCD (etapa2)
+	
+										}else{
+											System.out.println("++++++++++++++++++++++++ ANTES DE AGREGAR +++++++++++++++++++++++++\n = " + cadenaObj);
+											ListJSONstores.getInstance().getNodoD(valueNodeD).getListacd().getNodoCD(valueNodeCD).getListaS().agregarNodoS(valueNodeS); 
+											System.out.println("++++++++++++++++++++++++ LUEGO DE AGREGAR +++++++++++++++++++++++++\n = " + valueNodeS);
+													// hacer txt......
+												
+										
+										}
+										tempNodoS = tempNodoS.getSiguiente();	
+										System.out.println("\n SALTO DE OBJ--!----!---!--!");
+										
+									}
+								//leerObj.close();
+								//almacenamientoObj.close();
+							
+								
+								
+								}
+								
+							}while(tempNodoCD.getSiguiente()!=tempNodoCD);
+							
+							FileWriter escribirC = new FileWriter(rutaObj,true);
+							PrintWriter lineaC = new PrintWriter(escribirC);
+							
+						/*
+						while(tempNodoCD != null){																 // igual que arriba si no guarda el ultimo hay que poner solo tempNodoD1	
+							String valueNodeCD = tempNodoCD.getDato();
 							System.out.println("  > DocJson: " +valueNodeCD+".\n");
 							lineaB.println(valueNodeCD);
 							
-							treeitemDOC =new TreeItem(valueNodeCD,new ImageView(DocIcon));
-							
+							treeitemDOC =new TreeItem(valueNodeCD,new ImageView(DocIcon));							
 							treeitemJson.getChildren().addAll(treeitemDOC);
 							
-							
-							//NodoListaS nls = ListJSONstores.getInstance().getFirstNodeD().getListacd().getFirstNodeCD().getListaS().getFirstNodeS();
-							//ListJSONstores.getInstance().getNodoD(cadena).getListacd().agregarNodoCD(cadenaDOC);  // agrego a la listaCD (etapa2)
-							
 							carpetaEnDoc = "JSONstore\\"+valueNodeD+"\\"+valueNodeCD;		// crea la carpeta del documentoJson					
-							newFileDoc = new File(carpetaEnDoc);			
-							
+							newFileDoc = new File(carpetaEnDoc);										
 							newFileDoc.mkdirs(); // Crea carpeta JSONstore      IGUAL QUE ANTES......................................
 							rutaObj = "JSONstore\\"+valueNodeD+"\\"+valueNodeCD+"\\"+valueNodeCD+"_listaDeObj.txt"; // RUTAAAAA-----------------------------------------------------------------------------------------
 							crearObjListaTxt = new File(rutaObj);	
 							crearObjListaTxt.createNewFile();
-							temp1 = temp1.getSiguiente();
+							
+							FileWriter escribirC = new FileWriter(rutaObj,true);
+							PrintWriter lineaC = new PrintWriter(escribirC);
+							
+							tempNodoCD = tempNodoCD.getSiguiente();
 						}
 							/*
 							
@@ -509,16 +544,17 @@ public class Interface implements Initializable {
 									}
 									}
 									
-									*/
+									
 							
-						
+						*/
 						//}
 						escribirB.close();
 						lineaB.close();
-						
+						}	
 											
-						temp = temp.getSiguiente();
+					tempNodoD = tempNodoD.getSiguiente();
 					}
+						
 					escribirA.close();
 					pw.close();
 				} catch (FileNotFoundException e) {
@@ -530,7 +566,7 @@ public class Interface implements Initializable {
 					e.printStackTrace();
 				}
 		}
-		System.out.println("\nCommit Finalizado........................!");
+		System.out.println("Commit Completed");
 
 	}
 
