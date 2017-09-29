@@ -48,8 +48,8 @@ public class DocumentJSON implements Initializable {
 	public void verificar(ActionEvent event){
 		
 		String NameJson = nameJSONstore.getText();
-		System.out.println("\n Nombre del JSON store a buscar: "+NameJson+" adentro de esta lista: \n");
-		ListJSONstores.getInstance().imprimirListaD();
+		System.out.println("\n Nombre del JSON store a buscar: "+NameJson);
+		
 		
 		if (ListJSONstores.getInstance().buscarNodoD(NameJson) == true){ 			//ListaJSONstore.buscar(NameJson) 
 			verificarNameDoc.setDisable(false);
@@ -70,7 +70,7 @@ public class DocumentJSON implements Initializable {
 	public void crearDocJSON1(ActionEvent event) throws IOException{			
 		String NameJson = nameJSONstore.getText();
 		String NameDoc = nameDocumento.getText();
-		System.out.println("\nNameJson("+NameJson+")__NameDoc("+NameDoc+")__\n");
+		
 		
 		if (ListJSONstores.getInstance().buscarNodoD(NameJson) == true){
 			
@@ -78,8 +78,6 @@ public class DocumentJSON implements Initializable {
 			msjCreacionDocJSON.setText("Documento creado");
 			
 			cont_Atributos.setDisable(false); 
-			System.out.println("\n\nLista CD de "+NameJson+".  con nuevo hijoNodo :"+NameDoc+"_____.\n\n");
-			System.out.println("Lista Actual de este Json store : " );
 			ListJSONstores.getInstance().getNodoD(NameJson).getListacd().imprimirListaCD();
 		
 			System.out.println(" \n");

@@ -1,5 +1,6 @@
-Persona
-Vehiculo
-Animal
-Motocicleta
-Avión
+A
+B
+C
+D
+E
+F

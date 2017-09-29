@@ -2,7 +2,7 @@ package Lists;
 
 public class NodoListaS {
 	private String dato;
-	private NodoListaS siguiente;
+	private NodoListaS siguiente = null ;
 	
 	
 	public NodoListaS(String date) {

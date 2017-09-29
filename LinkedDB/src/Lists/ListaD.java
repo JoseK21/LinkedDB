@@ -8,12 +8,11 @@ package Lists;
 public class ListaD {
 	private NodoListaD inicio;
 	private NodoListaD fin;
-	ListaCD ListCD = new ListaCD();
-	
-	private int size = 0;	
-	
-    private static  ListaD uniqueInstance  =   null;
 
+	private int sizeD = 0;
+	
+	private static  ListaD uniqueInstance  =   null;
+	ListaCD ListCD = new ListaCD();
 	
 	
 	/**
@@ -63,13 +62,17 @@ public class ListaD {
 	 * @return
 	 */
 	public int getSize(){
-		NodoListaD temp = inicio;
-		while (temp != null){
-			size++;
-		}
-		return size;
+		return sizeD;
 	}
 	
+	/**
+	 * Metodo para Asignar un nuevo tamaño de la lista
+	 * @param size
+	 */
+	public void setSize(int size) {
+		this.sizeD = size;
+	}
+
 	/**
 	 * Método para agregar un nodo a la lista doble
 	 * @param nombre
@@ -86,7 +89,9 @@ public class ListaD {
 		    }
 	        aux.setSiguiente(nuevo);
 	        nuevo.setAnterior(aux);
-        }        
+	        
+        }  
+        sizeD++;
         }
 	
 	/**
@@ -143,8 +148,10 @@ public class ListaD {
 	public void eliminarNodoD(String dato){		  
 		  if(estaListaDVacia()){
 			  System.out.println("Lista vacia");
-		  }
-		  else{ 
+			  
+		  }else{ 
+			  System.out.println("Dato-: " + dato);	
+			  System.out.println("Dato del inicio-: "+ inicio.getDato());	
 			  if(fin == inicio){
 				  if(dato == inicio.getDato()){
 					  fin = null;
@@ -160,20 +167,21 @@ public class ListaD {
 				  inicio.setAnterior(inicio.getAnterior());
 				  inicio.setAnterior(null);
 				  System.out.println("Se elimino /"+dato+"/");
-			  }
+			  }			  
 			  else{  
 				  System.out.println("elemento despues del inicio");
 				  NodoListaD temporal, anterior, siguiente;	
 				  temporal = inicio;   
 				  siguiente = inicio;
 				  anterior = inicio;
-				   
+				  
 				  while(siguiente !=  null && siguiente.getDato() != dato){  
 					  System.out.println("1.............. while .........");
 					  temporal = temporal.getSiguiente();		    
 					  siguiente = siguiente.getSiguiente();		    
 					  anterior = anterior.getSiguiente();
 				  }
+				  System.out.println("SALIO DEL WHILE.. :)");
 				  if(siguiente != null && siguiente != fin){
 					  System.out.println("2____________________ if _______");
 					  System.out.println("Se elimino /"+siguiente.getDato()+"/");
@@ -182,6 +190,8 @@ public class ListaD {
 					  }
 				  else{ 
 					  if(siguiente == fin){
+						  // if (siguiente.getDato()!=null){							  
+						 
 						  System.out.println("Se elimino -------------------/"+siguiente.getDato()+"/");
 
 						  System.out.println("2__________140__________ else _______");

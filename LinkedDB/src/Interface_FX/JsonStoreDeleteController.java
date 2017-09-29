@@ -51,7 +51,7 @@ public class JsonStoreDeleteController implements Initializable {
 				msj = "del";
 				display.setText("Your JsonStore ( "+NameFileD+" ) was successfully deleted");						
 				display.setImage1(msj);
-								
+				System.out.println(NameFileD);
 				ListJSONstores.getInstance().eliminarNodoD(NameFileD);   
 				System.out.println("JsonStore eliminado a la lista: "+NameFileD+"\nLista Actualizada");
 				ListJSONstores.getInstance().imprimirListaD();

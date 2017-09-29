@@ -7,8 +7,14 @@ package Lists;
  */
 public class ListaS {
 	private NodoListaS inicio ;
-	private int size = 0;
+	private int sizeS = 0;
 	
+	public int getSizeS() {
+		return sizeS;
+	}
+	public void setSizeS(int sizeS) {
+		this.sizeS = sizeS;
+	}
 	/**
 	 * Constructor de la lista simplemente enlazada
 	 */
@@ -17,7 +23,9 @@ public class ListaS {
 	}
 	public NodoListaS getNodoS(String nodoNameS){
 		NodoListaS aux = inicio;
+		
 		while (aux != null){
+			
 			if(aux.getDato().equals(nodoNameS)){
 				return aux;
 			}
@@ -58,6 +66,7 @@ public class ListaS {
 		    }
 	        aux.setSiguiente(nuevotemp);
         }
+        sizeS++;
         
         //System.out.println("Objeto Agregado : "+nuevotemp.getDato()); 
         }
@@ -99,8 +108,8 @@ public class ListaS {
 	                temporal = temporal.getSiguiente();
 	                if (temporal.getDato() == dato) {
 	                	System.out.println("NODO ELIMINADO : "+dato);
-	                	size--;
-	                	System.out.println("\nTamaño de la lista Simple: "+size);
+	                	sizeS--;
+	                	System.out.println("\nTamaño de la lista Simple: "+sizeS);
 	                    previous.setSiguiente(temporal.getSiguiente());
 	                    break;
 	                }

@@ -8,9 +8,16 @@ package Lists;
 public class ListaCD {
 	private NodoListaCD inicio = null;;
 	private NodoListaCD fin = null;
-	ListaS listSim = new ListaS();
+	private int sizeCD = 0;
 	
-	int size=0;
+	public int getSizeCD() {
+		return sizeCD;
+	}
+	public void setSizeCD(int sizeCD) {
+		this.sizeCD = sizeCD;
+	}
+
+	ListaS listSim = new ListaS();
 	
 	/**
 	 * Constructor de la lista circular doble 
@@ -65,7 +72,7 @@ public class ListaCD {
         	nuevo.setSiguiente(inicio);
         	fin=nuevo;  
         }
-        size++;
+        sizeCD++;
     }
 	
 	/**
