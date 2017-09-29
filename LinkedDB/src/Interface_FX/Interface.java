@@ -61,7 +61,7 @@ public class Interface implements Initializable {
 	ListaD ListJSONstores = ListaD.getInstance();
 	
 	@FXML private Menu MenuJsonStore,MenuJsonDocument;
-	@FXML private MenuItem CreateJsonStore,DeleteJsonStore,CreateJsonDoc,MenuItemMenuCommit;
+	@FXML private MenuItem CreateJsonStore,DeleteJsonStore,CreateJsonDoc,MenuItemMenuCommit,updateMenuItem;
 	@FXML private Label msjCrearJSONstore , conf_Create;	
 	@FXML private TextField textnameJSONStore;
 	@FXML private TreeView treeView1;	
@@ -101,7 +101,7 @@ public class Interface implements Initializable {
 	 * @param event
 	 */
 	@FXML
-	public void OpenNew_JSONStore(ActionEvent event){			
+	public void openNew_JSONStore(ActionEvent event){			
 		try{
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("JSONStore.fxml"));			
 			Parent root1 = (Parent) fxmlLoader.load();
@@ -115,13 +115,27 @@ public class Interface implements Initializable {
 			System.out.println("no se puede abrir la ventana ");
 		}			
 	}
-	
+	@FXML
+	public void openInformation(ActionEvent event){			
+		try{
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Information.fxml"));			
+			Parent root1 = (Parent) fxmlLoader.load();
+			Stage stage = new Stage();
+			stage.initModality(Modality.WINDOW_MODAL);
+			stage.centerOnScreen();
+			stage.setTitle("LInkedDB");
+			stage.setScene(new Scene(root1));
+			stage.show();			
+		}catch (Exception e){
+			System.out.println("no se puede abrir la ventana ");
+		}			
+	}
 	/**
 	 * Método para abrir una nueva ventana para la creación de Documentos Json 
 	 * @param event
 	 */
 	@FXML
-	public void OpenCreate_DocJSON(ActionEvent event){		
+	public void openCreate_DocJSON(ActionEvent event){		
 		try{			
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DocJSON.fxml"));			
 			Parent root2 = (Parent) fxmlLoader.load();
@@ -141,7 +155,7 @@ public class Interface implements Initializable {
 	 * @param event
 	 */
 	@FXML
-	public void doorDelete_JSONstore(ActionEvent event){		
+	public void delete_JSONstore(ActionEvent event){		
 		try{
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("JsonStoreDelete.fxml"));
 			Parent root = (Parent) fxmlLoader.load();
@@ -169,7 +183,6 @@ public class Interface implements Initializable {
 		}
 	}
 			
-		
 	/**
 	 * Metodo que permite actualizar la vista (interface) del software
 	 */
@@ -181,47 +194,49 @@ public class Interface implements Initializable {
 		PrintWriter escribir;
 		
 		if (ListJSONstores.estaListaDVacia()==false){				
-			NodoListaD nodeD = ListJSONstores.getFirstNodeD();	
-			
-			while(nodeD != null){
-				String nameJsonStore = nodeD.getDato();			
+			int sizeD = ListJSONstores.getInstance().getSize();			
+			NodoListaD NodoD = ListJSONstores.getInstance().getFirstNodeD();	
+			int contD = 0;
+			while(contD < sizeD){
+				String nameJsonStore = NodoD.getDato();			
 				TreeItem treeitem =new TreeItem(nameJsonStore,new ImageView(FileIcon));
 				baseDatos.getChildren().addAll(treeitem);		
 				
-				if(nodeD.getListacd().estaListaCDVacia()==false){		
-					// NodoListaCD nodeCD = nodeD.getListacd().getFirstNodeCD();
-		            //System.out.print("<--> Inicio");
-					NodoListaCD aux = nodeD.getListacd().getFirstNodeCD();
-					NodoListaCD auxInicio = nodeD.getListacd().getFirstNodeCD();
-
-					do{
-	                    String nameDocJson = aux.getDato();
+				if(NodoD.getListacd().estaListaCDVacia()==false){	
+					int sizeCD = NodoD.getListacd().getSizeCD();
+					
+					NodoListaCD NodoCD = NodoD.getListacd().getFirstNodeCD();
+					int contCD = 0;
+					
+					while(contCD < sizeCD){					
+	                    String nameDocJson = NodoCD.getDato();
 						TreeItem treeitemDoc =new TreeItem(nameDocJson,new ImageView(DocIcon));
 						treeitem.getChildren().addAll(treeitemDoc);
 						
-						// System.out.println(ListJSONstores.getNodoD(nameJsonStore).getListacd().getNodoCD(nameDocJson).getListaS().estaListaSVacia() + " = Lista Simple");
-						
-						if(ListJSONstores.getNodoD(nameJsonStore).getListacd().getNodoCD(nameDocJson).getListaS().estaListaSVacia() == false){
-							NodoListaS t2 =ListJSONstores.getInstance().getNodoD(nameJsonStore).getListacd().getNodoCD(nameDocJson).getListaS().getFirstNodeS();
-							System.out.println("\nElemento Objeto : "+t2.getDato());
-							while(t2 != null){
-								System.out.println("    } OBJETO : "+ t2.getDato());
-								String t2name = t2.getDato();
-								TreeItem treeArc =new TreeItem(t2name,new ImageView(ArcIcon));
-								treeitemDoc.getChildren().addAll(treeArc);
-								
-								t2=t2.getSiguiente();
+						if(NodoCD.getListaS().estaListaSVacia() == false){							
+							int sizeS = NodoCD.getListaS().getSizeS();
+							NodoListaS NodoS = NodoCD.getListaS().getFirstNodeS();
+							int contS = 0;
+							
+							while(contS < sizeS) {
+								if(ListJSONstores.getInstance().getNodoD(nameJsonStore).getListacd().getNodoCD(nameDocJson).getListaS().buscarNodoS(NodoS.getDato()) != false){
+									System.out.println("    } OBJETO : "+ NodoS.getDato());
+									String t2name = NodoS.getDato();
+									TreeItem treeArc =new TreeItem(t2name,new ImageView(ArcIcon));
+									treeitemDoc.getChildren().addAll(treeArc);
+									
+								}
+								NodoS = NodoS.getSiguiente();
+								contS++;
 							}
-							 System.out.println("-----------------entro al otro while ---------");
 						}
-						aux = aux.getSiguiente();														           		                            
-		            }while(aux!=auxInicio);
-		            
-	           		
+						NodoCD = NodoCD.getSiguiente();      
+						contCD++;
+					}				
+				}
+				NodoD= NodoD.getSiguiente();    
+				contD++;
 			}
-			nodeD= nodeD.getSiguiente();    
-			}
-			
 		}
 		 System.out.println("\nSuccessful Update.");
 	}
@@ -243,8 +258,6 @@ public class Interface implements Initializable {
 
 		@Override
 		public void handle(MouseEvent event) {
-			// TODO Auto-generated method stub
-			
 		}
 	});
 	
@@ -360,6 +373,11 @@ public class Interface implements Initializable {
 			}
 		}
 	}		
+	
+	public void showUpdate(){
+		System.out.println("B) -------------------------------------------------------------- showUpdate into");
+		updateMenuItem.setDisable(false);
+	}
 
 	 /**
 	  * Método para borrar todo el contenido de la carpeta principal
@@ -432,20 +450,17 @@ public class Interface implements Initializable {
 						FileWriter escribirB = new FileWriter(rutaDOC,true);
 						PrintWriter lineaB = new PrintWriter(escribirB);						
 							
-						if (tempNodoD.getListacd().estaListaCDVacia()== false ){
+						if (tempNodoD.getListacd().estaListaCDVacia()== false ){						
 							
-							NodoListaCD aux = tempNodoD.getListacd().getFirstNodeCD();
-							NodoListaCD auxInicio = tempNodoD.getListacd().getFirstNodeCD();
-							// tengo que obtener el puntero INICIO
+							int sizeCD = tempNodoD.getListacd().getSizeCD();
 							
+							NodoListaCD tempNodoCD = tempNodoD.getListacd().getFirstNodeCD();
+							NodoListaCD tempNodoCDInicio = tempNodoD.getListacd().getFirstNodeCD();
+							int contCD = 0;
 							
-							
-							do{
-								
-								System.out.println(")))))))))))))))))))))))))\nValor a verificar : "+aux.getDato());
-								System.out.println("\nValor a Inicial de la Lista Simple  : "+auxInicio.getDato()+"\n)))))))))))))))))))))))))\n");
-								
-								String valueNodeCD = aux.getDato();
+							while(contCD < sizeCD){
+								System.out.println(contCD+" __\n");
+								String valueNodeCD = tempNodoCD.getDato();
 								lineaB.println(valueNodeCD);								
 								treeitemDOC =new TreeItem(valueNodeCD,new ImageView(DocIcon));							
 								treeitemJson.getChildren().addAll(treeitemDOC);								
@@ -453,6 +468,9 @@ public class Interface implements Initializable {
 								newFileDoc = new File(carpetaEnDoc);										
 								newFileDoc.mkdirs();												 // Crea carpeta JSONstore      IGUAL QUE ANTES......................................
 								rutaObj = "JSONstore\\"+valueNodeD+"\\"+valueNodeCD+"\\"+valueNodeCD+"_listaDeObj.txt"; 
+								
+								crearObjListaTxt = new File(rutaObj);	
+								crearObjListaTxt.delete();
 								crearObjListaTxt = new File(rutaObj);	
 								crearObjListaTxt.createNewFile();								
 								FileWriter escribirC = new FileWriter(rutaObj,true);
@@ -460,56 +478,57 @@ public class Interface implements Initializable {
 								
 								// REVISAR QUE LA LISTA SE ENCICLA									HACER TODO POR EL TAMAÑO DE LA LISTA DE ELLA
 								
-								if (aux.getListaS().estaListaSVacia()==false ){
-									System.out.println(")))))))))))))))))))))))))\nValor a verificar : "+aux.getDato());
-
-									//NodoListaS tempNodoS = ListJSONstores.getInstance().getNodoD(valueNodeD).getListacd().getNodoCD(valueNodeCD).getListaS().getFirstNodeS();
-									NodoListaS tempNodoS = aux.getListaS().getFirstNodeS();
-									System.out.println("Antes del while!!!!!!!!!!");
-									while(tempNodoS != null ) {
-										// REVISAR DE AQUI PARA ABAJO------------------------------------------------------------------
+								if (tempNodoCD.getListaS().estaListaSVacia()==false ){
+									System.out.println(")))))))))))))))))))))))))\nValor a verificar : "+tempNodoCD.getDato());
+									
+									int sizeS = tempNodoCD.getListaS().getSizeS();
+									NodoListaS tempNodoS = tempNodoCD.getListaS().getFirstNodeS();
+									int contS = 0;
+									
+									while(contS < sizeS) {
+										
 										String valueNodeS = tempNodoS.getDato();
-										System.out.println("  > ObjJson: " +valueNodeS+".\n");
+										System.out.println("  > ObjJson: " +valueNodeS+".\n");	
 										
-										lineaC.println(valueNodeS);												
-										treeitemObj = new TreeItem(valueNodeS,new ImageView(ArcIcon));
-										treeitemDOC.getChildren().addAll(treeitemObj);																			
-										 
-										ListJSONstores.getInstance().getNodoD(valueNodeD).getListacd().getNodoCD(valueNodeCD).getListaS().agregarNodoS(valueNodeS);  // agrego a la listaCD (etapa2)
+										if(ListJSONstores.getInstance().getNodoD(valueNodeD).getListacd().getNodoCD(valueNodeCD).getListaS().buscarNodoS(valueNodeS)==false){ 		// Revisar por que solo me muestra en el update y no el el commit/tengo que actualizar para ver las cosas
+											System.out.println("Elemento no estaba dentro de la lista anterior : elemento : "+valueNodeS);
+											lineaC.println(valueNodeS);												
+											treeitemObj = new TreeItem(valueNodeS,new ImageView(ArcIcon));
+											treeitemDOC.getChildren().addAll(treeitemObj);																			
+											 
+											ListJSONstores.getInstance().getNodoD(valueNodeD).getListacd().getNodoCD(valueNodeCD).getListaS().agregarNodoS(valueNodeS);  // agrego a la listaCD (etapa2)
+											
+											carpetaObj11 = "JSONstore\\"+valueNodeD+"\\"+valueNodeCD+"\\"+valueNodeS+"_listaAtributos.txt";	
+											newFileObj4 = new File(carpetaObj11);													
+											newFileObj4.createNewFile();
+											ListJSONstores.getInstance().getNodoD(valueNodeD).getListacd().getNodoCD(valueNodeCD).getListaS().imprimirListaS();																	
+																					
+											
+											System.out.println("ESTOY AQUI VEAME JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ  " + tempNodoS.getDato());
+											System.out.println("\n SALTO DE OBJ--!----!---!--!");
+											
+										}else{
+											System.out.println("El elemento existia solo crea el txt porque se habia borrado todo y tiene que agregar al Arbol?????????");
+											carpetaObj11 = "JSONstore\\"+valueNodeD+"\\"+valueNodeCD+"\\"+valueNodeS+"_listaAtributos.txt";	
+											newFileObj4 = new File(carpetaObj11);													
+											newFileObj4.createNewFile();
+											ListJSONstores.getInstance().getNodoD(valueNodeD).getListacd().getNodoCD(valueNodeCD).getListaS().imprimirListaS();																	
+												
+										}
 										
-										carpetaObj11 = "JSONstore\\"+valueNodeD+"\\"+valueNodeCD+"\\"+valueNodeS+"_listaAtributos.txt";	
-										newFileObj4 = new File(carpetaObj11);													
-										newFileObj4.createNewFile();
-										System.out.println("++++++++++++++++ LUEGO DE AGREGAR ++++++++++++++++\n "); 
-										ListJSONstores.getInstance().getNodoD(valueNodeD).getListacd().getNodoCD(valueNodeCD).getListaS().imprimirListaS();																	
-																				
-										
-										System.out.println("ESTOY AQUI VEAME JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ  " + tempNodoS.getDato());
-										System.out.println("\n SALTO DE OBJ--!----!---!--!");
-										ListJSONstores.getInstance().getNodoD(valueNodeD).getListacd().getNodoCD(valueNodeCD).getListaS().imprimirListaS();
 										tempNodoS = tempNodoS.getSiguiente();
+										contS++;
 									}
-									aux = aux.getSiguiente();	// CODIGO QUE REALICE <9
 									System.out.println("\n FIN DEL WHILE DE LISTAS..}}..(ObjetosJSON añadidos)....: ) :) :) :) ");
 									// SSASS hojas
 									escribirC.close();
 									lineaC.close();
-									System.out.println("FIN DEL DO_WHILE.<<>>> Para : "+aux.getDato());
+									System.out.println("FIN DEL DO_WHILE.<<>>> Para : "+tempNodoCD.getDato());
 									
-								}else{
-									System.out.println("\nSin Objetos JSON (listaSimple) para añadir"); 
-									escribirC.close();
-									lineaC.close();
-									System.out.println("FIN DEL DO_WHILE.<<>>> Para : "+aux.getDato());
-									aux = aux.getSiguiente();
-								}
-							
-								
-								System.out.println("TEMPORAL DE SALTO <"+aux.getDato()+">        INICIO SIN CAMBIO <<"+auxInicio.getDato()+">>");
-							}while(aux.getDato() != auxInicio.getDato());
-							System.out.println("__! FIN por que el temporal y el inicio son iguales");
-							System.out.println("FIN DEL DO_WHILE_________.. _______");
-						
+								}						
+							tempNodoCD = tempNodoCD.getSiguiente();
+							contCD++;
+							}					
 						
 						}	
 						tempNodoD = tempNodoD.getSiguiente();
@@ -535,7 +554,8 @@ public class Interface implements Initializable {
 
 
 	@Override
-	public void initialize(URL url, ResourceBundle rb){				
+	public void initialize(URL url, ResourceBundle rb){		
+		//updateMenuItem.setDisable(true);
 		cargarInicial1();
 			
 	}

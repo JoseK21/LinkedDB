@@ -12,17 +12,16 @@ public class NodoListaD {
 	public NodoListaD(String nombreNodo,ListaCD LISTACD) {
 		this(nombreNodo,null,null,null);
 	}	
-	public NodoListaD(String lista,NodoListaD s,NodoListaD a,ListaCD LCD){
-		dato=lista; 
+	public NodoListaD(String d,NodoListaD s,NodoListaD a,ListaCD LCD){
+		dato=d; 
 		siguiente=s;
 		anterior=a;
-		listacd= LCD;   																				 //LISTA VACIAAAAA .?????
+		listacd= LCD;   			
 	}
 
 	public ListaCD getListacd() {
 		if (listacd == null) {
 			return listacd =new ListaCD();
-			
 		}else{
 			return listacd;
 			}

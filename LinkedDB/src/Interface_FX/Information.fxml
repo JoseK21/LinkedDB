@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="296.0" prefWidth="557.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextArea layoutX="7.0" layoutY="2.0" prefHeight="298.0" prefWidth="544.0" text="LinkedDB is a noSQL database engine packaged as a JAR.&#10;&#10;Where you can initially define JsonStore that correspond to a folder in an address / path &#10;defined by the same Software, where you can create different Json Documents containing &#10;Json Objects, these represent a specific entity, for example a student, a person, a vehicle , &#10;among other.&#10;&#10;Actions on the JsonStore:&#10;1) Creation&#10;2) Elimination&#10;&#10;Actions on Json Documents:&#10;1) Define&#10;2) Aggregation&#10;3) Elimination&#10;4) Update&#10;5) Search&#10;&#10;Actions on Json Objects:&#10;1) Define name&#10;2) Define type&#10;3) Define special type&#10;4) Define whether the value is required or not&#10;6) Define default value&#10;&#10;Important:&#10;        The &quot;Commit&quot; button is activated after updating / refreshing the home page. This has&#10;        the function to save the changes made, on the contrary, if this button is not pressed all &#10;        the recent changes will be deleted.&#10;&#10;The software was created in the Java language used in the JavaFX library for the creation of&#10;the graphical interface.&#10;&#10;Developer: José Núñez&#10;Version: 2.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   </children>
+</AnchorPane>

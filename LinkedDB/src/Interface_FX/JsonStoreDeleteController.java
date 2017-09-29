@@ -52,7 +52,7 @@ public class JsonStoreDeleteController implements Initializable {
 				display.setText("Your JsonStore ( "+NameFileD+" ) was successfully deleted");						
 				display.setImage1(msj);
 				System.out.println(NameFileD);
-				ListJSONstores.getInstance().eliminarNodoD(NameFileD);   
+				ListJSONstores.getInstance().removeNodoD(NameFileD);   
 				System.out.println("JsonStore eliminado a la lista: "+NameFileD+"\nLista Actualizada");
 				ListJSONstores.getInstance().imprimirListaD();
 			}else{
@@ -66,7 +66,7 @@ public class JsonStoreDeleteController implements Initializable {
 		}else{
 			msj="vacio";
 			display.setImage1(msj);
-			display.setText("Warning..! Blank space");
+			display.setText("Warning..! Empty space");
 			System.out.println("Error : El JsonStore No tiene nombre : ("+NameFileD+")\nLista sin cambios :");
 			ListJSONstores.getInstance().imprimirListaD();
 		}		

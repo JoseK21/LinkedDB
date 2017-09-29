@@ -28,19 +28,19 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                        <MenuItem mnemonicParsing="false" onAction="#update" text="Update" />
+                        <MenuItem fx:id="updateMenuItem" mnemonicParsing="false" onAction="#update" text="Refresh" />
                     <MenuItem mnemonicParsing="false" onAction="#Close" text="Close" />
                   </items>
                 </Menu>
                 <Menu fx:id="MenuJsonStore" mnemonicParsing="false" text="JsonStore">
                   <items>
-                        <MenuItem fx:id="CreateJsonStore" mnemonicParsing="false" onAction="#OpenNew_JSONStore" text="Create" />
-                    <MenuItem mnemonicParsing="false" onAction="#doorDelete_JSONstore" text="Delete" />
+                        <MenuItem fx:id="CreateJsonStore" mnemonicParsing="false" onAction="#openNew_JSONStore" text="Create" />
+                    <MenuItem mnemonicParsing="false" onAction="#delete_JSONstore" text="Delete" />
                   </items>
                 </Menu>
                 <Menu fx:id="MenuJsonDocument" mnemonicParsing="false" text="JsonDocument">
                   <items>
-                    <MenuItem fx:id="CreateJsonDoc" mnemonicParsing="false" onAction="#OpenCreate_DocJSON" text="Create" />
+                    <MenuItem fx:id="CreateJsonDoc" mnemonicParsing="false" onAction="#openCreate_DocJSON" text="Create" />
                         <MenuItem mnemonicParsing="false" text="Update" />
                         <MenuItem mnemonicParsing="false" text="Search" />
                         <MenuItem mnemonicParsing="false" text="Delete" />
@@ -53,7 +53,7 @@
                   </Menu>
                   <Menu mnemonicParsing="false" text="Help">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Information" />
+                      <MenuItem mnemonicParsing="false" onAction="#openInformation" text="Information" />
                     </items>
                   </Menu>
               </menus>

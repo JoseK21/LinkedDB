@@ -5,10 +5,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="211.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface_FX.JsonStoreDeleteController">
+<AnchorPane prefHeight="211.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface_FX.JSONStore">
    <children>
       <Label layoutX="188.0" layoutY="34.0" text="Delete Json Store" />
-      <Button layoutX="208.0" layoutY="145.0" mnemonicParsing="false" onAction="#deleteJsonStore" text="Delete" />
-      <TextField fx:id="textJsonStoreD" layoutX="29.0" layoutY="81.0" prefHeight="25.0" prefWidth="389.0" promptText="Json Store" />
+      <Button layoutX="145.0" layoutY="145.0" mnemonicParsing="false" onAction="#removeJsonStore" prefHeight="25.0" prefWidth="157.0" text="Delete" />
+      <TextField fx:id="textJsonStoreDelete" layoutX="29.0" layoutY="81.0" prefHeight="25.0" prefWidth="389.0" promptText="Json Store" />
    </children>
 </AnchorPane>

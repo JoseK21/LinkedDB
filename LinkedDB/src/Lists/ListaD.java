@@ -100,7 +100,6 @@ public class ListaD {
 	public void imprimirListaD() {
 	      if (estaListaDVacia() == true ) {
 	         System.out.println("Lista Vacía");
-	       
 	      }
 	      else{
 		      NodoListaD temp = inicio;
@@ -129,10 +128,7 @@ public class ListaD {
 				temporal=temporal.getSiguiente();
 			}
 		}
-		return false;
-		
-	
-	}	
+		return false;	}	
 	/**
 	 * Método para obtener el primer nodo de todo la lista doble
 	 * @return
@@ -141,69 +137,47 @@ public class ListaD {
 		NodoListaD temporal = inicio;
 		return temporal;
 	}
-	/**
-	 * Método para elimiar un noodo de la lista doble
-	 * @param dato
-	 */
-	public void eliminarNodoD(String dato){		  
-		  if(estaListaDVacia()){
-			  System.out.println("Lista vacia");
-			  
-		  }else{ 
-			  System.out.println("Dato-: " + dato);	
-			  System.out.println("Dato del inicio-: "+ inicio.getDato());	
-			  if(fin == inicio){
-				  if(dato == inicio.getDato()){
-					  fin = null;
-					  inicio=null;
-					  System.out.println("Se elimino /"+dato+"/");
-				  }else{
-					  System.out.println("Error");
-				  }
-			  }
-			  else if(dato == inicio.getDato()){
-				  System.out.println("elemento al inicio--------------");			  
-				  inicio = inicio.getSiguiente();
-				  inicio.setAnterior(inicio.getAnterior());
-				  inicio.setAnterior(null);
-				  System.out.println("Se elimino /"+dato+"/");
-			  }			  
-			  else{  
-				  System.out.println("elemento despues del inicio");
-				  NodoListaD temporal, anterior, siguiente;	
-				  temporal = inicio;   
-				  siguiente = inicio;
-				  anterior = inicio;
-				  
-				  while(siguiente !=  null && siguiente.getDato() != dato){  
-					  System.out.println("1.............. while .........");
-					  temporal = temporal.getSiguiente();		    
-					  siguiente = siguiente.getSiguiente();		    
-					  anterior = anterior.getSiguiente();
-				  }
-				  System.out.println("SALIO DEL WHILE.. :)");
-				  if(siguiente != null && siguiente != fin){
-					  System.out.println("2____________________ if _______");
-					  System.out.println("Se elimino /"+siguiente.getDato()+"/");
-					  siguiente.getSiguiente().setAnterior(temporal.getAnterior());
-					  anterior.getAnterior().setSiguiente(temporal.getSiguiente());
-					  }
-				  else{ 
-					  if(siguiente == fin){
-						  // if (siguiente.getDato()!=null){							  
-						 
-						  System.out.println("Se elimino -------------------/"+siguiente.getDato()+"/");
-
-						  System.out.println("2__________140__________ else _______");
-
-						  System.out.println("elemento ULTIMO de la lista/");
-						  fin = fin.getAnterior();
-						  fin.setSiguiente(null);
-					  }else{
-						  System.out.println("No Existe_/ No se puede eliminar_!");
-					  }
-			  }}
-		  }
+	
+	public NodoListaD getLastNodeD(){
+		NodoListaD temporal = fin;
+		return temporal;
+	}
+	
+	public void removeNodoD(String d){
+		System.out.println("-------}}---------}}--------}}- "+d);
+		NodoListaD inicial = uniqueInstance.getFirstNodeD();		
+		NodoListaD atras = null;
+		String valueInicial = inicial.getDato();
+		
+		if(valueInicial.equals(d)){
+			System.out.println("CASO 1. AL INICIO.......................................");
+			inicio = inicio.getSiguiente();
+			inicio.setAnterior(null);
+		}
+		else{		
+			uniqueInstance.imprimirListaD();
+			while(inicial != null){
+				System.out.println("\n-<<<<<< Dentro del WHILE");
+				String valueInicial1 = inicial.getDato();
+				System.out.println("Valor -actual:"+inicial.getDato());
+	
+				if(valueInicial1.equals(d)){
+					System.out.println("Valor del actual -->  "+valueInicial1);
+					if(inicial == inicio){
+						inicio = inicio.getSiguiente();
+						inicio.setAnterior(null);
+					}else{
+						System.out.println("ELSE...... :( ");
+						atras.setSiguiente(inicial.getSiguiente());
+						inicial.getSiguiente().setAnterior(inicial.getAnterior());
+					}
+				}
+				atras = inicial;
+				inicial = inicial.getSiguiente();
+			}
+			System.out.println("Lista Vacia.");
+		}
+		System.out.println("Fin");
 	}
 
 	/**
