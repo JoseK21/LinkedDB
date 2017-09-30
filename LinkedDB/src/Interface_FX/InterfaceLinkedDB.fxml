@@ -9,16 +9,18 @@
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface_FX.Interface">
    <children>
-      <TreeView fx:id="treeView1" layoutY="30.0" prefHeight="670.0" prefWidth="430.0">
+      <TreeView fx:id="treeView1" layoutY="30.0" onContextMenuRequested="#activate_menuClic" onMouseClicked="#activate_menuClic" onMousePressed="#activate_menuClic" prefHeight="670.0" prefWidth="430.0">
          <contextMenu>
-            <ContextMenu>
+            <ContextMenu fx:id="ContextList" onAction="#activate_menuClic">
               <items>
-                  <MenuItem disable="true" mnemonicParsing="false" text="Show Object List" />
-                <MenuItem disable="true" mnemonicParsing="false" text="Add New Object" />
-                  <MenuItem disable="true" mnemonicParsing="false" text="Remove All Objects" />
-                  <MenuItem disable="true" mnemonicParsing="false" text="Remove Object Per Key." />
-                  <MenuItem disable="true" mnemonicParsing="false" text="Search By Attribute" />
-                  <MenuItem disable="true" mnemonicParsing="false" text="Update Object(s)" />
+                <MenuItem fx:id="right1" disable="true" mnemonicParsing="false" text="Show All Object" visible="false" />
+                  <MenuItem fx:id="right2" disable="true" mnemonicParsing="false" text="Add new Object" visible="false" />
+                  <MenuItem fx:id="right3" disable="true" mnemonicParsing="false" text="Delete All Object" visible="false" />
+                  <MenuItem fx:id="right4" disable="true" mnemonicParsing="false" text="Delete Document" visible="false" />
+                  <MenuItem fx:id="right5" mnemonicParsing="false" text="Delete/Search Object Key" />
+                  <MenuItem fx:id="right6" mnemonicParsing="false" text="Delete Object" />
+                  <MenuItem fx:id="right7" mnemonicParsing="false" text="Search for Attribute" />
+                  <MenuItem fx:id="right8" mnemonicParsing="false" text="Update Object" />
               </items>
             </ContextMenu>
          </contextMenu></TreeView> 

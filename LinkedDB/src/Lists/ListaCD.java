@@ -137,25 +137,6 @@ public class ListaCD {
 			
 	}
 	
-	public void eliminar2NodoCD(Object dato){
-		NodoListaCD actual;
-		boolean encontrado = false;
-		actual=fin;
-		while(actual.getSiguiente()!=fin && !encontrado){
-			encontrado = (actual.getSiguiente().getDato()==dato);
-			if (!encontrado){
-				actual=actual.getSiguiente();
-			}
-		}	
-		encontrado = (actual.getSiguiente().getDato()==dato);
-		if(encontrado){
-			NodoListaCD aux = actual.getSiguiente();
-			if(fin==fin.getSiguiente()){
-				fin=null;
-			}
-			actual.setSiguiente(aux.getSiguiente());
-		}
-	}
 	
 	/**
 	 * Método para buscar un nodo especifico de la lista circular doble

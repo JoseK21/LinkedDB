@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 
 import javax.swing.SwingUtilities;
 import javax.swing.plaf.synth.SynthOptionPaneUI;
+import javax.swing.tree.AbstractLayoutCache.NodeDimensions;
 
 import Lists.ListaCD;
 import Lists.ListaD;
@@ -38,6 +39,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuButton;
@@ -62,11 +64,20 @@ public class Interface implements Initializable {
 	
 	@FXML private Menu MenuJsonStore,MenuJsonDocument;
 	@FXML private MenuItem CreateJsonStore,DeleteJsonStore,CreateJsonDoc,MenuItemMenuCommit,updateMenuItem;
+	@FXML private MenuItem right1;
+	@FXML private MenuItem right2;
+	@FXML private MenuItem right3;
+	@FXML private MenuItem right4;
+	@FXML private MenuItem right5;
+	@FXML private MenuItem right6;
+	@FXML private MenuItem right7;
+	@FXML private MenuItem right8;
 	@FXML private Label msjCrearJSONstore , conf_Create;	
 	@FXML private TextField textnameJSONStore;
 	@FXML private TreeView treeView1;	
 	@FXML private TableView tabla;	
 	@FXML private TreeItem baseDatos,treeitemJson,treeitemDOC,treeitemObj,treeNewJson;
+	@FXML public ContextMenu ContextList;   
 	private FileReader leerTexto,leerTextoA ,leerDOC,leerObj ;
 	private BufferedReader almacenamientoTexto , almacenamientoTextoA,almacenamientoDoc,almacenamientoObj;	
 	private File carpetaJson,ArchivoTxtJson,newFileJSON,newFileDoc,crearDocListaTxt,crearObjListaTxt,crearArchivoListaTxt,newFileObj4;
@@ -74,20 +85,7 @@ public class Interface implements Initializable {
 
 
 	
-
 	
-	//MenuItem tiposEspecialesStatusList = (MenuItem) FXCollections.observableArrayList("Show All Object","Add new Object","Delete All Object","Delete Document","Delete/Search Object Key","Delete Object","Search for Attribute","Update Object");                             
-
-	CheckMenuItem men1 = new CheckMenuItem("Show All Object");
-	CheckMenuItem men2 = new CheckMenuItem("Add new Object");
-	CheckMenuItem men3 = new CheckMenuItem("Delete All Object");
-	CheckMenuItem men4 = new CheckMenuItem("Delete Document");
-	CheckMenuItem men5 = new CheckMenuItem("Delete/Search Object Key");
-	CheckMenuItem men6 = new CheckMenuItem("Delete Object");
-	CheckMenuItem men7 = new CheckMenuItem("Search for Attribute");
-	CheckMenuItem men8 = new CheckMenuItem("Update Object");
-	
-	@FXML private ChoiceBox<String> tiposEspecialesStatusBox;
 	
 	
 	
@@ -95,6 +93,58 @@ public class Interface implements Initializable {
 	Image FileIcon = new Image(getClass().getResourceAsStream("/img/img1.png"));	
 	Image DocIcon = new Image(getClass().getResourceAsStream("/img/tabla.png"));	
 	Image ArcIcon = new Image(getClass().getResourceAsStream("/img/columna.jpg"));
+	
+	
+	
+	public void activate_menuClic(){
+		
+		TreeItem selected = (TreeItem)treeView1.getSelectionModel().getSelectedItem();
+		NodoListaD aux_store = ListJSONstores.getInstance().getNodoD(selected.getValue().toString());
+		
+		System.out.println(aux_store.getDato());
+		//ListJSONstores.getInstance().setSelected_item(selected.getValue().toString());
+		
+		if(ListJSONstores.getInstance().buscarNodoD(selected.getValue().toString()) != false){
+			// ListJSONstores.getInstance().ge
+			right1.setDisable(false);
+			right2.setDisable(false);
+			right3.setDisable(false);
+			right4.setDisable(false);
+			right5.setDisable(false);
+			right6.setDisable(false);
+			right7.setDisable(false);
+			right8.setDisable(false);
+			
+			right8.setVisible(true);
+			right7.setVisible(true);
+			right6.setVisible(true);
+			right5.setVisible(true);
+			right4.setVisible(true);
+			right3.setVisible(true);
+			right2.setVisible(true);
+			right1.setVisible(true);
+			
+		}else{
+			right1.setDisable(true);
+			right2.setDisable(true);
+			right3.setDisable(true);
+			right4.setDisable(true);
+			right5.setDisable(true);
+			right6.setDisable(true);
+			right7.setDisable(true);
+			right8.setDisable(true);
+			
+			right8.setVisible(false);
+			right7.setVisible(false);
+			right6.setVisible(false);
+			right5.setVisible(false);
+			right4.setVisible(false);
+			right3.setVisible(false);
+			right2.setVisible(false);
+			right1.setVisible(false);
+		}
+	}
+	
 	
 	/**
 	 * Método para abrir una nueva ventana para la creación de Json Stores
@@ -224,7 +274,6 @@ public class Interface implements Initializable {
 									String t2name = NodoS.getDato();
 									TreeItem treeArc =new TreeItem(t2name,new ImageView(ArcIcon));
 									treeitemDoc.getChildren().addAll(treeArc);
-									
 								}
 								NodoS = NodoS.getSiguiente();
 								contS++;
@@ -240,24 +289,22 @@ public class Interface implements Initializable {
 		}
 		 System.out.println("\nSuccessful Update.");
 	}
-	
-	
 		
-	
 	/**
 	 * Método para cargar todo el contenido de los ficheros (txt) hacia el sistema
 	 */
 	public void cargarInicial1(){
 	MenuItemMenuCommit.setDisable(true);
 	
+	// ContextList.setDisable(false);
 	baseDatos = new TreeItem("LinkedDB",new ImageView(DBIcon));
 	treeView1.setRoot(baseDatos);
 	baseDatos.setExpanded(true);
 	
 	baseDatos.addEventHandler(MouseEvent.MOUSE_CLICKED,new EventHandler<MouseEvent>() {
-
 		@Override
 		public void handle(MouseEvent event) {
+			//TreeItem<String> item = baseDatos.getSelectionModel().getSelectedItem
 		}
 	});
 	
@@ -374,11 +421,6 @@ public class Interface implements Initializable {
 		}
 	}		
 	
-	public void showUpdate(){
-		System.out.println("B) -------------------------------------------------------------- showUpdate into");
-		updateMenuItem.setDisable(false);
-	}
-
 	 /**
 	  * Método para borrar todo el contenido de la carpeta principal
 	 * @param fileDel
@@ -555,7 +597,14 @@ public class Interface implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb){		
-		//updateMenuItem.setDisable(true);
+		right1.setDisable(true); right1.setVisible(false);
+		right2.setDisable(true); right2.setVisible(false);
+		right3.setDisable(true); right3.setVisible(false);
+		right4.setDisable(true); right4.setVisible(false);
+		right5.setDisable(true); right5.setVisible(false);
+		right6.setDisable(true); right6.setVisible(false);
+		right7.setDisable(true); right7.setVisible(false);
+		right8.setDisable(true); right8.setVisible(false);
 		cargarInicial1();
 			
 	}

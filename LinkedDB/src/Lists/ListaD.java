@@ -10,7 +10,8 @@ public class ListaD {
 	private NodoListaD fin;
 
 	private int sizeD = 0;
-	
+	private String selected_item;
+	private String parent_item;
 	private static  ListaD uniqueInstance  =   null;
 	ListaCD ListCD = new ListaCD();
 	
@@ -21,7 +22,26 @@ public class ListaD {
 	public ListaD(){
 		inicio=fin=null;	
 	}
-											
+				
+	
+	
+	public String getParent_item() {
+		return parent_item;
+	}
+	public void setParent_item(String parent_item) {
+		this.parent_item = parent_item;
+	}
+
+	public String getSelected_item() {
+		return selected_item;
+	}
+
+	public void setSelected_item(String selected_item) {
+		this.selected_item = selected_item;
+	}
+
+
+
 	/**
 	 * Metodo para obtener una respuesta si la lista doblemente enlazada esta vacia
 	 * @return
@@ -190,6 +210,7 @@ public class ListaD {
         }
         return uniqueInstance;
     }
+
 	
 
 }

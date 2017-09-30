@@ -1,3 +1,5 @@
 Persona
+Vehiculo
 Estudiante
-La?iz
+Hotel
+Animal
